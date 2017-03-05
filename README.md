@@ -1,3 +1,3 @@
 # Bishvil
 
-#### בנות שירות בישראל
+#### Lone Sheirut Leumi - Girls in Israel  
