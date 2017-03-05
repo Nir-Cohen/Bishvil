@@ -1,3 +1,5 @@
 # Bishvil
 
-#### Lone Sheirut Leumi - Girls in Israel  
+#### Lone Sheirut Leumi - Girls in Israel  
+
+![github project settings](./logo.png)
