@@ -11,3 +11,5 @@
 
 
 ####[Gitter-Chat](https://gitter.im/jce-il/Bishvil-Crew)
+
+Our project is conducted in cooperation with the College of Engineering Azrieli under the Software Engineering Project, ###[More info ]https://github.com/jce-il)
