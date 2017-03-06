@@ -23,4 +23,3 @@ Please visit our wiki for furthur project info:
 - [Software Design Specification](../../wiki/Home)
 
 
-####[Planing](https://github.com/Nir-Cohen/Bishvil/wiki/Planing)
