@@ -24,4 +24,3 @@ Please visit our wiki for furthur project info:
 
 
 ####[Planing](https://github.com/Nir-Cohen/Bishvil/wiki/Planing)
-###[Issues](https://github.com/Nir-Cohen/Bishvil/issues)
