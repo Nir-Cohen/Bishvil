@@ -6,6 +6,9 @@
 
 
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/jce-il/Bishvil-Crew)
+[![GitHub issues](https://img.shields.io/github/issues/jce-il/project-template.svg?style=flat)](https://github.com/Nir-Cohen/Bishvil)
+
+
 
 ## Disclaimer
 This project is developed as part of the requirements for a [software engineering course](https://github.com/jce-il/se-class/wiki) at the software engineering department - [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
@@ -16,7 +19,8 @@ Please visit our wiki for furthur project info:
 
 ### Project Documents
 - [Project Planing](../../wiki/Planing)
-
+- [Software Requirements Specification](../../wiki/Home)
+- [Software Design Specification](../../wiki/Home)
 
 
 ####[Planing](https://github.com/Nir-Cohen/Bishvil/wiki/Planing)
