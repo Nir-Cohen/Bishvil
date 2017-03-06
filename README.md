@@ -9,7 +9,5 @@
 ####[Planing](https://github.com/Nir-Cohen/Bishvil/wiki/Planing)
 ###[Issues](https://github.com/Nir-Cohen/Bishvil/issues)
 
-
-####[Gitter-Chat](https://gitter.im/jce-il/Bishvil-Crew)
-
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/jce-il/Bishvil-Crew)
 Our project is conducted in cooperation with the College of Engineering Azrieli under the Software Engineering Project, [More info](https://github.com/jce-il)
