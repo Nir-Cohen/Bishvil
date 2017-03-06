@@ -16,7 +16,7 @@ This project is developed as part of the requirements for a [software engineerin
 
 ### Project Documents
 - [User Manual](https://github.com/Nir-Cohen/Bishvil/wiki/User-Manual)
-- ####[Team](https://github.com/Nir-Cohen/Bishvil/wiki/Team)
+- [Team](https://github.com/Nir-Cohen/Bishvil/wiki/Team)
 - [Project Planing](../../wiki/Planing)
 - [Software Requirements Specification](../../wiki/Home)
 - [Software Design Specification](../../wiki/Home)
