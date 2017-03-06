@@ -5,9 +5,6 @@
 ![github project settings](./logo.png)
 
 
-####[Planing](https://github.com/Nir-Cohen/Bishvil/wiki/Planing)
-###[Issues](https://github.com/Nir-Cohen/Bishvil/issues)
-
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/jce-il/Bishvil-Crew)
 
 ## Disclaimer
@@ -18,4 +15,9 @@ Please visit our wiki for furthur project info:
 ####[Team](https://github.com/Nir-Cohen/Bishvil/wiki/Team)
 
 ### Project Documents
-- [Project Inception](../../wiki/Planing)
+- [Project Planing](../../wiki/Planing)
+
+
+
+####[Planing](https://github.com/Nir-Cohen/Bishvil/wiki/Planing)
+###[Issues](https://github.com/Nir-Cohen/Bishvil/issues)
