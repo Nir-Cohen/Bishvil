@@ -7,3 +7,6 @@
 ####[User Manual](https://github.com/Nir-Cohen/Bishvil/wiki/User-Manual) 
 ####[Team](https://github.com/Nir-Cohen/Bishvil/wiki/Team)
 ####[Planing](https://github.com/Nir-Cohen/Bishvil/wiki/Planing)
+
+
+our gitter chat room : <gitter.im/Nir-Cohen/Bishvil> 
