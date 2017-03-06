@@ -9,4 +9,4 @@
 ####[Planing](https://github.com/Nir-Cohen/Bishvil/wiki/Planing)
 
 
-our gitter chat room : <gitter.im/Nir-Cohen/Bishvil> 
+####[Gitter-Chat](https://gitter.im/jce-il/Bishvil-Crew)
