@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class BishvilAppPage {
+export class FirebaseCrudPage {
   navigateTo() {
     return browser.get('/');
   }

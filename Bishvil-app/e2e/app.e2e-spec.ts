@@ -1,10 +1,10 @@
-import { BishvilAppPage } from './app.po';
+import { FirebaseCrudPage } from './app.po';
 
-describe('bishvil-app App', function() {
-  let page: BishvilAppPage;
+describe('firebase-crud App', function() {
+  let page: FirebaseCrudPage;
 
   beforeEach(() => {
-    page = new BishvilAppPage();
+    page = new FirebaseCrudPage();
   });
 
   it('should display message saying app works', () => {
