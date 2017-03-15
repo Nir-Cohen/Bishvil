@@ -8,6 +8,7 @@ import {AF} from "../providers/af";
 import { HomePageComponent } from './home-page/home-page.component';
 import {FormsModule} from "@angular/forms";
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
+import { ChatComponent } from './chat/chat.component';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCjyJqa4ix5ZFAfQIPfNCLZfcV6dOpLX18",
@@ -20,7 +21,8 @@ export const firebaseConfig = {
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'register', component: RegistrationPageComponent}
+  { path: 'register', component: RegistrationPageComponent},
+  { path: 'chat', component: ChatComponent}
 ];
 
 @NgModule({
@@ -30,7 +32,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule
   ],
-  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent ],
+  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent ],
   bootstrap: [ AppComponent ],
   providers: [AF]
 })

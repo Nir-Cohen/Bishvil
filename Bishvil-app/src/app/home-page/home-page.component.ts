@@ -1,22 +1,14 @@
-import {Component, OnInit, AfterViewChecked, ElementRef, ViewChild} from '@angular/core';
-import {AF} from "../../providers/af";
-import {FirebaseListObservable} from "angularfire2";
+import {Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent implements OnInit, AfterViewChecked {
-  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
-  public newMessage: string;
-  public messages: FirebaseListObservable<any>;
-
-  constructor(public afService: AF) {
-    this.messages = this.afService.messages;
-    
-  }
-
+export class HomePageComponent implements OnInit {
+  
+  constructor() { }
+  
   ngOnInit() {}
 
   ngAfterViewChecked() {
@@ -47,4 +39,5 @@ export class HomePageComponent implements OnInit, AfterViewChecked {
     else
       return true;
   }
+
 }

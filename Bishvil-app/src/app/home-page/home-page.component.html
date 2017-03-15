@@ -1,23 +1,46 @@
 
-  <div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <div #scrollMe class="bs-example" id="messages">
-        <div *ngFor="let message of messages | async">
-          <div class="bubble" [class.you]="isYou(message.email)" [class.me]="isMe(message.email)">
-            <p>{{ message.message }}</p>
-            <div class="author">
-              {{ message.displayName }} | {{ message.timestamp | date:"MM/dd/yy hh:mm a" }}
-            </div>
-          </div>
-        </div>
 
-      </div>
+<div class="container">
+  
+  <!--
+    xs: 0-768
+    sm: 768-992
+    md: 992-1200
+    lg: 1200 up
+  -->
 
-      <figure class="highlight">
-        <input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">
-        <a class="send-message" (click)="sendMessage()">SEND</a>
-      </figure>
+  <!--
+    panel-default
+    panel-danger
+    panel-info
+    panel-primary
+    panel-success
+    panel-warning
+  -->
+
+  <!-- main -->
+  <div class="row well">
+
+    <div class="col-xs-6 col-lg-3">
+      <button class="btn btn-success  maincmd">Hosting<br>Shabat</button>
     </div>
+   <div class="col-xs-6 col-lg-3">
+      <button class="btn btn-warning maincmd">Items<br>Delivery</button>
+    </div>
+   <div class="col-xs-6 col-lg-3">
+      <button class="btn btn-danger maincmd">Night<br>Life</button>
+    </div>
+   <div class="col-xs-6 col-lg-3">
+      <a [routerLink]="['/chat']"><button class="btn btn-primary maincmd">General<br>Chat</button></a>
+    </div>
+
+
   </div>
+
+
 </div>
+
+
+
+
+
