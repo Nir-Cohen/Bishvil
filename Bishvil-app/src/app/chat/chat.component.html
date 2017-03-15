@@ -12,14 +12,14 @@
             </div>
           </div>
         </div>
-        
+
       </div>
 
-      <figure class="highlight">
-        <input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">
-        <a class="send-message" (click)="sendMessage()">SEND</a>
+      <figure class="highlight row">
+        <div class="col-xs-10"><input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()"/></div>
+        <div class="col-xs-2"><button class="btn btn-primary" (click)="sendMessage()">SEND</button></div>
       </figure>
-
+      
     </div>
   </div>
 </div>

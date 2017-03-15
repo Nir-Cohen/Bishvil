@@ -15,7 +15,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   constructor(public afService: AF) {
     this.messages = this.afService.messages;
-    
+
   }
 
   ngOnInit() {
@@ -33,6 +33,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   sendMessage(){
+    if (this.newMessage == null || this.newMessage == "")
+      return;
+
     this.afService.sendMessage(this.newMessage);
     this.newMessage = '';
   }
