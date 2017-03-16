@@ -26,5 +26,6 @@ export class RegistrationPageComponent {
         this.error = error;
         console.log(this.error);
       });
+      
   }
 }

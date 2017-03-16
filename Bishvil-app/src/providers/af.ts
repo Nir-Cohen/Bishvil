@@ -20,6 +20,7 @@ export class AF {
 
     this.messages = this.af.database.list('messages');
     this.users = this.af.database.list('users');
+    //this.af.auth.getAuth().auth.sendEmailVerification();
   }
 
   /**
@@ -32,6 +33,10 @@ export class AF {
       method: AuthMethods.Popup,
     });
   }
+emailVerfication()
+{
+  return this.af.auth.getAuth().auth.sendEmailVerification();
+}
 
   /**
    * Logs out the current user
