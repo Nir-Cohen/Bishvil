@@ -1,0 +1,14 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Visting in Shabat!</h1>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="mail">Family-Mail</label>
+        <input ngControl="mail" type="text" class="form-control" id="mail" required>
+     
+      </div>
+      <button type="submit" class="btn btn-success" >Submit</button>
+      <button type="button" class="btn btn-default" >Edit</button>
+    </form>
+  </div>
+ 

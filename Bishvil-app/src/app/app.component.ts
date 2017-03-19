@@ -9,8 +9,10 @@ import { Router } from "@angular/router";
 })
 export class AppComponent {
   public isLoggedIn: boolean;
+  
 
   constructor(public afService: AF, private router: Router) {
+  
     // This asynchronously checks if our user is logged it and will automatically
     // redirect them to the Login page when the status changes.
     // This is just a small thing that Firebase does that makes it easy to use.
