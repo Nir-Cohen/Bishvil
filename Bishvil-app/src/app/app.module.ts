@@ -12,7 +12,11 @@ import { ChatComponent } from './chat/chat.component';
 import { HostComponent } from './host/host.component';
 import { HostFormComponent } from './host-form/host-form.component';
 import { DatePickerModule } from 'ng2-datepicker';
+<<<<<<< HEAD
 import { ItemsComponent } from './items/items.component';
+=======
+import { ItemComponent } from './item/item.component';
+>>>>>>> e28b8566baef21794827e45893c118ba06cd50b5
 
 
 export const firebaseConfig = {
@@ -30,6 +34,7 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent},
   { path: 'host', component: HostComponent},
   { path: 'host-form', component: HostFormComponent},
+  { path: 'item', component: ItemComponent},
   
 ];
 
@@ -41,7 +46,11 @@ const routes: Routes = [
     FormsModule,
     DatePickerModule 
   ],
+<<<<<<< HEAD
   declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent, HostComponent, HostFormComponent, ItemsComponent ],
+=======
+  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent, HostComponent, HostFormComponent, ItemComponent ],
+>>>>>>> e28b8566baef21794827e45893c118ba06cd50b5
   bootstrap: [ AppComponent ],
   providers: [AF]
 })
