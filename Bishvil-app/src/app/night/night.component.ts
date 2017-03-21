@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AF} from 'providers/af';
+import {FirebaseListObservable} from "angularfire2";
 
 @Component({
   selector: 'app-night',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NightComponent implements OnInit {
 
-  constructor() { }
+  public events: FirebaseListObservable<any>;
+  constructor(public afService: AF) { 
+    this.events = this.afService.event;
+  }
 
   ngOnInit() {
   }

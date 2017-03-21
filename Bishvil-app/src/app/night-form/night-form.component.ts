@@ -9,11 +9,11 @@ import {FirebaseListObservable} from "angularfire2";
 })
 export class NightFormComponent implements OnInit {
 
-  public events: FirebaseListObservable<any>;
+  
   public event: event;
 
   constructor(public afService: AF) {
-    this.events = this.afService.event;
+    
 
   }
 
