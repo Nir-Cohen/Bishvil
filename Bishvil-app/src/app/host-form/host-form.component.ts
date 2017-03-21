@@ -9,7 +9,8 @@ import { DatePickerOptions, DateModel } from 'ng2-datepicker';
 })
 export class HostFormComponent implements OnInit {
   public user: User;
-  date: DateModel;
+  date_s: DateModel; //Choose from when.
+  date_f:DateModel;
   options: DatePickerOptions;
 
   constructor() {
@@ -18,10 +19,9 @@ export class HostFormComponent implements OnInit {
   ngOnInit() {
     this.user = {
       name: '',
-      address: {
-        street: '',
-        postcode: '8000'
-      }
+      data: '',
+      date_start:new DateModel(), //TODO: need to decalre a new date each time.
+      date_finish:new DateModel(),
     };
   }
   save(model: User, isValid: boolean) {
@@ -30,7 +30,7 @@ export class HostFormComponent implements OnInit {
 
   goSubmit()
   {
-    alert("save the info");
-    
+    alert("User information:");
+    console.log(this.user.name,this.user.data,this.user.date_start,this.user.date_finish);
   }
 }

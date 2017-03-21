@@ -9,24 +9,15 @@
             Name is required (minimum 5 characters).
           </small>
       </div> 
-      
-      
-      <div>
-        <ng2-datepicker name='date' [options]="options" [(ngModel)]="date"></ng2-datepicker>  
+      <div class ="container">
+        <label>From</label><ng2-datepicker name='date' [options]="options" [(ngModel)]="date"></ng2-datepicker>  
+       <label>To:</label> <ng2-datepicker name='date' [options]="options" [(ngModel)]="date"></ng2-datepicker>  
       </div>
-
-
-      <div>
-        <label for="password">Password</label>
-        <input type="text" class="form-control" id="password" required>
-      </div>
-      <br>
+<br>
       <button type="submit" class="btn btn-success" (click)="goSubmit()">Submit</button>
       <button type="button" class="btn btn-default" (click)="goEdit()">Edit</button>
     </form>
     <h2>Invition Details </h2>
     <div>Mail: {{user.name}}</div>
-
-
   </div>
 </div>
