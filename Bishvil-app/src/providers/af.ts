@@ -27,8 +27,11 @@ export class AF {
   }
 
 
-addEvent(){
-  this.event.push({location: "jer", time: "10:12"});
+addEvent(item){
+  this.event.push({
+      location: item.location,
+      time: item.time
+    });
 }
 
 

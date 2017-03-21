@@ -32,6 +32,17 @@
         </div>
       </div>
 
+      <div class="list-group" *ngFor="let event of events | async">
+
+        <a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">{{event.location}}</h4>
+          <p class="list-group-item-text">
+          {{event.time}}
+          </p>
+        </a>
+
+      </div>
+
 
   </div>
 

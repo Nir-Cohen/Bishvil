@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {AF} from 'providers/af';
+import {FirebaseListObservable} from "angularfire2";
 
 @Component({
   selector: 'app-night-form',
@@ -7,9 +8,12 @@ import {AF} from 'providers/af';
   styleUrls: ['./night-form.component.css']
 })
 export class NightFormComponent implements OnInit {
+
+  public events: FirebaseListObservable<any>;
   public event: event;
+
   constructor(public afService: AF) {
-    
+    this.events = this.afService.event;
 
   }
 
@@ -18,7 +22,7 @@ export class NightFormComponent implements OnInit {
   }
 
   addEvent(){
-    this.afService.addEvent();
+    this.afService.addEvent(this.event);
   }
 
 }
