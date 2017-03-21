@@ -35,6 +35,8 @@ const routes: Routes = [
   { path: 'host', component: HostComponent},
   { path: 'host-form', component: HostFormComponent},
   { path: 'items', component: ItemsComponent},
+  { path: 'night', component: NightComponent},
+  { path: 'night-form', component: NightFormComponent},
   
 ];
 
