@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent},
   { path: 'host', component: HostComponent},
   { path: 'host-form', component: HostFormComponent},
-  { path: 'item', component: ItemComponent},
+  { path: 'items', component: ItemsComponent},
   
 ];
 
