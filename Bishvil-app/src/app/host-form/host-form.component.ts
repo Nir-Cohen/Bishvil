@@ -31,5 +31,6 @@ export class HostFormComponent implements OnInit {
   goSubmit()
   {
     alert("save the info");
+    
   }
 }
