@@ -18,9 +18,16 @@
             </div>
 
             <div class="form-group">
-              <label class="col-xs-2 control-label">Time: </label>
+              <label class="col-xs-2 control-label">When: </label>
                 <div class="col-xs-10">
-                  <input type="time" class="form-control" name="time" [(ngModel)]="event.time"/>
+                  <input type="datetime-local" class="form-control" name="time" [(ngModel)]="event.time"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-xs-2 control-label">Notes: </label>
+                <div class="col-xs-10">
+                  <input type="text" class="form-control" name="note" [(ngModel)]="event.note"/>
               </div>
             </div>
 
@@ -37,7 +44,7 @@
         <a href="#" class="list-group-item">
           <h4 class="list-group-item-heading">{{event.location}}</h4>
           <p class="list-group-item-text">
-          {{event.time}}
+          {{event.time}} &nbsp;&nbsp;&nbsp; {{event.note}} 
           </p>
         </a>
 

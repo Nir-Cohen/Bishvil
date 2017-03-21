@@ -30,7 +30,8 @@ export class AF {
 addEvent(item){
   this.event.push({
       location: item.location,
-      time: item.time
+      time: item.time,
+      note: item.note
     });
 }
 
