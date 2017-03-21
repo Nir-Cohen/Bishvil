@@ -9,7 +9,7 @@ import { DatePickerOptions, DateModel } from 'ng2-datepicker';
 })
 export class HostFormComponent implements OnInit {
   public user: User;
-  date_s: DateModel; //Choose from when.
+  date_s: DateModel;
   date_f:DateModel;
   options: DatePickerOptions;
 
