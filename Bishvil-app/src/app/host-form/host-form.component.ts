@@ -1,25 +1,35 @@
-import { Component, OnInit ,EventEmitter} from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
-
+import { User } from 'app/user.interface'
+import { DatePickerOptions, DateModel } from 'ng2-datepicker';
 @Component({
   selector: 'app-host-form',
   templateUrl: './host-form.component.html',
   styleUrls: ['./host-form.component.css']
 })
 export class HostFormComponent implements OnInit {
-  user = {mail: '', password: ''};
+  public user: User;
+  date: DateModel;
+  options: DatePickerOptions;
 
-  onsubmit(form)
-  {
-    this.user.mail = form.value['email'];
-    this.user.password = form.controls['password'].value;
+  constructor() {
+    this.options = new DatePickerOptions();
+  }
+  ngOnInit() {
+    this.user = {
+      name: '',
+      address: {
+        street: '',
+        postcode: '8000'
+      }
+    };
+  }
+  save(model: User, isValid: boolean) {
+    console.log(model, isValid);
   }
 
-    constructor() { }
-
-    ngOnInit() 
-    {
-    }
-   
+  goSubmit()
+  {
+    alert("save the info");
+  }
 }

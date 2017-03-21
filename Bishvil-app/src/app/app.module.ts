@@ -11,6 +11,8 @@ import { RegistrationPageComponent } from './registration-page/registration-page
 import { ChatComponent } from './chat/chat.component';
 import { HostComponent } from './host/host.component';
 import { HostFormComponent } from './host-form/host-form.component';
+import { DatePickerModule } from 'ng2-datepicker';
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCjyJqa4ix5ZFAfQIPfNCLZfcV6dOpLX18",
@@ -35,7 +37,8 @@ const routes: Routes = [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    DatePickerModule 
   ],
   declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent, HostComponent, HostFormComponent ],
   bootstrap: [ AppComponent ],

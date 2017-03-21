@@ -1,14 +1,24 @@
 <div class="container">
   <div [hidden]="submitted">
     <h1>Visting in Shabat!</h1>
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
       <div class="form-group">
-        <label for="mail">Family-Mail</label>
-        <input ngControl="mail" type="text" class="form-control" id="mail" required>
-     
+        <label>Location</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="user.name" #name="ngModel" required minlength="5">
+        <small [hidden]="name.valid || (name.pristine && !f.submitted)" class="text-danger">
+            Name is required (minimum 5 characters).
+          </small>
       </div>
-      <button type="submit" class="btn btn-success" >Submit</button>
-      <button type="button" class="btn btn-default" >Edit</button>
+      <div>
+        <label for="password">Password</label>
+        <input type="text" class="form-control" id="password" required>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success" (click)="goSubmit()">Submit</button>
+      <button type="button" class="btn btn-default" (click)="goEdit()">Edit</button>
     </form>
+    <h2>Invition Details </h2>
+    <div>Mail: {{user.name}}</div>
+    <ng2-datepicker [options]="options" [(ngModel)]="date"g></ng2-datepicker>
+
   </div>
- 
