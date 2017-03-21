@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {AF} from 'providers/af';
 
 @Component({
   selector: 'app-night-form',
@@ -7,15 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NightFormComponent implements OnInit {
   public event: event;
+  constructor(public afService: AF) {
+    
 
-  constructor() { }
+  }
 
   ngOnInit() {
     this.event = { location: "", time: "" };
   }
 
   addEvent(){
-    console.log(this.event);
+    this.afService.addEvent();
   }
 
 }

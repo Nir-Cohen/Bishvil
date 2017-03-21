@@ -37,6 +37,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       return;
 
     this.afService.sendMessage(this.newMessage);
+    
     this.newMessage = '';
   }
 
