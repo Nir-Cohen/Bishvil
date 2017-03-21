@@ -44,11 +44,9 @@ const routes: Routes = [
     FormsModule,
     DatePickerModule 
   ],
-<<<<<<< HEAD
+
   declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent, HostComponent, HostFormComponent, ItemsComponent ],
-=======
-  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent, HostComponent, HostFormComponent, ItemComponent ],
->>>>>>> e28b8566baef21794827e45893c118ba06cd50b5
+
   bootstrap: [ AppComponent ],
   providers: [AF]
 })
