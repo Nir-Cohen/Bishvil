@@ -10,6 +10,7 @@ export class AF {
   public email: string;
   public user: FirebaseObjectObservable<any>;
   public event: FirebaseListObservable<any>;
+  public item: FirebaseListObservable<any>;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
@@ -22,6 +23,7 @@ export class AF {
     this.messages = this.af.database.list('messages');
     this.users = this.af.database.list('users');
     this.event = this.af.database.list("events");
+    this.item = this.af.database.list("items");
 
     //this.af.auth.getAuth().auth.sendEmailVerification();
   }
@@ -33,6 +35,15 @@ addEvent(item){
       time: item.time,
       note: item.note
     });
+}
+
+addItem(item){
+  this.item.push({
+      location: item.location,
+      description: item.description,
+      type: item.type
+  });
+
 }
 
 
