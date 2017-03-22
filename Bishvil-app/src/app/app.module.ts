@@ -15,6 +15,7 @@ import { DatePickerModule } from 'ng2-datepicker';
 import { ItemsComponent } from './items/items.component';
 import { NightComponent } from './night/night.component';
 import { NightFormComponent } from './night-form/night-form.component';
+import { ItemFormComponent } from './item-form/item-form.component';
 
 
 
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'items', component: ItemsComponent},
   { path: 'night', component: NightComponent},
   { path: 'night-form', component: NightFormComponent},
+  { path: 'item-form' , component: ItemFormComponent}
   
 ];
 
@@ -49,7 +51,7 @@ const routes: Routes = [
     DatePickerModule 
   ],
 
-  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent, HostComponent, HostFormComponent, ItemsComponent, NightComponent, NightFormComponent ],
+  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent, HostComponent, HostFormComponent, ItemsComponent, NightComponent, NightFormComponent, ItemFormComponent ],
 
   bootstrap: [ AppComponent ],
   providers: [AF]

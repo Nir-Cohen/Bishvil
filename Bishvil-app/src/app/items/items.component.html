@@ -1,10 +1,20 @@
 <div class = "container">
-  <div class = "row well">
-      <div class = "col-md-6">
-          <button class = "btn btn-success maincmd">Add<br>Item</button>
+    <div class = "row">
+      <div class = "col-xs-8">
+          <a [routerLink] = "['/item-form']"><button class = "btn btn-success addcmd">Add<br>Item</button></a>
       </div>
-      <div class = "col-md-6">
-          <button class = "btn btn-success maincmd">Look For Item</button>
-      </div>
+    </div>
+      
+  <div class="list-group" *ngFor="let item of items | async">
+
+    <a href="#" class="list-group-item">
+      <h4 class="list-group-item-heading">{{item.location}}</h4>
+      <p class="list-group-item-text">
+      {{item.description}} &nbsp;&nbsp;&nbsp; {{item.type}} 
+      </p>
+    </a>
+
   </div>
+
+
 </div>
