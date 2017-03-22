@@ -11,6 +11,7 @@ export class AF {
   public user: FirebaseObjectObservable<any>;
   public event: FirebaseListObservable<any>;
   public item: FirebaseListObservable<any>;
+  public hosting: FirebaseListObservable<any>;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
@@ -24,7 +25,7 @@ export class AF {
     this.users = this.af.database.list('users');
     this.event = this.af.database.list("events");
     this.item = this.af.database.list("items");
-
+    this.hosting = this.af.database.list("hosting");
     //this.af.auth.getAuth().auth.sendEmailVerification();
   }
 
@@ -34,6 +35,14 @@ addEvent(item){
       location: item.location,
       time: item.time,
       note: item.note
+    });
+}
+
+addHosting(hosting){
+  this.hosting.push({
+      location: hosting.location,
+      time: hosting.time,
+      note: hosting.note
     });
 }
 
