@@ -1,11 +1,10 @@
 
 <div class="container">
-  <div class="row well">
-    <div class="col-md-12">
-      <a [routerLink]="['/host-form']"><button class="btn btn-warning maincmd">Do<br>Request</button></a>
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/host-form']"><button class="btn btn-success addcmd">Add Hosting</button></a>
       </div>
   </div>
-  <div class= "row well">
 
   <div class="list-group" *ngFor="let host of hosting | async">
 
@@ -18,7 +17,6 @@
 
   </div>
 
-  </div>
 </div>
 
 
