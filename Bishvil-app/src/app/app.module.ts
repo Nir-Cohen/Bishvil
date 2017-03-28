@@ -23,7 +23,7 @@ import { ItemFormComponent } from './item-form/item-form.component';
 export const firebaseConfig = {
     apiKey: "AIzaSyCjyJqa4ix5ZFAfQIPfNCLZfcV6dOpLX18",
     authDomain: "test-f29de.firebaseapp.com",
-    databaseURL: "https://test -f29de.firebaseio.com",
+    databaseURL: "https://test-f29de.firebaseio.com",
     storageBucket: "test-f29de.appspot.com",
     messagingSenderId: "808339653368"
 };
