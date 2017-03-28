@@ -56,7 +56,7 @@
             <small class="form-text text-muted">Notes for photo uploading</small>
           </div>
           <br>
-          <input type="button" class="btn btn-primary" value="Add Item" (click)="addItem()" />
+          <input type="button" class="btn btn-primary"  [routerLink]="['/items']" value="Add Item" (click)="addItem()" />
           <button type="reset" class="btn btn-danger">Reset Form</button>
       </form>
   </div>
