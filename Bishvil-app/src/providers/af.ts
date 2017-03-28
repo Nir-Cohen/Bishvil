@@ -86,7 +86,8 @@ emailVerfication()
     //We saved their auth info now save the rest to the db.
     this.users.push({
       email: this.email,
-      displayName: this.displayName
+      displayName: this.displayName,
+      status: this.status,
     });
   }
 
@@ -109,11 +110,12 @@ emailVerfication()
    * @param model
    * @returns {firebase.Promise<void>}
    */
-  registerUser(email, password) {
+  registerUser(email, password,status) {
     console.log(email)
     return this.af.auth.createUser({
       email: email,
       password: password,
+      status:status,
     });
 
 
@@ -125,10 +127,11 @@ emailVerfication()
    * @param model
    * @returns {firebase.Promise<void>}
    */
-  saveUserInfoFromForm(uid, name, email) {
+  saveUserInfoFromForm(uid, name, email,status) {
     return this.af.database.object('registeredUsers/' + uid).set({
       name: name,
       email: email,
+      status:status
     });
   }
 
@@ -138,11 +141,11 @@ emailVerfication()
    * @param password
    * @returns {firebase.Promise<FirebaseAuthState>}
    */
-  loginWithEmail(email, password) {
+  loginWithEmail(email, password,status) {
     return this.af.auth.login({
         email: email,
         password: password,
-
+        status:status,
       },
       {
         provider: AuthProviders.Password,
