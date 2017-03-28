@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import {HostFormComponent} from 'app/host-form/host-form.component';
+import {FirebaseListObservable} from "angularfire2";
+import {AF} from 'providers/af';
 
 @Component({
   selector: 'app-host',
@@ -8,9 +10,14 @@ import {HostFormComponent} from 'app/host-form/host-form.component';
   
 })
 export class HostComponent implements OnInit {
+  
+  public hosting: FirebaseListObservable<any>;
+  constructor(public afService: AF) { 
+    this.hosting = this.afService.hosting;
+  }
 
-  constructor() {
-    }
+
+
 
   ngOnInit() {
   }

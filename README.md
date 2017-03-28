@@ -6,7 +6,7 @@
 
 
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/jce-il/Bishvil-Crew)
-###[![GitHub issues](https://img.shields.io/github/issues/jce-il/project-template.svg?style=flat)](https://github.com/Nir-Cohen/Bishvil/issues)
+[![GitHub issues](https://img.shields.io/github/issues/jce-il/project-template.svg?style=flat)](https://github.com/Nir-Cohen/Bishvil/issues)
 
 
 
@@ -18,7 +18,9 @@ This project is developed as part of the requirements for a [software engineerin
 - [User Manual](https://github.com/Nir-Cohen/Bishvil/wiki/User-Manual)
 - [Team](https://github.com/Nir-Cohen/Bishvil/wiki/Team)
 - [Project Planing](../../wiki/Planing)
-- [Software Requirements Specification](../../wiki/Home)
+- [Software Requirements Specification](https://github.com/Nir-Cohen/Bishvil/blob/master/srs.pdf)
 - [Software Design Specification](../../wiki/Home)
 
 
+### Our live beta application:
+https://test-f29de.firebaseapp.com/
