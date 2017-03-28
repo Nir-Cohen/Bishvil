@@ -23,7 +23,7 @@ export class LoginPageComponent {
 
   loginWithEmail(event, email, password){
     event.preventDefault();
-    this.afService.loginWithEmail(email, password,"0").then(() => {
+    this.afService.loginWithEmail(email, password).then(() => {
       this.router.navigate(['']);
     })
       .catch((error: any) => {
