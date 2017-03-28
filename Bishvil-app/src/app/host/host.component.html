@@ -1,0 +1,22 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/host-form']"><button class="btn btn-success addcmd">Add Hosting</button></a>
+      </div>
+  </div>
+
+  <div class="list-group" *ngFor="let host of hosting | async">
+
+    <a href="#" class="list-group-item">
+      <h4 class="list-group-item-heading">{{host.location}}</h4>
+      <p class="list-group-item-text">
+      {{host.time}} &nbsp;&nbsp;&nbsp; {{host.note}} 
+      </p>
+    </a>
+
+  </div>
+
+</div>
+
+

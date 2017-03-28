@@ -1,0 +1,44 @@
+<div class="container">
+
+  <div [hidden]="submitted">
+
+    <h1>New Event</h1>
+
+    
+      <div class="row">
+        <div class="col-md-8 well">
+          <form class="form-horizontal">
+
+            <div class="form-group">
+              <label class="col-xs-2 control-label">Location: </label>
+              <div class="col-xs-10">
+                <input type="text" class="form-control" name="location" [(ngModel)]="event.location"/>
+                <span class="help-block">For Example: Jabotinsky pub, shimon ben shetach, Jerusalem</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-xs-2 control-label">When: </label>
+                <div class="col-xs-10">
+                  <input type="datetime-local" class="form-control" name="time" [(ngModel)]="event.time"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-xs-2 control-label">Notes: </label>
+                <div class="col-xs-10">
+                  <input type="text" class="form-control" name="note" [(ngModel)]="event.note"/>
+              </div>
+            </div>
+
+            <div class="text-left">
+              <input type="button" class="btn btn-primary" value="Add Event" (click)="addEvent()" />
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+  </div>
+
+</div>

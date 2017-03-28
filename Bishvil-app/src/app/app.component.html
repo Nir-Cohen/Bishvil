@@ -1,0 +1,35 @@
+
+<!-- Static: Always show -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="row">
+
+      <div class="navbar-header col-xs-6">
+        <a class="navbar-brand" href="#">Bishvil App</a>
+      </div>
+
+      <div *ngIf="isLoggedIn">
+
+        <div class="col-xs-4">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a>{{afService.displayName }}</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-2">
+          <ul class="nav navbar-nav navbar-right border-left">
+            <li><a (click)="logout()">Logout</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</nav>
+
+<!-- Dinamic -->
+<div class="app-content">
+  <router-outlet></router-outlet>
+</div>
