@@ -8,6 +8,7 @@ export class AF {
   public users: FirebaseListObservable<any>;
   public displayName: string;
   public email: string;
+  public status: string;
   public user: FirebaseObjectObservable<any>;
   public event: FirebaseListObservable<any>;
   public item: FirebaseListObservable<any>;
@@ -112,7 +113,7 @@ emailVerfication()
     console.log(email)
     return this.af.auth.createUser({
       email: email,
-      password: password
+      password: password,
     });
 
 
@@ -141,6 +142,7 @@ emailVerfication()
     return this.af.auth.login({
         email: email,
         password: password,
+
       },
       {
         provider: AuthProviders.Password,
