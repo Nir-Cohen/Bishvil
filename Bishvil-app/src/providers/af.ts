@@ -21,9 +21,8 @@ export class AF {
           this.user = this.af.database.object('users/' + auth.uid);
         }
       });
-
-    this.messages = this.af.database.list('messages');
-    this.users = this.af.database.list('users');
+    this.messages = this.af.database.list("messages");
+    this.users = this.af.database.list("users");
     this.event = this.af.database.list("events");
     this.item = this.af.database.list("items");
     this.hosting = this.af.database.list("hosting");
@@ -89,6 +88,10 @@ emailVerfication()
       displayName: this.displayName,
       status: this.status,
     });
+    console.log("from the adduserinfo"+this.status);
+    console.log("from the adduserinfo"+status);
+    console.log("from the adduserinfo"+this.email);
+    
   }
 
   /**
@@ -111,7 +114,8 @@ emailVerfication()
    * @returns {firebase.Promise<void>}
    */
   registerUser(email, password,status) {
-    console.log(email)
+    console.log(email);
+    console.log(status);
     return this.af.auth.createUser({
       email: email,
       password: password,
@@ -128,11 +132,13 @@ emailVerfication()
    * @returns {firebase.Promise<void>}
    */
   saveUserInfoFromForm(uid, name, email,status) {
+    console.log("from the userinfo"+status);
     return this.af.database.object('registeredUsers/' + uid).set({
       name: name,
       email: email,
       status:status
     });
+    
   }
 
   /**

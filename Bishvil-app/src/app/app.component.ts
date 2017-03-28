@@ -34,7 +34,7 @@ export class AppComponent {
           else {
             this.afService.displayName = auth.auth.email;
             this.afService.email = auth.auth.email;
-            //this.afService.status = auth.auth.status;
+            this.afService.status = auth.auth.status;
           }
 
           this.isLoggedIn = true;

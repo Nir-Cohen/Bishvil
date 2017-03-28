@@ -14,6 +14,8 @@ export class HostComponent implements OnInit {
   public hosting: FirebaseListObservable<any>;
   constructor(public afService: AF) { 
     this.hosting = this.afService.hosting;
+    console.log("from host"+afService.displayName);
+    console.log("from host"+afService.status);
   }
 
 
