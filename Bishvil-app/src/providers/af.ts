@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
+import * as firebase from 'firebase';
 
 @Injectable()
 export class AF {
@@ -13,6 +14,8 @@ export class AF {
   public event: FirebaseListObservable<any>;
   public item: FirebaseListObservable<any>;
   public hosting: FirebaseListObservable<any>;
+  public storageRef : any;
+  public targetRef : any;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
@@ -21,11 +24,14 @@ export class AF {
           this.user = this.af.database.object('users/' + auth.uid);
         }
       });
+
+    this.targetRef = firebase.storage().ref();
     this.messages = this.af.database.list("messages");
     this.users = this.af.database.list("users");
     this.event = this.af.database.list("events");
     this.item = this.af.database.list("items");
     this.hosting = this.af.database.list("hosting");
+    
     //this.af.auth.getAuth().auth.sendEmailVerification();
   }
 
@@ -54,8 +60,30 @@ addItem(item){
   });
 
 }
-
-
+/*
+  uploadFile(fbsPath,targetFile) {
+      let promise = new Promise((res,rej) => {
+        this.targetRef =this.storageRef.child(fbsPath);
+        let task=this.targetRef.put(targetFile);
+        task.on('state_changed',
+          (snapshot:any) => {
+            console.log(snapshot.state);
+          },
+          (error:any) => {
+            console.log(error.code);
+            rej(error);
+          },
+          () => {
+            let downloadUrl = task.snapshot.downloadURL;
+            //this.url = downloadUrl;
+            console.log(downloadUrl);
+            res(downloadUrl);
+          }
+        );
+      })
+      return promise;
+    }
+*/
   /**
    * Logs in the user
    * @returns {firebase.Promise<FirebaseAuthState>}
@@ -113,13 +141,13 @@ emailVerfication()
    * @param model
    * @returns {firebase.Promise<void>}
    */
-  registerUser(email, password,status) {
+  registerUser(email, password){//,status) {
     console.log(email);
     console.log(status);
     return this.af.auth.createUser({
       email: email,
       password: password,
-      status:status,
+      //status:status,
     });
 
 
@@ -147,11 +175,11 @@ emailVerfication()
    * @param password
    * @returns {firebase.Promise<FirebaseAuthState>}
    */
-  loginWithEmail(email, password,status) {
+  loginWithEmail(email, password){//,status) {
     return this.af.auth.login({
         email: email,
         password: password,
-        status:status,
+        //status:status,
       },
       {
         provider: AuthProviders.Password,

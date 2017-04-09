@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AF } from "../providers/af";
 import { Router } from "@angular/router";
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +35,7 @@ export class AppComponent {
           else {
             this.afService.displayName = auth.auth.email;
             this.afService.email = auth.auth.email;
-            this.afService.status = auth.auth.status;
+            //this.afService.status = auth.auth.status;
           }
 
           this.isLoggedIn = true;
