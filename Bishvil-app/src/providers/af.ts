@@ -53,10 +53,13 @@ addHosting(hosting){
 }
 
 addItem(item){
+  let author = firebase.auth().currentUser.displayName;
   this.item.push({
       location: item.location,
       description: item.description,
-      type: item.type
+      type: item.type,
+      author : author,
+      photoURL : item.photoURL
   });
 
 }

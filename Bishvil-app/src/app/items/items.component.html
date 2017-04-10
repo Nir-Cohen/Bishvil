@@ -5,15 +5,26 @@
       </div>
     </div>
       
-  <div class="list-group" *ngFor="let item of items | async">
+  <div class="panel list-group" 
+      *ngFor="let item of items | async ; let i = index" 
+      (click)="onclick($event, i)" 
+      >
 
-    <a href="#" class="list-group-item">
-      <h4 class="list-group-item-heading">{{item.location}}</h4>
-      <p class="list-group-item-text">
-      {{item.description}} &nbsp;&nbsp;&nbsp; {{item.type}} 
-      </p>
-    </a>
+      <a class="list-group-item clearfix" [class.list-group-item-success] = "i == selectedRow">
+        <h4 class="list-group-item-heading">{{item.description}}</h4>
+        <h4 class="list-group-item-text">Publisher:  {{item.author}}</h4>
+        <p class="list-group-item-text">
+        {{item.location}} &nbsp;&nbsp;&nbsp; {{item.type}} 
+        </p>
+      
 
+        <div *ngIf="item.photoURL">
+          <img [src]= "item.photoURL" class="img-thumbnail" width="150" height="150">
+        </div>
+
+          <div *ngIf = "item.author == currUser" class = "pull-right glyphicon glyphicon-trash" (click)="delete(item.$key)"></div>
+      </a>
+        
   </div>
 
 

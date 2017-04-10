@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
 
 
 
-  private IMAGES_FOLDER: string = 'images';
+  
   constructor(public afService: AF, private router: Router) {
     this.storageRef = firebase.storage().ref();
      
