@@ -22,7 +22,7 @@
           <img [src]= "item.photoURL" class="img-thumbnail" width="150" height="150">
         </div>
 
-          <div *ngIf = "item.author == currUser" class = "pull-right glyphicon glyphicon-trash" (click)="delete(item.$key)"></div>
+          <div *ngIf = "item.author == currUser" class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(item.$key)"></div>
       </a>
         
   </div>

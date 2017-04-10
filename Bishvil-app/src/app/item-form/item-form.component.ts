@@ -24,22 +24,19 @@ export class ItemFormComponent implements OnInit {
     this.item = { location: "", description: "", type: "" , author : "" ,photoURL :""};
   }
 
+  //add item to database
   addItem(){
-    //this.item.photoURL= photoURL;
     this.afService.addItem(this.item);
   }
 
-
-
+  //setup path to upload
   upload(event:any){
-         let targetFile = event.srcElement.files[0];
-         //let uploader = document.getElementById("btnUpload");
-         let fbsPath = 'images/' + targetFile.name;
-         console.log("The Path:" +fbsPath);
-          this.uploadFile(fbsPath,targetFile);
-
+      let targetFile = event.srcElement.files[0];
+      let fbsPath = 'images/items/' + targetFile.name;
+      this.uploadFile(fbsPath,targetFile);
   }
 
+  //upload to firebase
   uploadFile(fbsPath,targetFile) {
       let promise = new Promise((res,rej) => {
         this.targetRef =this.storageRef.child(fbsPath);
@@ -56,22 +53,20 @@ export class ItemFormComponent implements OnInit {
             let downloadUrl = task.snapshot.downloadURL;
             this.item.photoURL=downloadUrl;
             console.log(downloadUrl);
-            res(downloadUrl);
-  
+            res(downloadUrl);  
             alert("Photo uploaded!");
           }
         );
       })      
       return promise;
     }
-
 }
 
+//item struct
 export class item{
     type : String;
     description : String;
     location : String;
     author : String;
     photoURL : String;
-
 }

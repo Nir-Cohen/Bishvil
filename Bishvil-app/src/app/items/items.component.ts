@@ -12,9 +12,9 @@ import * as firebase from 'firebase';
 })
 export class ItemsComponent implements OnInit {
 
+  //list of the items
   public items : FirebaseListObservable<any>;
 
-  isCollapsed : Boolean
   onclick : Function;
   selectedRow : Number;
   currUser :String;
@@ -26,17 +26,14 @@ export class ItemsComponent implements OnInit {
       this.onclick = function(event : MouseEvent,i : any){
         console.log(event.target);
         this.selectedRow = i;
-        alert(i);
       };
    }
-   
-   delete(key : string){
-    console.log(key);
+   //remove item        ONLY AUTHOR ALLOW TO DELETE
+   deleteItem(key : string){
+    console.log("Removing "+ key);
     this.items.remove(key);
    }
 
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
