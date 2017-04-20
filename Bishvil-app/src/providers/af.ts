@@ -53,11 +53,6 @@ addHosting(hosting){
     });
 }
 
-updateProfile(user){
-  this.users.push({
-    city : user.city
-  });
-}
 
 addItem(item){
   let author = firebase.auth().currentUser.displayName;
@@ -120,16 +115,13 @@ emailVerfication()
    *
    */
   addUserInfo(){
-    //We saved their auth info now save the rest to the db.
-    this.users.push({
+    return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).set({
+      name: this.displayName,
       email: this.email,
-      displayName: this.displayName,
-      status: this.status,
+      status:"1",
+      city : "",
+      dob : ""
     });
-    console.log("from the adduserinfo"+this.status);
-    console.log("from the adduserinfo"+status);
-    console.log("from the adduserinfo"+this.email);
-    
   }
 
   /**
