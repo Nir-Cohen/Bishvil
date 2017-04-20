@@ -32,7 +32,7 @@ export class AF {
     this.event = this.af.database.list("events");
     this.item = this.af.database.list("items");
     this.hosting = this.af.database.list("hosting");
-    
+    this.status = "1";
     //this.af.auth.getAuth().auth.sendEmailVerification();
   }
 
@@ -118,7 +118,7 @@ emailVerfication()
     return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).set({
       name: this.displayName,
       email: this.email,
-      status:"1",
+      status:this.status,
       city : "",
       dob : ""
     });
