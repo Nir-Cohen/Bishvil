@@ -11,14 +11,7 @@ import * as firebase from 'firebase';
 })
 export class ProfileComponent implements OnInit {
     
-
-
-
-  
-  constructor(public afService: AF, private router: Router) {
-    this.storageRef = firebase.storage().ref();
-     
-  }
+    public userinfo :userInfo;
 
     targetRef:any;
     storageRef:any;
@@ -28,11 +21,25 @@ export class ProfileComponent implements OnInit {
     email = this.user.email;
     UserName = this.user.displayName;
     photo = this.user.photoURL;
-    
 
+
+    public users : FirebaseListObservable<any>;
+
+  
+  constructor(public afService: AF, private router: Router) {
+    this.storageRef = firebase.storage().ref();
+    this.users = this.afService.users;
+
+
+  }
  
-  updateProfile(event, name, city, phoneNum, DOB){
-
+  updateProfile(){
+      //this.afService.updateProfile(this.user);
+      console.log(this.userinfo.city);
+      if(this.userinfo.city!= "")
+        firebase.database().ref('registeredUsers/'+ this.user.uid).update({city : this.userinfo.city});
+      if(this.userinfo.dob != "")
+        firebase.database().ref('registeredUsers/'+ this.user.uid).update({dob : this.userinfo.dob});
   }
 
   upload(event:any){
@@ -70,8 +77,18 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit() {
+    
+        
+  
+    
+    
+    this.userinfo = {city : "", dob : "" ,name : ""};
+    
   }
+}
 
-
-
+export class userInfo{
+    name : String;
+    city : String;
+    dob : String;
 }

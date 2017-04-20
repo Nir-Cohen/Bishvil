@@ -14,6 +14,7 @@ export class AF {
   public event: FirebaseListObservable<any>;
   public item: FirebaseListObservable<any>;
   public hosting: FirebaseListObservable<any>;
+  
   public storageRef : any;
   public targetRef : any;
 
@@ -50,6 +51,12 @@ addHosting(hosting){
       time: hosting.time,
       note: hosting.note
     });
+}
+
+updateProfile(user){
+  this.users.push({
+    city : user.city
+  });
 }
 
 addItem(item){
@@ -167,7 +174,9 @@ emailVerfication()
     return this.af.database.object('registeredUsers/' + uid).set({
       name: name,
       email: email,
-      status:status
+      status:status,
+      city : "",
+      dob : ""
     });
     
   }
