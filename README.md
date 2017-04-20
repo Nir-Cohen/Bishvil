@@ -20,6 +20,7 @@ This project is developed as part of the requirements for a [software engineerin
 - [Project Planing](../../wiki/Planing)
 - [Software Requirements Specification](https://github.com/Nir-Cohen/Bishvil/blob/master/srs.pdf)
 - [Software Design Specification](../../wiki/Home)
+- [Planning - Main Task Managment](https://github.com/Nir-Cohen/Bishvil/projects/2)
 
 ### Iteration Pages
 - [Iteration 0 - ZFR](https://github.com/yeseg11/Let-it-know/wiki/Iteration-0-ZFR)
