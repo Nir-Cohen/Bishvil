@@ -1,5 +1,5 @@
 import {Component, OnInit } from '@angular/core';
-
+import {AF} from 'providers/af'
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -8,7 +8,9 @@ import {Component, OnInit } from '@angular/core';
 export class HomePageComponent implements OnInit {
   
 
-  constructor() { }
+  constructor(public afService:AF) { 
+    console.log("in home page"+this.afService.status);
+  }
   
   ngOnInit() { }
 

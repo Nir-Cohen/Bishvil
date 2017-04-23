@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
+import * as firebase from 'firebase';
 
 @Injectable()
 export class AF {
@@ -8,10 +9,14 @@ export class AF {
   public users: FirebaseListObservable<any>;
   public displayName: string;
   public email: string;
+  public status: string;
   public user: FirebaseObjectObservable<any>;
   public event: FirebaseListObservable<any>;
   public item: FirebaseListObservable<any>;
   public hosting: FirebaseListObservable<any>;
+  
+  public storageRef : any;
+  public targetRef : any;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
@@ -21,11 +26,13 @@ export class AF {
         }
       });
 
-    this.messages = this.af.database.list('messages');
-    this.users = this.af.database.list('users');
+    this.targetRef = firebase.storage().ref();
+    this.messages = this.af.database.list("messages");
+    this.users = this.af.database.list("users");
     this.event = this.af.database.list("events");
     this.item = this.af.database.list("items");
     this.hosting = this.af.database.list("hosting");
+    this.status = "1";
     //this.af.auth.getAuth().auth.sendEmailVerification();
   }
 
@@ -46,16 +53,42 @@ addHosting(hosting){
     });
 }
 
+
 addItem(item){
+  let author = firebase.auth().currentUser.displayName;
   this.item.push({
       location: item.location,
       description: item.description,
-      type: item.type
+      type: item.type,
+      author : author,
+      photoURL : item.photoURL
   });
 
 }
-
-
+/*
+  uploadFile(fbsPath,targetFile) {
+      let promise = new Promise((res,rej) => {
+        this.targetRef =this.storageRef.child(fbsPath);
+        let task=this.targetRef.put(targetFile);
+        task.on('state_changed',
+          (snapshot:any) => {
+            console.log(snapshot.state);
+          },
+          (error:any) => {
+            console.log(error.code);
+            rej(error);
+          },
+          () => {
+            let downloadUrl = task.snapshot.downloadURL;
+            //this.url = downloadUrl;
+            console.log(downloadUrl);
+            res(downloadUrl);
+          }
+        );
+      })
+      return promise;
+    }
+*/
   /**
    * Logs in the user
    * @returns {firebase.Promise<FirebaseAuthState>}
@@ -82,10 +115,12 @@ emailVerfication()
    *
    */
   addUserInfo(){
-    //We saved their auth info now save the rest to the db.
-    this.users.push({
+    return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).set({
+      name: this.displayName,
       email: this.email,
-      displayName: this.displayName
+      status:this.status,
+      city : "",
+      dob : ""
     });
   }
 
@@ -108,11 +143,13 @@ emailVerfication()
    * @param model
    * @returns {firebase.Promise<void>}
    */
-  registerUser(email, password) {
-    console.log(email)
+  registerUser(email, password){//,status) {
+    console.log(email);
+    console.log(status);
     return this.af.auth.createUser({
       email: email,
-      password: password
+      password: password,
+      //status:status,
     });
 
 
@@ -124,11 +161,16 @@ emailVerfication()
    * @param model
    * @returns {firebase.Promise<void>}
    */
-  saveUserInfoFromForm(uid, name, email) {
+  saveUserInfoFromForm(uid, name, email,status) {
+    console.log("from the userinfo"+status);
     return this.af.database.object('registeredUsers/' + uid).set({
       name: name,
       email: email,
+      status:status,
+      city : "",
+      dob : ""
     });
+    
   }
 
   /**
@@ -137,10 +179,11 @@ emailVerfication()
    * @param password
    * @returns {firebase.Promise<FirebaseAuthState>}
    */
-  loginWithEmail(email, password) {
+  loginWithEmail(email, password){//,status) {
     return this.af.auth.login({
         email: email,
         password: password,
+        //status:status,
       },
       {
         provider: AuthProviders.Password,

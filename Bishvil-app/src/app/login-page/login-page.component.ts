@@ -15,15 +15,15 @@ export class LoginPageComponent {
   loginWithGoogle() {
     this.afService.loginWithGoogle().then((data) => {
       // Send them to the homepage if they are logged in
-      console.log(data);
+      console.log( "dasdasd");
       this.afService.addUserInfo();
       this.router.navigate(['']);
     })
   }
 
-  loginWithEmail(event, email, password){
+  loginWithEmail(event, email, password,status){
     event.preventDefault();
-    this.afService.loginWithEmail(email, password).then(() => {
+    this.afService.loginWithEmail(email, password).then(() => {//,"0").then(() => {
       this.router.navigate(['']);
     })
       .catch((error: any) => {

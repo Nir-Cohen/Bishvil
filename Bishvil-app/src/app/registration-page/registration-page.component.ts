@@ -12,10 +12,10 @@ export class RegistrationPageComponent {
 
   constructor(private afService: AF, private router: Router) { }
 
-  register(event, name, email, password) {
+  register(event, name, email, password,status) {
     event.preventDefault();
-    this.afService.registerUser(email, password).then((user) => {
-      this.afService.saveUserInfoFromForm(user.uid, name, email).then(() => {
+    this.afService.registerUser(email, password).then((user) => {//,"1").then((user) => {
+      this.afService.saveUserInfoFromForm(user.uid, name, email,"1").then(() => {
         this.router.navigate(['']);
       })
         .catch((error) => {

@@ -16,6 +16,7 @@ import { ItemsComponent } from './items/items.component';
 import { NightComponent } from './night/night.component';
 import { NightFormComponent } from './night-form/night-form.component';
 import { ItemFormComponent } from './item-form/item-form.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -38,7 +39,8 @@ const routes: Routes = [
   { path: 'items', component: ItemsComponent},
   { path: 'night', component: NightComponent},
   { path: 'night-form', component: NightFormComponent},
-  { path: 'item-form' , component: ItemFormComponent}
+  { path: 'item-form' , component: ItemFormComponent},
+  { path: 'profile' , component: ProfileComponent}
   
 ];
 
@@ -51,7 +53,7 @@ const routes: Routes = [
     DatePickerModule 
   ],
 
-  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent, HostComponent, HostFormComponent, ItemsComponent, NightComponent, NightFormComponent, ItemFormComponent ],
+  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent, HostComponent, HostFormComponent, ItemsComponent, NightComponent, NightFormComponent, ItemFormComponent, ProfileComponent ],
 
   bootstrap: [ AppComponent ],
   providers: [AF]
