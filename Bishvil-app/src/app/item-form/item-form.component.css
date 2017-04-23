@@ -3,11 +3,10 @@ input[type="file"] {
 }
 
 .custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 15px 15px;
+
+    padding: 10px 30px ;
     cursor: pointer;
-    background-color: blue;
-    position: absolute;
-    opacity: 0.7;
+    background-color: #337ab7;
+    color: white;
+    border-radius: 5px;
 }
