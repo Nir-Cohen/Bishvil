@@ -31,12 +31,12 @@ export class AppComponent {
           if(auth.google) {
             this.afService.displayName = auth.google.displayName;
             this.afService.email = auth.google.email;
-         //   this.afService.status = auth.auth.status;
+            //this.afService.status = auth.auth.status;
           }
           else {
             this.afService.displayName = auth.auth.email;
             this.afService.email = auth.auth.email;
-          //  this.afService.status = auth.auth.status;
+           // this.afService.status = auth.auth.status;
           }
 
           this.isLoggedIn = true;

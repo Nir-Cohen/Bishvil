@@ -53,7 +53,11 @@ addHosting(hosting){
     });
 }
 
-
+removeHosting(hosting)
+{
+  this.hosting.remove();
+  
+}
 addItem(item){
   let author = firebase.auth().currentUser.displayName;
   this.item.push({
