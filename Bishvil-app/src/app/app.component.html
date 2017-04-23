@@ -6,13 +6,20 @@
 
       <div class="navbar-header col-xs-6">
         <a class="navbar-brand" href="#">Bishvil App</a>
-      </div>
+<!--        <a class="navbar-brand" href="https://www.facebook.com/AmutatBishvil/?fref=ts"><img src="https://firebasestorage.googleapis.com/v0/b/test-f29de.appspot.com/o/images%2Ffacebook-256.png?alt=media&token=3fc93b63-4ac7-4690-8faf-f418db3e9c31" alt=" facebook" width="42" height="35" border="0"></a>
+        <a class="navbar-brand" href="https://www.facebook.com/AmutatBishvil/?fref=ts"><img src="https://firebasestorage.googleapis.com/v0/b/test-f29de.appspot.com/o/images%2Fins.jpg?alt=media&token=2598e92f-c942-4ad3-b791-0325ddc31161" alt=" instagram" width="42" height="35" border="0"></a>
+        <a class="navbar-brand" href="https://www.facebook.com/AmutatBishvil/?fref=ts"><img src="https://firebasestorage.googleapis.com/v0/b/test-f29de.appspot.com/o/images%2Fweb.png?alt=media&token=d749c96a-a8f0-4091-85fd-4826230858a5" alt=" instagram" width="42" height="35" border="0"></a>
+      --></div>
+
+
 
       <div *ngIf="isLoggedIn">
 
         <div class="col-xs-4">
           <ul class="nav navbar-nav navbar-right">
             <li><a [routerLink] = "['/profile']">{{afService.displayName }}</a></li>
+            <li><a>choose lang</a></li>
+            <li><a>contact us</a></li>
           </ul>
         </div>
 
