@@ -13,7 +13,7 @@ export class HostFormComponent implements OnInit {
   constructor(public afService: AF) {  }
 
   ngOnInit() {
-    this.host = { location: "", time: "", note: "" };
+    this.host = { location: "", time: "", note: "",  author:""};
   }
 
   addHosting(){
@@ -25,5 +25,6 @@ export class host{
   location: string;
   time: string;
   note: string;
+  author: string;
 }
 

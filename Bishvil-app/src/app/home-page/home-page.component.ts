@@ -31,8 +31,8 @@ export class HomePageComponent implements OnInit {
 
  showPrompt() {
     this.dialogService.addDialog(PromptComponent, {
-      title:'Name dialog',
-      question:'What is your name?: '})
+      title:'News messages',
+      question:'Please enter your message:'})
       .subscribe((message)=>{
         //We get dialog result
         this.promptMessage = message;

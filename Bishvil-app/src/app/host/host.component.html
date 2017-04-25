@@ -8,7 +8,7 @@
 
 
 <div class="list-group" *ngFor="let user of users | async">
-    <div *ngIf = "user.status == 1 && afService.displayName ==user.email.toLowerCase()"> 
+    <div *ngIf = "user.status == 1 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
      <div class="list-group" *ngFor="let host of hosting | async">
        <a href="#" class="list-group-item">
          <h4 class="list-group-item-heading">{{host.location}}</h4>
@@ -19,12 +19,16 @@
           </a>
      </div>
   </div>
-  <div *ngIf = "user.status == 0 && afService.displayName ==user.email.toLowerCase()"> 
+  <div *ngIf = "user.status == 0 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
     <div class="list-group" *ngFor="let host of hosting | async">
        <a href="#" class="list-group-item">
          <h4 class="list-group-item-heading">{{host.location}}</h4>
           <p class="list-group-item-text">
           {{host.time}} &nbsp;&nbsp;&nbsp; {{host.note}}</p>
+
+
+          <p class = "pull-right glyphicon glyphicon-trash" *ngIf = "(afService.displayName == host.author || afService.email == host.author)" (click)="deleteItem(host.$key)"></p>
+
           <br>
           </a>
      </div>

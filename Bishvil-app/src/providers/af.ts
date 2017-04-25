@@ -51,7 +51,8 @@ addHosting(hosting){
   this.hosting.push({
       location: hosting.location,
       time: hosting.time,
-      note: hosting.note
+      note: hosting.note,
+      author: this.displayName
     });
 }
 
