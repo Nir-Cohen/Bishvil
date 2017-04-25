@@ -31,6 +31,6 @@ export class PromptComponent extends DialogComponent<PromptModel, string> implem
   apply() {
     this.result = this.message;
     this.close();
-    console.log(this.result);
+    
   }
 }
