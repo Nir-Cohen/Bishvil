@@ -14,7 +14,8 @@ export class AF {
   public event: FirebaseListObservable<any>;
   public item: FirebaseListObservable<any>;
   public hosting: FirebaseListObservable<any>;
-  
+  public news: FirebaseListObservable<any>;
+
   public storageRef : any;
   public targetRef : any;
 
@@ -33,6 +34,7 @@ export class AF {
     this.item = this.af.database.list("items");
     this.hosting = this.af.database.list("hosting");
     this.status = "1";
+    this.news = this.af.database.list("news");
     //this.af.auth.getAuth().auth.sendEmailVerification();
   }
 
@@ -69,6 +71,15 @@ addItem(item){
   });
 
 }
+
+addNews(news){
+  this.news.push({
+    message: news.message
+
+  });
+
+}
+
 /*
   uploadFile(fbsPath,targetFile) {
       let promise = new Promise((res,rej) => {
