@@ -3,9 +3,6 @@
     sm: 768-992
     md: 992-1200
     lg: 1200 up
-  -->
-
-  <!--
     panel-default
     panel-danger
     panel-info
@@ -15,32 +12,31 @@
   -->
 
   <!-- main -->
-  <div class="container">
-  <div class="row well">
 
-    <div class="col-xs-6 col-lg-3">
-      <a [routerLink]="['/host']"><button class="btn btn-success  maincmd">Hosting<br>Shabat</button></a>
+<div class="container">
+    <div class="row well">
+      <div class="col-xs-6 col-lg-3">
+        <a [routerLink]="['/host']"><button class="btn btn-success  maincmd">Hosting<br>Shabat</button></a>
+      </div>
+      <div class="col-xs-6 col-lg-3">
+        <a [routerLink]="['/items']"><button class="btn btn-warning maincmd">Items<br>Delivery</button></a>
+      </div>
+      <div class="col-xs-6 col-lg-3">
+        <a [routerLink]="['/night']"><button class="btn btn-danger maincmd">Night<br>Life</button></a>
+      </div>
+      <div class="col-xs-6 col-lg-3">
+        <a [routerLink]="['/chat']"><button class="btn btn-primary maincmd">General<br>Chat</button></a>
+      </div>
     </div>
-
-   <div class="col-xs-6 col-lg-3">
-      <a [routerLink]="['/items']"><button class="btn btn-warning maincmd">Items<br>Delivery</button></a>
-    </div>
-
-   <div class="col-xs-6 col-lg-3">
-      <a [routerLink]="['/night']"><button class="btn btn-danger maincmd">Night<br>Life</button></a>
-    </div>
-
-   <div class="col-xs-6 col-lg-3">
-      <a [routerLink]="['/chat']"><button class="btn btn-primary maincmd">General<br>Chat</button></a>
-    </div>
-
-
-  </div>
-
-
 </div>
 
 
-
-
+   <div class="row"> 
+     <div class="well col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+       <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(host.$key)"></p>
+        <div class="col-xs-12 col-lg-3">
+          <button class="btn" (click)=showPrompt()>Show prompt</button>
+         </div>
+       </div>
+    </div>
 

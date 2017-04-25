@@ -28,7 +28,8 @@
             </div>
 
             <div class="text-left">
-              <input type="button" class="btn btn-primary" value="Add Host" (click)="addHosting()" />
+              <a [routerLink]="['/host']"><input type="button" class="btn btn-primary" value="Add Host" (click)="addHosting()" /></a>
+              
             </div>
 
           </form>

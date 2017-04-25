@@ -17,7 +17,10 @@ import { NightComponent } from './night/night.component';
 import { NightFormComponent } from './night-form/night-form.component';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { BoxMessagesComponent } from './box-messages/box-messages.component';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { DialogComponent } from './dialog/dialog.component';
+import { PromptComponent } from './prompt/prompt.component';
 
 
 
@@ -40,7 +43,8 @@ const routes: Routes = [
   { path: 'night', component: NightComponent},
   { path: 'night-form', component: NightFormComponent},
   { path: 'item-form' , component: ItemFormComponent},
-  { path: 'profile' , component: ProfileComponent}
+  { path: 'profile' , component: ProfileComponent},
+  { path: 'box-messages', component:BoxMessagesComponent}
   
 ];
 
@@ -50,13 +54,29 @@ const routes: Routes = [
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(routes),
     FormsModule,
-    DatePickerModule 
+    DatePickerModule,
+    BootstrapModalModule,
+    
   ],
-
-  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ChatComponent, HostComponent, HostFormComponent, ItemsComponent, NightComponent, NightFormComponent, ItemFormComponent, ProfileComponent ],
-
+  declarations: [
+     AppComponent,
+     LoginPageComponent,
+     HomePageComponent,
+     RegistrationPageComponent, 
+     ChatComponent, 
+     HostComponent, 
+     HostFormComponent, 
+     ItemsComponent, 
+     NightComponent, 
+     NightFormComponent, 
+     ItemFormComponent, 
+     ProfileComponent, 
+     BoxMessagesComponent, 
+     DialogComponent, 
+     PromptComponent ],
   bootstrap: [ AppComponent ],
-  providers: [AF]
+  providers: [AF],
+  entryComponents: [PromptComponent]
 })
 
 export class AppModule { }
