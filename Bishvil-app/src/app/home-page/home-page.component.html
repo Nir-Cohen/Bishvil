@@ -43,6 +43,9 @@
             <span class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(news.$key)"></span>
             <hr>
           </div>
+          <div class="col-xs-12 btndiv">
+            <button class="btn" (click)=showPrompt()>Add message</button>
+          </div>
         </div>
 
         <div *ngIf = "user.status == 0 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
@@ -54,10 +57,6 @@
 
       </div>
 
-      <div class="col-xs-12 btndiv">
-        <button class="btn" (click)=showPrompt()>Add message</button>
-      </div>
-
     </div>
   </div>
 
@@ -67,7 +66,7 @@
       
       <a href="https://www.facebook.com/AmutatBishvil/?fref=ts" target="_blank"><img src="http://www.freeiconspng.com/uploads/facebook-transparent-pics-18.png"></a>
       <a href="https://www.instagram.com/bishvil/" target="_blank"><img src="http://www.arabsolaa.net/img/i.png"></a>
-      <a href="http://bishvil.org/he/" target="_blank"><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTtQwrlysmXWgKE-IonlbJ76LIG9w8bqdll30T3QZu2YN1zamyR"></a>
+      <a href="http://bishvil.org/he/" target="_blank"><img src="http://www.freeiconspng.com/uploads/global-globe-network-planet-web-world-icon--30.png"></a>
       <a href="#" target="_blank"><img src="http://www.freeiconspng.com/uploads/email-icon-23.png"></a>
       
   </div>
