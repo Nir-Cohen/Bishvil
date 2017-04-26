@@ -22,16 +22,8 @@ export class ItemsComponent implements OnInit {
   constructor(public afService : AF) {
      
       this.items = this.afService.item;
-      firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
-        this.currUser = snapshot.val().name;        
-      })
-      .catch((error) => {
-        console.log("Cant access database");
-      });
-      this.onclick = function(event : MouseEvent,i : any){
-        console.log(event.target);
-        this.selectedRow = i;
-      };
+
+ 
    }
    //remove item     ONLY AUTHOR ALLOW TO DELETE
    deleteItem(key : string){
@@ -39,6 +31,31 @@ export class ItemsComponent implements OnInit {
     this.items.remove(key);
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+     this.afService.af.auth.subscribe(
+      (auth) => {
+        if(auth == null) {
+          console.log("Not Logged in.");
+
+          //this.isLoggedIn = false;
+          //this.router.navigate(['login']);
+        }
+        else{
+            firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+              this.currUser = snapshot.val().name;        
+            })
+            .catch((error) => {
+              console.log("Cant access database");
+            });
+        }});
+
+
+
+
+      this.onclick = function(event : MouseEvent,i : any){
+        console.log(event.target);
+        this.selectedRow = i;
+      };
+  }
 
 }

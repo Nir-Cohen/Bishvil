@@ -16,12 +16,12 @@ export class ProfileComponent implements OnInit {
 
     targetRef:any;
     storageRef:any;
-
-    public user = firebase.auth().currentUser;
-    name : any;
-    email = this.user.email;
-    UserName = this.user.displayName;
-    photo = this.user.photoURL;
+    public user : any;
+    public name : any;
+    public email : any;
+    public photo : any;
+    public maxDate : String;
+    
 
     public users : FirebaseListObservable<any>;
 
@@ -29,34 +29,25 @@ export class ProfileComponent implements OnInit {
   constructor(public afService: AF, private router: Router, private dialog : DialogService) {
     this.storageRef = firebase.storage().ref();
     this.users = this.afService.users;
+    this.maxDate = new Date((new Date().getFullYear()-18),new Date().getMonth(),new Date().getDate()).toJSON().split('T')[0];
     //retrieve current user from firebase
-    firebase.database().ref('/registeredUsers/' + this.user.uid).once('value').then((snapshot) => {
-        this.userinfo.name = snapshot.val().name;
-        this.userinfo.city = snapshot.val().city;
-        this.userinfo.dob = snapshot.val().dob;        
-    }).catch((error) => {
-        console.log("Cant access database");
-    });
   }
  
   updateProfile(){
-      //this.afService.updateProfile(this.user);
       if(confirm("Save changes?")){
         if(this.userinfo.city!= "")
           firebase.database().ref('registeredUsers/'+ this.user.uid).update({city : this.userinfo.city});
         if(this.userinfo.dob != "")
           firebase.database().ref('registeredUsers/'+ this.user.uid).update({dob : this.userinfo.dob});
       }
-
+      this.router.navigate([""]);
   }
 
   upload(event:any){
          let targetFile = event.srcElement.files[0];
-         //let uploader = document.getElementById("btnUpload");
          let fbsPath = 'images/' + targetFile.name;
          console.log("The Path:" +fbsPath);
           this.uploadFile(fbsPath,targetFile);
-
   }
 
   uploadFile(fbsPath,targetFile) {
@@ -85,7 +76,25 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.userinfo = {city : "", dob : "" ,name : ""};
-    
+
+    this.afService.af.auth.subscribe(
+      (auth) => {
+        if(auth == null) {
+          console.log("Not Logged in.");
+        }
+        else{
+              this.user = firebase.auth().currentUser;
+              
+              this.email = this.user.email;
+              this.photo = this.user.photoURL;
+            firebase.database().ref('/registeredUsers/' + this.user.uid).once('value').then((snapshot) => {
+                this.userinfo.name = snapshot.val().name;
+                this.userinfo.city = snapshot.val().city;
+                this.userinfo.dob = snapshot.val().dob;        
+            }).catch((error) => {
+                console.log("Cant access database");
+            });
+        }});    
   }
 }
 
