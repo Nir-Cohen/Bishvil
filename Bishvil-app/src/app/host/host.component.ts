@@ -24,7 +24,7 @@ export class HostComponent implements OnInit {
   constructor(public afService: AF,public af: AngularFire) { 
     this.hosting = this.afService.hosting;
     this.users = this.af.database.list("registeredUsers");
-    console.log("from host"+firebase.auth().currentUser.status);
+    //console.log("from host"+firebase.auth().currentUser.status);
     console.log("from host"+afService.status);
      console.log("from host"+this.hosting);
   }

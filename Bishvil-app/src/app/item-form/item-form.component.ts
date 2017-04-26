@@ -22,6 +22,9 @@ export class ItemFormComponent implements OnInit {
 
   ngOnInit() {
     this.item = { location: "", description: "", type: "" , author : "" ,photoURL :""};
+    firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+        this.item.author = snapshot.val().name;        
+    });
   }
 
   //add item to database

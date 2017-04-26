@@ -62,16 +62,17 @@ removeHosting(hosting)
   
 }
 addItem(item){
-  let author = firebase.auth().currentUser.displayName;
   this.item.push({
       location: item.location,
       description: item.description,
       type: item.type,
-      author : author,
+      author : item.author,
       photoURL : item.photoURL
   });
 
 }
+
+
 
 addNews(news){
   this.news.push({

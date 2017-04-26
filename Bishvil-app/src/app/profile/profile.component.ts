@@ -2,6 +2,7 @@ import { Component, OnInit ,Input} from '@angular/core';
 import {AF} from "../../providers/af";
 import {Router} from "@angular/router";
 import { FirebaseListObservable, AngularFire } from "angularfire2";
+import { DialogService } from "ng2-bootstrap-modal";
 import * as firebase from 'firebase';
 
 @Component({
@@ -17,29 +18,36 @@ export class ProfileComponent implements OnInit {
     storageRef:any;
 
     public user = firebase.auth().currentUser;
-    public url;
+    name : any;
     email = this.user.email;
     UserName = this.user.displayName;
     photo = this.user.photoURL;
 
-
     public users : FirebaseListObservable<any>;
 
   
-  constructor(public afService: AF, private router: Router) {
+  constructor(public afService: AF, private router: Router, private dialog : DialogService) {
     this.storageRef = firebase.storage().ref();
     this.users = this.afService.users;
-
-
+    //retrieve current user from firebase
+    firebase.database().ref('/registeredUsers/' + this.user.uid).once('value').then((snapshot) => {
+        this.userinfo.name = snapshot.val().name;
+        this.userinfo.city = snapshot.val().city;
+        this.userinfo.dob = snapshot.val().dob;        
+    }).catch((error) => {
+        console.log("Cant access database");
+    });
   }
  
   updateProfile(){
       //this.afService.updateProfile(this.user);
-      console.log(this.userinfo.city);
-      if(this.userinfo.city!= "")
-        firebase.database().ref('registeredUsers/'+ this.user.uid).update({city : this.userinfo.city});
-      if(this.userinfo.dob != "")
-        firebase.database().ref('registeredUsers/'+ this.user.uid).update({dob : this.userinfo.dob});
+      if(confirm("Save changes?")){
+        if(this.userinfo.city!= "")
+          firebase.database().ref('registeredUsers/'+ this.user.uid).update({city : this.userinfo.city});
+        if(this.userinfo.dob != "")
+          firebase.database().ref('registeredUsers/'+ this.user.uid).update({dob : this.userinfo.dob});
+      }
+
   }
 
   upload(event:any){
@@ -65,7 +73,6 @@ export class ProfileComponent implements OnInit {
           },
           () => {
             let downloadUrl = task.snapshot.downloadURL;
-            this.url = downloadUrl;
             console.log(downloadUrl);
             res(downloadUrl);
             this.user.updateProfile({displayName : this.user.displayName,photoURL: downloadUrl}).then(function(){console.log("updated!!");},function(error){});
@@ -77,11 +84,6 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit() {
-    
-        
-  
-    
-    
     this.userinfo = {city : "", dob : "" ,name : ""};
     
   }

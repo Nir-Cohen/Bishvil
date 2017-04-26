@@ -22,13 +22,18 @@ export class ItemsComponent implements OnInit {
   constructor(public afService : AF) {
      
       this.items = this.afService.item;
-      this.currUser = firebase.auth().currentUser.displayName;
+      firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+        this.currUser = snapshot.val().name;        
+      })
+      .catch((error) => {
+        console.log("Cant access database");
+      });
       this.onclick = function(event : MouseEvent,i : any){
         console.log(event.target);
         this.selectedRow = i;
       };
    }
-   //remove item        ONLY AUTHOR ALLOW TO DELETE
+   //remove item     ONLY AUTHOR ALLOW TO DELETE
    deleteItem(key : string){
     console.log("Removing "+ key);
     this.items.remove(key);
