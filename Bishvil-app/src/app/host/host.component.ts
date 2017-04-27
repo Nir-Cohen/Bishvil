@@ -5,7 +5,8 @@ import * as firebase from 'firebase';
 import {Injectable} from "@angular/core";
 import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
-
+import { DialogService } from "ng2-bootstrap-modal";
+import { ConfirmComponent } from "app/confirm/confirm.component";
 
 @Component({
   selector: 'app-host',
@@ -15,9 +16,10 @@ import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
 })
 export class HostComponent implements OnInit {
   
+  confirmResult:boolean = null;
   public hosting: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
-  constructor(public afService: AF,public af: AngularFire) { 
+  constructor(private dialogService:DialogService,public afService: AF,public af: AngularFire) { 
     this.hosting = this.afService.hosting;
     this.users = this.af.database.list("registeredUsers");
   }
@@ -31,9 +33,15 @@ export class HostComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClick()
-  {
-    alert("Hello");
+  showConfirm() {
+    this.dialogService.addDialog(ConfirmComponent, {
+      title:'Confirmation',
+      message:'Are you sure you want to join this Shabbat?'})
+      .subscribe((isConfirmed)=>{
+        //Get dialog result
+        this.confirmResult = isConfirmed;
+    });
+    console.log(this.confirmResult);
   }
 
 }

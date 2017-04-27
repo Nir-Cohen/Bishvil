@@ -32,7 +32,6 @@ export class PromptComponent extends DialogComponent<PromptModel, string> implem
   }
 
   apply() {
-
     this.news.message = this.message;
     console.log(this.message);
     this.afService.addNews(this.news);

@@ -52,7 +52,8 @@ addHosting(hosting){
       location: hosting.location,
       time: hosting.time,
       note: hosting.note,
-      author: this.displayName
+      author: this.displayName,
+      counter: '0'
     });
 }
 
