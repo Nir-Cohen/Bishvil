@@ -19,9 +19,10 @@ import { ItemFormComponent } from './item-form/item-form.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoxMessagesComponent } from './box-messages/box-messages.component';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+//import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { DialogComponent } from './dialog/dialog.component';
 import { PromptComponent } from './prompt/prompt.component';
-//import { ModalModule } from 'angular2-modal';
+import { ModalModule } from 'angular2-modal';
 
 
 export const firebaseConfig = {
@@ -56,6 +57,7 @@ const routes: Routes = [
     FormsModule,
     DatePickerModule,
     BootstrapModalModule,
+    ModalModule.forRoot(),
     
   ],
   declarations: [
