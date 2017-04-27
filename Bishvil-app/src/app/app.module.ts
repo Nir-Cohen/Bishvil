@@ -21,7 +21,7 @@ import { BoxMessagesComponent } from './box-messages/box-messages.component';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogComponent } from './dialog/dialog.component';
 import { PromptComponent } from './prompt/prompt.component';
-
+//import { ModalModule } from 'angular2-modal';
 
 
 export const firebaseConfig = {
