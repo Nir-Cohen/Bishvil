@@ -24,6 +24,7 @@ export class ConfirmCounter{
 export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
   title: string;
   message: string;
+  counter: any;
   public hosting: FirebaseListObservable<any>;
   
   public ConfirmCounter: ConfirmCounter;
@@ -35,9 +36,8 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     // on click on confirm button we set dialog result as true,
     // ten we can get dialog result from caller code
     this.result = true;
-    this.ConfirmCounter.counter++;
-    console.log(this.ConfirmCounter.counter);
-    this.af.database.object('hosting/').set({counter : this.ConfirmCounter.counter});
+    //console.log(this.af.database.object('/hosting/'+this.afService.OK_key).subscribe(this.counter));
+    this.af.database.object('/hosting/'+this.afService.OK_key).update({counter : 1});
     this.close();
   }
   cancel() {

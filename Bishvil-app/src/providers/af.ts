@@ -16,6 +16,7 @@ export class AF {
   public hosting: FirebaseListObservable<any>;
   public news: FirebaseListObservable<any>;
 
+  public OK_key:string;
   public storageRef : any;
   public targetRef : any;
 

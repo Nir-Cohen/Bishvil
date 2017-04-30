@@ -17,6 +17,8 @@ import { ConfirmComponent } from "app/confirm/confirm.component";
 export class HostComponent implements OnInit {
   
   confirmResult:boolean = null;
+  key:string;
+
   public hosting: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
   constructor(private dialogService:DialogService,public afService: AF,public af: AngularFire) { 
@@ -33,7 +35,9 @@ export class HostComponent implements OnInit {
   ngOnInit() {
   }
 
-  showConfirm() {
+  showConfirm(key: string) {
+    this.afService.OK_key=key;
+    console.log(this.afService.OK_key);
     this.dialogService.addDialog(ConfirmComponent, {
       title:'Confirmation',
       message:'Are you sure you want to join this Shabbat?'})
