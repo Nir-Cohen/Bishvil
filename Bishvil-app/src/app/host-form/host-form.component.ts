@@ -37,7 +37,11 @@ selectedValue = null;
   }
 
   addHosting(){
-    this.afService.addHosting(this.host);
+      if(confirm("Save changes?")){
+        if(this.host.firstName!= "" && this.host.lastName != "")
+           this.afService.addHosting(this.host);
+      }
+  
   }
 }
 
