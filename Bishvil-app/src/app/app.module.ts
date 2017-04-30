@@ -22,7 +22,6 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 //import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { DialogComponent } from './dialog/dialog.component';
 import { PromptComponent } from './prompt/prompt.component';
-import { ModalModule } from 'angular2-modal';
 import { ConfirmComponent } from './confirm/confirm.component';
 
 

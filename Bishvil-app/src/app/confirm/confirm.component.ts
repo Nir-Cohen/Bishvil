@@ -36,8 +36,12 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     // on click on confirm button we set dialog result as true,
     // ten we can get dialog result from caller code
     this.result = true;
-    //console.log(this.af.database.object('/hosting/'+this.afService.OK_key).subscribe(this.counter));
-    this.af.database.object('/hosting/'+this.afService.OK_key).update({counter : 1});
+    var host = this.af.database.object('/hosting/'+this.afService.OK_key,{ preserveSnapshot: true}); // How to get value
+    host.subscribe(snapshot => {          
+    this.counter = snapshot.val().counter;   
+  });
+    this.counter=this.counter+1;
+    this.af.database.object('/hosting/'+this.afService.OK_key).update({counter : this.counter});
     this.close();
   }
   cancel() {

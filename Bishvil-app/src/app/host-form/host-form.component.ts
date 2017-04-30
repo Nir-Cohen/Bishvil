@@ -10,10 +10,30 @@ import {AF} from 'providers/af'
 export class HostFormComponent implements OnInit {
   public host: host;
 
+
+countries:Array<Object>  = [
+       {id: 1, name: "Hebrew"},
+       {id: 2, name: "French"},
+       {id: 3, name: "English"},
+       {id: 4, name: "Moroccan"},
+       {id: 5, name: "Arabic"},
+     ];
+selectedValue = null;
   constructor(public afService: AF) {  }
 
   ngOnInit() {
-    this.host = { location: "", time: "", note: "",  author:""};
+    this.host = { 
+      location: "",
+      time: "",
+      note: "",
+      author:"",
+      lastName:"",
+      firstName:"",
+      phoneOne:"",
+      phoneTwo:"",
+      lang:"",
+     numberHost:"",
+    };
   }
 
   addHosting(){
@@ -26,5 +46,11 @@ export class host{
   time: string;
   note: string;
   author: string;
+  firstName: string;
+  lastName: string;
+  phoneOne:any;
+  phoneTwo:any;
+  lang:any;
+  numberHost:any;
 }
 

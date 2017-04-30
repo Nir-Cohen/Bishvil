@@ -8,17 +8,62 @@
             <div class="form-group">
               <label class="col-xs-2 control-label">Location: </label>
               <div class="col-xs-10">
-                <input type="text" class="form-control" name="location" [(ngModel)]="host.location"/>
+                <input type="text" class="form-control" name="location" required [(ngModel)]="host.location"/>
                 <span class="help-block">For Example: Jabotinsky pub, shimon ben shetach, Jerusalem</span>
               </div>
             </div>
 
+           <div class="form-group">
+              <label class="col-xs-3 control-label">First Name: </label>
+                <div class="col-xs-3">
+                  <input type="text" class="form-control" name="host.firstName" [(ngModel)]="host.firstName" required />
+                  
+              </div>
+            
+              <label class="col-xs-3 control-label">Last Name: </label>
+                <div class="col-xs-3">
+                  <input type="text" class="form-control" name="lastName"  required [(ngModel)]="host.lastName"/>
+              </div>
+            </div>
+
+           <div class="form-group">
+              <label class="col-xs-3 control-label">Phone number#1 </label>
+                <div class="col-xs-3">
+                  <input type="text" class="form-control" name="phoneOne" required [(ngModel)]="host.phoneOne"/>
+              </div>
+            
+              <label class="col-xs-3 control-label">Phone number#2: </label>
+                <div class="col-xs-3">
+                  <input type="text" class="form-control" name="phoneTwo" [(ngModel)]="host.phoneTwo"/>
+              </div>
+            </div>
+
+
+
+
+
+          <div class="form-group">
+              <label class="col-xs-3 control-label">Host people</label>
+                <div class="col-xs-3">
+                  <input type="text" class="form-control" name="lastName" [(ngModel)]="host.numberHost"/>
+              </div>
+           
+              <label class="col-xs-3 control-label">Spooken Lang: </label>
+                <div class="col-xs-3">
+                  <select class="form-control" > <!-- [(ngModel)]="selectedValue"> -->
+                     <option *ngFor="let c of countries"  name="lastName" [ngValue]="c">{{c.name}}</option>
+                  </select>
+              </div>
+            </div>
+
             <div class="form-group">
-              <label class="col-xs-2 control-label">When: </label>
+              <label class="col-xs-2 control-label">When?: </label>
                 <div class="col-xs-10">
                   <input type="datetime-local" class="form-control" name="time" [(ngModel)]="host.time"/>
               </div>
             </div>
+
+
 
             <div class="form-group">
               <label class="col-xs-2 control-label">Notes: </label>
