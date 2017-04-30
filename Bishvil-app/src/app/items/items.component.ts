@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AF} from 'providers/af';
-import {FirebaseListObservable} from "angularfire2";
+import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import * as firebase from 'firebase';
 
 
@@ -12,12 +12,14 @@ import * as firebase from 'firebase';
 export class ItemsComponent implements OnInit {
 
   public items : FirebaseListObservable<any>;
+  public users : FirebaseListObservable<any>;
 
   onclick : Function;
   selectedRow : Number;
 
-  constructor(public afService : AF) {     
+  constructor(public afService : AF,public af: AngularFire) {     
       this.items = this.afService.item; 
+      this.users = this.af.database.list("registeredUsers");
   }
 
    //remove item ONLY AUTHOR ALLOW TO DELETE

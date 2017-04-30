@@ -19,7 +19,7 @@ export class AppComponent {
       (auth) => {
         if(auth == null) {
           console.log("Not Logged in.");
-
+          
           this.isLoggedIn = false;
           this.router.navigate(['login']);
         }
