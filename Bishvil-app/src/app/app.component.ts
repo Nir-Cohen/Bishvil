@@ -9,11 +9,9 @@ import * as firebase from 'firebase';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public isLoggedIn: boolean;
-  
+  public isLoggedIn: boolean;  
 
-  constructor(public afService: AF, private router: Router) {
-  
+  constructor(public afService: AF, private router: Router) {  
     // This asynchronously checks if our user is logged it and will automatically
     // redirect them to the Login page when the status changes.
     // This is just a small thing that Firebase does that makes it easy to use.
@@ -27,6 +25,17 @@ export class AppComponent {
         }
         else {
           console.log("Successfully Logged in.");
+            //set current user properties
+            firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+                this.afService.currUserName = snapshot.val().name;
+                this.afService.currUserID = firebase.auth().currentUser.uid;
+                this.afService.currUserCity = snapshot.val().city;
+                this.afService.currUserDOB = snapshot.val().dob;
+                this.afService.currUserURL =firebase.auth().currentUser.photoURL;
+              })
+              .catch((error) => {
+                console.log("Cant access database");
+              });
           // Set the Display Name and Email so we can attribute messages to them
           if(auth.google) {
             this.afService.displayName = auth.google.displayName;
@@ -34,12 +43,9 @@ export class AppComponent {
             //this.afService.status = auth.auth.status;
           }
           else {
-            this.afService.displayName = auth.auth.email;
-            
+            this.afService.displayName = auth.auth.email;            
             this.afService.email = auth.auth.email;
-           // this.afService.status = auth.auth.status;
           }
-
           this.isLoggedIn = true;
           this.router.navigate(['']);
         }

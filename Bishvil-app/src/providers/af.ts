@@ -20,6 +20,12 @@ export class AF {
   public storageRef : any;
   public targetRef : any;
 
+  public currUserName : any;
+  public currUserID : any;
+  public currUserCity : any;
+  public currUserDOB : any;
+  public currUserURL : any;
+
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
       (auth) => {

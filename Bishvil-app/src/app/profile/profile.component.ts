@@ -75,8 +75,8 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.userinfo = {city : "", dob : "" ,name : ""};
-
+    this.userinfo = {city : this.afService.currUserCity, dob : this.afService.currUserDOB ,name : this.afService.currUserName};
+     
     this.afService.af.auth.subscribe(
       (auth) => {
         if(auth == null) {
@@ -84,17 +84,9 @@ export class ProfileComponent implements OnInit {
         }
         else{
               this.user = firebase.auth().currentUser;
-              
               this.email = this.user.email;
               this.photo = this.user.photoURL;
-            firebase.database().ref('/registeredUsers/' + this.user.uid).once('value').then((snapshot) => {
-                this.userinfo.name = snapshot.val().name;
-                this.userinfo.city = snapshot.val().city;
-                this.userinfo.dob = snapshot.val().dob;        
-            }).catch((error) => {
-                console.log("Cant access database");
-            });
-        }});    
+        }});   
   }
 }
 

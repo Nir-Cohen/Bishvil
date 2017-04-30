@@ -10,7 +10,7 @@
                     <label for = "name" class ="col-xs-2 control-label">Full Name</label>
                     <div class="col-xs-10">
                         <input type = "text" class="col-xs-9 form-control" 
-                            [(ngModel)] = "userinfo.name" name = "name" disabled>
+                            [(ngModel)] = "afService.currUserName" name = "name" disabled>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@
                 <div class = "form-group" *ngIf = "photo">
                     <label for = "photo" class ="control-label">Photo</label>
                     <div>
-                        <img [src]="photo" class="img-thumbnail"><br>
+                        <img [src]="afService.currUserURL" class="img-thumbnail"><br>
                         <label class="custom-file-upload">
                             <input type="file" class="file-button" 
                                 accept="image/*" (change) ="upload($event)" 
