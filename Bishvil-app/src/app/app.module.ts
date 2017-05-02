@@ -23,6 +23,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DialogComponent } from './dialog/dialog.component';
 import { PromptComponent } from './prompt/prompt.component';
 import { ConfirmComponent } from './confirm/confirm.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 export const firebaseConfig = {
@@ -74,7 +75,7 @@ const routes: Routes = [
      ProfileComponent, 
      BoxMessagesComponent, 
      DialogComponent, 
-     PromptComponent, ConfirmComponent ],
+     PromptComponent, ConfirmComponent, AlertComponent ],
   bootstrap: [ AppComponent ],
   providers: [AF],
   entryComponents: [PromptComponent,ConfirmComponent]
