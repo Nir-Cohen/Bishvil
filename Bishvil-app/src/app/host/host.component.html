@@ -12,8 +12,12 @@
      <div class="list-group" *ngFor="let host of hosting | async">
        <a  class="list-group-item" (click)="showConfirm(host.$key)">
          <h4 class="list-group-item-heading">{{host.location}}</h4>
+          
+          <p class="list-group-item-text">
+          Hosting By: {{host.firstName}} &nbsp;&nbsp; {{host.lastName}}</p>
           <p class="list-group-item-text">
           {{host.time}} &nbsp;&nbsp;&nbsp; {{host.note}}</p>
+          <p class = "pull-right glyphicon glyphicon-user" aria-hidden="true" (click)="showPeople(host.$key)"></p>
           <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(host.$key)"></p>
           <br>
           </a>
@@ -28,6 +32,7 @@
          <h4 class="list-group-item-heading">{{host.location}}</h4>
           <p class="list-group-item-text">
           {{host.time}} &nbsp;&nbsp;&nbsp; {{host.note}}</p>
+          
           <p class = "pull-right glyphicon glyphicon-trash" *ngIf = "(afService.displayName == host.author || afService.email == host.author)" (click)="deleteItem(host.$key)"></p>
           <br>
           </a>

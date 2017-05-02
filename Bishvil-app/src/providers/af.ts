@@ -60,7 +60,11 @@ addHosting(hosting){
       time: hosting.time,
       note: hosting.note,
       author: this.displayName,
-      counter: '0'
+      counter: '0',
+      firstName: hosting.firstName,
+      lastName: hosting.lastName,
+      phoneOne:hosting.phoneOne,
+      phoneTwo:hosting.phoneTwo,
     });
 }
 
@@ -187,7 +191,7 @@ emailVerfication()
    * @returns {firebase.Promise<void>}
    */
   saveUserInfoFromForm(uid, name, email,status) {
-    console.log("from the userinfo"+status);
+    
     return this.af.database.object('registeredUsers/' + uid).set({
       name: name,
       email: email,

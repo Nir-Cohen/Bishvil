@@ -18,6 +18,7 @@ export class HostComponent implements OnInit {
   
   confirmResult:boolean = null;
   key:string;
+  author:string;
 
   public hosting: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
@@ -47,6 +48,13 @@ export class HostComponent implements OnInit {
     });
     console.log(this.confirmResult);
   }
-
+  showPeople(info:string)
+  {
+    var host = this.af.database.object('/hosting/'+info,{ preserveSnapshot: true}); // How to get value
+    host.subscribe(snapshot => {          
+    this.author = snapshot.val().author;   
+  });
+    console.log(this.author);
+  }
 }
 

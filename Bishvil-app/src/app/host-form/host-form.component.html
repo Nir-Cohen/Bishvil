@@ -17,7 +17,7 @@
               <label class="col-xs-3 control-label">First Name: </label>
                 <div class="col-xs-3">
                         <input type = "text" class="col-xs-10 form-control" 
-                            placeholder ="e.g. Jerusalem" name ="firstName" [(ngModel)] = "host.firstName" 
+                            placeholder ="e.g. Adam" name ="firstName" [(ngModel)] = "host.firstName" 
                             #firstName = "ngModel" required>
                               <small [hidden]="firstName.valid" class="text-danger">
                                     Name is required!!
@@ -26,7 +26,7 @@
             
               <label class="col-xs-3 control-label">Last Name: </label>
                 <div class="col-xs-3">
-                  <input type="text" class="form-control" name="lastName"  required [(ngModel)]="host.lastName"/>
+                  <input type="text" class="form-control" name="lastName"  [(ngModel)]="host.lastName"/>
               </div>
             </div>
 
