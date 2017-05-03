@@ -18,16 +18,16 @@ This project is developed as part of the requirements for a [software engineerin
 - [User Manual](https://github.com/Nir-Cohen/Bishvil/wiki/User-Manual)
 - [Team](https://github.com/Nir-Cohen/Bishvil/wiki/Team)
 - [Project Planing](../../wiki/Planing)
-- [Software Requirements Specification](https://github.com/Nir-Cohen/Bishvil/blob/master/srs.pdf)
-- [Software Design Specification](../../wiki/Home)
-- [Planning - Main Task Managment](https://github.com/Nir-Cohen/Bishvil/projects/2)
+- [Software Requirements Specification](https://github.com/Nir-Cohen/Bishvil/wiki/Specification-Software-requirements)
+- [Software Design Specification](https://github.com/Nir-Cohen/Bishvil/wiki/SDS---Software-Design-Specification)
+- [Planning - Main Task Managment](https://github.com/Nir-Cohen/Bishvil/wiki/Planing---Inception)
 
 ### Iteration Pages
-- [Iteration 0 - ZFR](https://github.com/yeseg11/Let-it-know/wiki/Iteration-0-ZFR)
-- [Iteration 1 - MVP](https://github.com/yeseg11/Let-it-know/wiki/Iteration-1)
-- [Iteration 2 - Database creation, Calender display, Facebook event handler](https://github.com/yeseg11/Let-it-know/wiki/Iteration-2)
-- [Iteration 3 - Event handler, permissoin handler ](https://github.com/yeseg11/Let-it-know/wiki/Iteration-3)
-- [Iteration 4 - recommendations handler, add display options to Calender](https://github.com/yeseg11/Let-it-know/wiki/Iteration-4)
+- [Iteration 0 - ZFR](https://github.com/Nir-Cohen/Bishvil/wiki/Iteration-0---ZFR)
+- [Iteration 1 - MVP](https://github.com/Nir-Cohen/Bishvil/wiki/Iteration-1)
+- [Iteration 2 - ](https://github.com/Nir-Cohen/Bishvil/wiki/Iteration-2)
+- [Iteration 3 -](https://github.com/Nir-Cohen/Bishvil/wiki/Iteration-3)
+- [Iteration 4 -](https://github.com/Nir-Cohen/Bishvil/wiki/Iteration-4)
 
 
 ### Our live beta application:
