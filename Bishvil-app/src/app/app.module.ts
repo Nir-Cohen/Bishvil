@@ -24,6 +24,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { PromptComponent } from './prompt/prompt.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { AlertComponent } from './alert/alert.component';
+import { MessagesComponent } from './messages/messages.component';
 
 
 export const firebaseConfig = {
@@ -46,7 +47,8 @@ const routes: Routes = [
   { path: 'night-form', component: NightFormComponent},
   { path: 'item-form' , component: ItemFormComponent},
   { path: 'profile' , component: ProfileComponent},
-  { path: 'box-messages', component:BoxMessagesComponent}
+  { path: 'box-messages', component:BoxMessagesComponent},
+  { path: 'messages', component:MessagesComponent}
   
 ];
 
@@ -75,7 +77,7 @@ const routes: Routes = [
      ProfileComponent, 
      BoxMessagesComponent, 
      DialogComponent, 
-     PromptComponent, ConfirmComponent, AlertComponent ],
+     PromptComponent, ConfirmComponent, AlertComponent, MessagesComponent ],
   bootstrap: [ AppComponent ],
   providers: [AF],
   entryComponents: [PromptComponent,ConfirmComponent]

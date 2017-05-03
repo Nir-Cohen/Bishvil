@@ -13,6 +13,7 @@ export class ItemsComponent implements OnInit {
 
   public items : FirebaseListObservable<any>;
   public users : FirebaseListObservable<any>;
+  selected : any;
 
   onclick : Function;
   selectedRow : Number;
@@ -28,10 +29,14 @@ export class ItemsComponent implements OnInit {
     this.items.remove(key);
    }
 
+
+
   ngOnInit(){
     this.onclick = function(event : MouseEvent,i : any){
       console.log(event.target);
       this.selectedRow = i;
     };
+
+
   }
 }

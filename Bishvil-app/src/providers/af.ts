@@ -144,13 +144,14 @@ emailVerfication()
    *
    */
   addUserInfo(){
-    return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).set({
-      name: this.displayName,
-      email: this.email,
-      status:this.status,
-      city : "",
-      dob : ""
-    });
+      return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).set({
+        name: this.displayName,
+        email: this.email,
+        status:this.status,
+        city : "",//removes itself every time
+        dob : ""
+      });
+
   }
 
   /**
@@ -166,6 +167,7 @@ emailVerfication()
     };
     this.messages.push(message);
   }
+
 
   /**
    *
@@ -198,6 +200,7 @@ emailVerfication()
       status:status,
       city : "",
       dob : ""
+      
     });
     
   }

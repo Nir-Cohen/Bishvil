@@ -1,0 +1,31 @@
+<div class = "container"> 
+  <div [hidden]="submitted">
+        <div class= "row">
+          <form>
+            <div class= "form-group well">
+              <label for="sendTo">Send To:</label>
+              <select id="sendTo" name="selected" [ngModel]="selected" (change) = "getUserID($event.target.value)">
+                <option *ngFor="let user1 of users | async" [value]="user1.name" >{{user1.name}}</option>
+              </select>
+          <label for = "message">&nbsp;Message</label>
+          <input [(ngModel)] = "message" name = "message" placeholder="Type.."/>
+          <div class = "btn btn-success addcmd" (click) = "sendMessage()">Send Message</div>
+            
+          </div>
+        </form>
+      
+
+
+        <div class = "list-group" *ngFor = "let message of myMessages | async">
+
+                  <a class="list-group-item clearfix">
+                    <h4 class="list-group-item-heading">{{message.message}}</h4>
+                    <h4 class="list-group-item-text">Sent By:  {{message.sentbyName}}</h4>
+                    <p class="list-group-item-text">
+                        &nbsp;&nbsp;&nbsp; {{ message.timestamp | date:"MM/dd/yy HH:mm" }}                      
+                    </p>
+                  </a>
+        </div>
+  </div>
+
+</div>
