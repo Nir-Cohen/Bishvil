@@ -13,14 +13,21 @@
           <li><a>EN</a></li>
         </ul>
       </div>
+      
+
 
       <div *ngIf="isLoggedIn">
-        <div class="col-xs-4">
+        <div class="col-xs-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a [routerLink] = "['/profile']">{{afService.displayName }}</a></li>
-            <li><a [routerLink] = "['/messages']" class = "glyphicon glyphicon-envelope"></a></li>
+            <li><a [routerLink] = "['/messages']" class = "pull-right glyphicon glyphicon-envelope"></a></li>
           </ul>
         </div>
+        <div class="col-xs-3">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink] = "['/profile']">{{afService.displayName }}</a></li>
+          </ul>
+        </div>
+        
 
         <div class="col-xs-2">
           <ul class="nav navbar-nav navbar-right border-left">

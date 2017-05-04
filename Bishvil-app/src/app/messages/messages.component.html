@@ -25,7 +25,7 @@
                     <h4 class="list-group-item-text">Sent By:  {{message.sentbyName}}</h4>
                     <div *ngIf = "message.read == false" class = "pull-right glyphicon glyphicon-bell text-warning"></div>
                     <p class="list-group-item-text">
-                        &nbsp;&nbsp;&nbsp; {{ message.timestamp | date:"dd/MM/yy HH:mm" }}                      
+                        &nbsp;&nbsp;&nbsp; {{ message.timestamp | date:"dd/MM/yy HH:mm"}}                      
                     </p>
                     <div class = "pull-right glyphicon glyphicon-share-alt" (click)="replay(message.sentbyID)" title = "Replay"></div>
                    <div class = "pull-right glyphicon glyphicon-trash" (click)="deleteMessage(message.$key)" title = "Delete"></div>
