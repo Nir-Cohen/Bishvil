@@ -3,27 +3,23 @@
         <div class= "row">
           <form>
             <div class= "form-group well">
-              <label for="sendTo">Send To:</label>
-              <!--<select id="sendTo" name="selected" [ngModel]="selected" (change) = "getUserID($event.target.value)">
-                <option *ngFor="let user1 of users | async" [value]="user1.name" ><img src = {{user1.photoURL}}/>{{user1.name}}</option>
-              </select>-->
-              <div ng2-auto-complete [source]= "nameList" placeholder= "Look for user" (valueChanged)="getUserID($event)">
-                <input [ngModel] = "model1" name = "aaa"/>
+              <div class = "form-group">
+                <label for="sendTo">Send To:</label>
+                <div ng2-auto-complete [source]= "nameList" placeholder= "Look for user" (valueChanged)="getUserID($event)">
+                  <input [ngModel] = "model1" name = "aaa"/>
+                </div>
+        
+                <label for = "message">Message</label>
+                <input type="text" [(ngModel)] = "message" name = "message" placeholder="Type.." #check="ngModel" required/>
+                <small [hidden]="check.valid" class="text-danger">
+                      please type Message!!
+                </small>
+                <div class = "btn btn-success addcmd" (click) = "sendMessage()">Send Message</div>
               </div>
-          <label for = "message">&nbsp;Message</label>
-          <input type="text" [(ngModel)] = "message" name = "message" placeholder="Type.." #check="ngModel" required/>
-            <small [hidden]="check.valid" class="text-danger">
-                  please type Message!!
-            </small>
-            <div class = "btn btn-success addcmd" (click) = "sendMessage()">Send Message</div>
-            
           </div>
         </form>
-      
-
 
         <div class = "list-group" *ngFor = "let message of myMessages | async" (click) = "readMessage(message.$key)">
-
                   <a class="list-group-item clearfix">
                     <h4 class="list-group-item-heading">{{message.message}}</h4>
                     <h4 class="list-group-item-text">Sent By:  {{message.sentbyName}}</h4>
@@ -36,5 +32,4 @@
                   </a>
         </div>
   </div>
-
 </div>
