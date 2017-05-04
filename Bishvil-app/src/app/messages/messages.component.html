@@ -6,11 +6,11 @@
               <div class = "form-group">
                 <label for="sendTo">Send To:</label>
                 <div ng2-auto-complete [source]= "nameList" placeholder= "Look for user" (valueChanged)="getUserID($event)">
-                  <input [ngModel] = "model1" name = "aaa"/>
+                  <input [ngModel] = "model1" name = "aaa" autocomplete="off"/>
                 </div>
         
                 <label for = "message">Message</label>
-                <input type="text" [(ngModel)] = "message" name = "message" placeholder="Type.." #check="ngModel" required/>
+                <input type="text" [(ngModel)] = "message" name = "message" autocomplete="off" placeholder="Type.." #check="ngModel" required/>
                 <small [hidden]="check.valid" class="text-danger">
                       please type Message!!
                 </small>
