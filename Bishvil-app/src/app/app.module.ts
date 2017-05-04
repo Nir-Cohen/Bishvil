@@ -26,6 +26,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { AlertComponent } from './alert/alert.component';
 import { MessagesComponent } from './messages/messages.component';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
+import {ProfilesComponent} from './profiles/profiles.component';
 
 
 export const firebaseConfig = {
@@ -49,7 +50,8 @@ const routes: Routes = [
   { path: 'item-form' , component: ItemFormComponent},
   { path: 'profile' , component: ProfileComponent},
   { path: 'box-messages', component:BoxMessagesComponent},
-  { path: 'messages', component:MessagesComponent}
+  { path: 'messages', component:MessagesComponent},
+  { path: 'profiles', component:ProfilesComponent}
   
 ];
 
@@ -79,7 +81,7 @@ const routes: Routes = [
      ProfileComponent, 
      BoxMessagesComponent, 
      DialogComponent, 
-     PromptComponent, ConfirmComponent, AlertComponent, MessagesComponent ],
+     PromptComponent, ConfirmComponent, AlertComponent, MessagesComponent,ProfilesComponent ],
   bootstrap: [ AppComponent ],
   providers: [AF],
   entryComponents: [PromptComponent,ConfirmComponent]
