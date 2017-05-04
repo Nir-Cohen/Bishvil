@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     public users : FirebaseListObservable<any>;
 
   
-  constructor(public afService: AF, private router: Router, private dialog : DialogService) {
+  constructor(public afService: AF, private router: Router, private dialog : DialogService, public af :AngularFire) {
     this.storageRef = firebase.storage().ref();
     this.users = this.afService.users;
     this.maxDate = new Date((new Date().getFullYear()-18),new Date().getMonth(),new Date().getDate()).toJSON().split('T')[0];
@@ -67,6 +67,7 @@ export class ProfileComponent implements OnInit {
             console.log(downloadUrl);
             res(downloadUrl);
             this.user.updateProfile({displayName : this.user.displayName,photoURL: downloadUrl}).then(function(){console.log("updated!!");},function(error){});
+            this.af.database.object('registeredUsers/' + this.afService.currUserID).update({photoURL : downloadUrl});
             alert("Photo Changed!");
           }
         );
@@ -86,7 +87,7 @@ export class ProfileComponent implements OnInit {
               this.user = firebase.auth().currentUser;
               this.email = this.user.email;
               this.photo = this.user.photoURL;
-        }});   
+        }}); 
   }
 }
 

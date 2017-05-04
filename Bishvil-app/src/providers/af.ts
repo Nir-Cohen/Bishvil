@@ -144,12 +144,13 @@ emailVerfication()
    *
    */
   addUserInfo(){
-      return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).set({
+      return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).update({
         name: this.displayName,
         email: this.email,
         status:this.status,
-        city : "",//removes itself every time
-        dob : ""
+        photoURL : firebase.auth().currentUser.photoURL
+        /*city : "",//removes itself every time
+        dob : ""*/
       });
 
   }
@@ -194,12 +195,11 @@ emailVerfication()
    */
   saveUserInfoFromForm(uid, name, email,status) {
     
-    return this.af.database.object('registeredUsers/' + uid).set({
+    return this.af.database.object('registeredUsers/' + uid).update({
       name: name,
       email: email,
       status:status,
-      city : "",
-      dob : ""
+      photoURL : firebase.auth().currentUser.photoURL,
       
     });
     

@@ -25,6 +25,7 @@ import { PromptComponent } from './prompt/prompt.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { AlertComponent } from './alert/alert.component';
 import { MessagesComponent } from './messages/messages.component';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
 
 export const firebaseConfig = {
@@ -60,6 +61,7 @@ const routes: Routes = [
     FormsModule,
     DatePickerModule,
     BootstrapModalModule,
+    Ng2AutoCompleteModule,
     
   ],
   declarations: [
