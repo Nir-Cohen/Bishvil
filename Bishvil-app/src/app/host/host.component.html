@@ -17,7 +17,9 @@
           Hosting By: {{host.firstName}} &nbsp;&nbsp; {{host.lastName}}</p>
           <p class="list-group-item-text">
           {{host.time}} &nbsp;&nbsp;&nbsp; {{host.note}}</p>
+           <!-- <div *ngFor="let i of host.count"> 
           <p class = "pull-right glyphicon glyphicon-user" aria-hidden="true" (click)="showPeople(host.$key)"></p>
+            </div>-->
           <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(host.$key)"></p>
           <br>
           </a>
