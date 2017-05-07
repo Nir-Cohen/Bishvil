@@ -29,7 +29,9 @@ export class MessagesComponent implements OnInit {
    }
 
    sendMessage(){
-      console.log(this.sendTo);
+      if(this.sendTo == "" || this.message == "" || !(this.message) )
+        return;
+        
       var ref = firebase.database().ref("registeredUsers/" + this.sendTo + "/mess");
       var message = {
         message: this.message,
@@ -40,9 +42,8 @@ export class MessagesComponent implements OnInit {
         read : false,
         order : -1 * new Date().getTime()
       };
-      console.log(message);
       ref.push(message);      
-   };
+   }; 
      
   getUserID(username){
     //get the key of the user
