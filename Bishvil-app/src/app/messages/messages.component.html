@@ -8,11 +8,10 @@
                   <div class="col-xs-4">
                     <label for="sendTo">Send To:</label>
                   </div>
-                  <div class="col-xs-8" ng2-auto-complete [source]= "nameList" placeholder= "Look for user" (valueChanged)="getUserID($event)">
-                    <input class="form-control" [ngModel] = "model1" name = "aaa" autocomplete="off" />
+                  <div class="col-xs-8" ng2-auto-complete [source]= "nameList"  (valueChanged)="getUserID($event)">
+                    <input class="form-control " placeholder= "Look for user" [ngModel] = "model1" name = "aaa" autocomplete="off" />
                   </div>
                 </div>
-
                 <br>
                 <div class="row">
                   <div class="col-xs-4">

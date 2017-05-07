@@ -82,6 +82,7 @@ export class MessagesComponent implements OnInit {
         return this.af.database.list('registeredUsers/'  + this.afService.currUserID + "/mess").map(_message => _message.filter(message=> message.sentbyName == author))    
    };
 
+   
   ngOnInit() {
     //get user's name list
     firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{

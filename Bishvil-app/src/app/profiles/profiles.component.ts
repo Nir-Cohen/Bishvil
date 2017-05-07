@@ -18,7 +18,9 @@ export class ProfilesComponent implements OnInit {
   cityList = [];
   public filteredList : any;
 
-  constructor(public afService : AF, public af : AngularFire) {
+  model1 : any;
+
+  constructor(public afService : AF, public af : AngularFire, private router: Router) {
       this.users = this.af.database.list('registeredUsers');      
    }
 
@@ -40,31 +42,35 @@ export class ProfilesComponent implements OnInit {
      }
    };
 
-   statusChanged($event, key){
-    if($event.target.value =="Admin")
-      firebase.database().ref('registeredUsers/'+ key).update({status : "1"});
+  statusChanged($event, key){
+    if($event.target.value =="Admin"){
+      if(confirm("Are you sure to make this user ADMIN?"))
+        firebase.database().ref('registeredUsers/'+ key).update({status : "1"});
+      else
+        window.location.reload();
+    }
     if($event.target.value =="User")
-      firebase.database().ref('registeredUsers/'+ key).update({status : "0"});
+      if(confirm("Are you sure to make this user USER?"))
+        firebase.database().ref('registeredUsers/'+ key).update({status : "0"});
+      else
+        window.location.reload();
    };
 
-  ngOnInit() {
-    this.cityList.push("(none)");
-    firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
-      data.forEach((snap) =>{
-        if(snap.val().city != "" && snap.val().city != undefined)
-          this.cityList.push(snap.val().city);
-        return false;
+    clearInput(){
+      this.model1 = "";
+      this.getFilteredItems(""); 
+    };
+    
+    ngOnInit() {
+      this.cityList.push("(none)");
+      firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
+        data.forEach((snap) =>{
+          if(snap.val().city != "" && snap.val().city != undefined)
+            this.cityList.push(snap.val().city);
+          return false;
+        });
       });
-    });
-    this.getFilteredItems("");    
-  }
+      this.getFilteredItems("");    
+    }
 
 }
-
-
-
-
-
-
-
-

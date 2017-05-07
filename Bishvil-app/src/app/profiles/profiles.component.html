@@ -1,10 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
+            <h1 *ngIf = "afService.currUserStatus == 1">Admin Page/User Managment</h1>
             <label for = "aaa">Filter by city</label>
             <div ng2-auto-complete [source]= "cityList" placeholder= "Look for user" (valueChanged)="getFilteredItems($event)">
                   <input id="searchclear" [ngModel] = "model1" name = "aaa" autocomplete="off"/>
-                  <span  class="glyphicon glyphicon-remove-circle"></span>
+                  <span  class="glyphicon glyphicon-remove-circle"(click) = "clearInput()"></span>
             </div>
             <div *ngFor = "let user of filteredList | async">
                 <div class="well well-sm">              
