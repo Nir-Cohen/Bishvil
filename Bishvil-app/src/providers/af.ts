@@ -25,6 +25,7 @@ export class AF {
   public currUserCity : any;
   public currUserDOB : any;
   public currUserURL : any;
+  public currUserStatus : any;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(

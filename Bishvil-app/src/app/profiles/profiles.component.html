@@ -1,31 +1,48 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
-          <div *ngFor = "let user of users | async">
-            <div class="well well-sm">              
-                <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                      <div *ngIf = "user.photoURL">
-                        <img [src]="user.photoURL" class="img-rounded img-responsive" />
-                      </div>
-                      <div *ngIf = "!user.photoURL">
-                          <img src="https://www.drupal.org/files/profile_default.jpg" class="img-rounded img-responsive" />
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-md-8">
-                        <h4>{{user.name}}</h4>
-                        <small><cite>{{user.city}} <i class="glyphicon glyphicon-map-marker"></i></cite></small>
-                        <p>
-                            <i class="glyphicon glyphicon-envelope"></i>{{user.email}}
-                            <br />
-                            <i class="glyphicon glyphicon-gift"></i>{{user.dob | date}}
-                        </p>
+            <label for = "aaa">Filter by city</label>
+            <div ng2-auto-complete [source]= "cityList" placeholder= "Look for user" (valueChanged)="getFilteredItems($event)">
+                  <input id="searchclear" [ngModel] = "model1" name = "aaa" autocomplete="off"/>
+                  <span  class="glyphicon glyphicon-remove-circle"></span>
+            </div>
+            <div *ngFor = "let user of filteredList | async">
+                <div class="well well-sm">              
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                        <div *ngIf = "user.photoURL">
+                            <img [src]="user.photoURL" class="img-rounded img-responsive" />
+                        </div>
+                        <div *ngIf = "!user.photoURL">
+                            <img src="https://www.drupal.org/files/profile_default.jpg" class="img-rounded img-responsive" />
+                        </div>
+                        </div>
+                        <div class="col-sm-6 col-md-8">
+                            <h4>{{user.name}}</h4>
+                            <small><cite>{{user.city}} <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                            <p>
+                                <i class="glyphicon glyphicon-envelope"></i>{{user.email}}
+                                <br />
+                                <i class="glyphicon glyphicon-gift"></i>{{user.dob | date}}
+                                <br />
+                            </p>
                             <button type="button" class="btn btn-primary">
                                 Message {{user.name}}</button>
+                            <div *ngIf = "afService.currUserStatus == 1">
+                                <button type="button" class="btn btn-primary" (click) = "deleteUser(user.$key, user.name)"><i class="glyphicon glyphicon-trash"></i> {{user.name}}</button>
+                                <select class="pull-right" (change)="statusChanged($event,user.$key)">                                    
+                                    <option *ngIf = "user.status == 1">Admin</option>
+                                    <option *ngIf = "user.status == 1">User</option>                                    
+                                    <option *ngIf = "user.status == 0 || !user.status">User</option>
+                                    <option *ngIf = "user.status == 0 || !user.status">Admin</option>
+                                </select>
+                                <label class="pull-right" for="user status">Status:</label>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-              </div>
-            </div>
+                </div>
         </div>
     </div>
 </div>

@@ -5,7 +5,8 @@ import { FirebaseListObservable, AngularFire } from "angularfire2";
 import { DialogService } from "ng2-bootstrap-modal";
 import * as firebase from 'firebase';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
-
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 
 @Component({
@@ -15,12 +16,14 @@ import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 })
 export class MessagesComponent implements OnInit {
 
-  users : FirebaseListObservable<any>;
+  users : any;
 
   message : string;
   sendTo : any;
   myMessages : any;
   nameList = [];
+  recievedFrom = [];
+  filteredList : any;
 
   constructor(public afService : AF,public af: AngularFire) {
     this.users = this.af.database.list('registeredUsers');
@@ -57,26 +60,42 @@ export class MessagesComponent implements OnInit {
 
   deleteMessage(key : string){
     this.af.database.list("registeredUsers/" + this.afService.currUserID + "/mess").remove(key);
-    //firebase.database().ref("registeredUsers/" + this.sendTo + "/mess" + key).remove(key);
   };
-
 
   replay(sendTo){
     console.log(sendTo);
   };
 
   readMessage(key : string){
-      console.log(key);
       firebase.database().ref('registeredUsers/'+ this.afService.currUserID + "/mess/" + key).update({read : true});      
   };
 
+  filterMessages(sender){
+      this.myMessages = this.getFilteredList(sender);
+  };
+
+  getFilteredList(author) : Observable<any[]>{
+    if(author == undefined || author == "" || author == "(none)")
+      return this.af.database.list('registeredUsers/' + this.afService.currUserID + "/mess");
+    else
+        return this.af.database.list('registeredUsers/'  + this.afService.currUserID + "/mess").map(_message => _message.filter(message=> message.sentbyName == author))    
+   };
+
   ngOnInit() {
-      firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
+    //get user's name list
+    firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
       data.forEach((snap) =>{
         this.nameList.push(snap.val().name);
         return false;
       });
     });
+    //get user's name list that send me message
+    this.recievedFrom.push("(none)");
+    firebase.database().ref("registeredUsers/"+ this.afService.currUserID + "/mess/").orderByValue().on("value" ,(data)=>{
+      data.forEach((snap) =>{
+        this.recievedFrom.push(snap.val().sentbyName);
+        return false;
+      });
+    });    
   }
-
 }

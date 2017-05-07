@@ -5,8 +5,8 @@
             <div class= "form-group well">
               <div class = "form-group">
                 <label for="sendTo">Send To:</label>
-                <div ng2-auto-complete [source]= "nameList" placeholder= "Look for user" (valueChanged)="getUserID($event)">
-                  <input [ngModel] = "model1" name = "aaa" autocomplete="off"/>aa
+                <div ng2-auto-complete [source]= "nameList"  (valueChanged)="getUserID($event)">
+                  <input [ngModel] = "model1" name = "aaa" autocomplete="off" placeholder= "Look for user"/>
                 </div>
         
                 <label for = "message">Message</label>
@@ -18,7 +18,11 @@
               </div>
           </div>
         </form>
-
+        <label for="sendTo">Filter by sender:</label>
+        <div ng2-auto-complete [source]= "recievedFrom" placeholder= "Look for user" (valueChanged)="filterMessages($event)">
+              <input [ngModel] = "model1" name = "aaa" autocomplete="off"/>
+        </div>
+        <br><br>
         <div class = "list-group" *ngFor = "let message of myMessages | async" (click) = "readMessage(message.$key)">
                   <a class="list-group-item clearfix">
                     <h4 class="list-group-item-heading">{{message.message}}</h4>
