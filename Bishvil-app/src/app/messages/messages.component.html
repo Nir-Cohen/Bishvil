@@ -4,17 +4,31 @@
           <form>
             <div class= "form-group well">
               <div class = "form-group">
-                <label for="sendTo">Send To:</label>
-                <div ng2-auto-complete [source]= "nameList"  (valueChanged)="getUserID($event)">
-                  <input [ngModel] = "model1" name = "aaa" autocomplete="off" placeholder= "Look for user"/>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <label for="sendTo">Send To:</label>
+                  </div>
+                  <div class="col-xs-8" ng2-auto-complete [source]= "nameList" placeholder= "Look for user" (valueChanged)="getUserID($event)">
+                    <input class="form-control" [ngModel] = "model1" name = "aaa" autocomplete="off" />
+                  </div>
                 </div>
-        
-                <label for = "message">Message</label>
-                <input type="text" [(ngModel)] = "message" name = "message" autocomplete="off" placeholder="Type.." #check="ngModel" required/>
+
+                <br>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <label for = "message">Message</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <input class="form-control" type="text" [(ngModel)] = "message" name = "message" autocomplete="off" placeholder="Type.." #check="ngModel" required/>
+                  </div>
+                </div>
+
                 <small [hidden]="check.valid" class="text-danger">
-                      please type Message!!
+                      please fill all Fields!!
                 </small>
-                <div class = "btn btn-success addcmd" (click) = "sendMessage()">Send Message</div>
+                <br>
+                <div class = "btn btn-success sndbtn" (click) = "sendMessage()">Send Message</div>
+
               </div>
           </div>
         </form>

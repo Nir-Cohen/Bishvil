@@ -24,7 +24,11 @@ export class ConfirmCounter{
 export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
   title: string;
   message: string;
-  counter: any;
+  counter: number;
+  maxOfGusts=0;
+  obj;
+  arrusers = [];
+  bool =0;
   public hosting: FirebaseListObservable<any>;
   
   public ConfirmCounter: ConfirmCounter;
@@ -36,11 +40,41 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     // on click on confirm button we set dialog result as true,
     // ten we can get dialog result from caller code
     this.result = true;
-    var host = this.af.database.object('/hosting/'+this.afService.OK_key,{ preserveSnapshot: true}); // How to get value
-    host.subscribe(snapshot => {          
-    this.counter = snapshot.val().counter;   
+    var host = this.af.database.object('/hosting/'+this.afService.OK_key); // How to get value
+    host.subscribe(snapshot => {  
+      this.obj = snapshot;
+      this.maxOfGusts=snapshot.numberHost;         
+    this.counter = snapshot.counter; 
   });
-    this.counter=this.counter+1;
+  if(this.maxOfGusts<=this.counter )
+  {
+    alert("Sorry, there is no more place!");
+    this.close();
+    return;
+  }
+ 
+    for(var i =0; i< this.arrusers.length; i++)
+    {
+      if(this.arrusers[i] == this.afService.displayName)
+        {
+          this.bool=-1;
+        }
+      
+    }
+    
+    console.log(this.bool);
+    if(this.bool != -1)
+    {
+      this.arrusers.push(this.afService.displayName);
+      this.counter=this.counter+1;
+    }
+    else
+    {
+      console.log("sdasd");
+      alert("you joined already");
+    }
+    //this.bool = true;
+    console.log(this.arrusers);
     this.af.database.object('/hosting/'+this.afService.OK_key).update({counter : this.counter});
     this.close();
   }

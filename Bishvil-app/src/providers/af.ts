@@ -61,12 +61,14 @@ addHosting(hosting){
       time: hosting.time,
       note: hosting.note,
       author: this.displayName,
-      counter: '0',
+      counter: 0,
       firstName: hosting.firstName,
       lastName: hosting.lastName,
       phoneOne:hosting.phoneOne,
       phoneTwo:hosting.phoneTwo,
+      numberHost:hosting.numberHost,
     });
+    console.log(hosting);
 }
 
 removeHosting(hosting)

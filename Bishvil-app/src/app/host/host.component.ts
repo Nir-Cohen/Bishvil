@@ -19,12 +19,13 @@ export class HostComponent implements OnInit {
   confirmResult:boolean = null;
   key:string;
   author:string;
+  arrusers=[];
 
   public hosting: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
   constructor(private dialogService:DialogService,public afService: AF,public af: AngularFire) { 
-    this.hosting = this.afService.hosting;
-    this.users = this.af.database.list("registeredUsers");
+  this.hosting = this.afService.hosting;
+  this.users = this.af.database.list("registeredUsers");
   }
   deleteItem(key : string){
     console.log("Removing "+ key);
@@ -37,6 +38,7 @@ export class HostComponent implements OnInit {
   }
 
   showConfirm(key: string) {
+    
     this.afService.OK_key=key;
     console.log(this.afService.OK_key);
     this.dialogService.addDialog(ConfirmComponent, {
@@ -50,11 +52,13 @@ export class HostComponent implements OnInit {
   }
   showPeople(info:string)
   {
+    /*
     var host = this.af.database.object('/hosting/'+info,{ preserveSnapshot: true}); // How to get value
     host.subscribe(snapshot => {          
     this.author = snapshot.val().author;   
   });
     console.log(this.author);
+    */
   }
 }
 
