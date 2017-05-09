@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AF } from "../providers/af";
 import { Router } from "@angular/router";
 import * as firebase from 'firebase';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',

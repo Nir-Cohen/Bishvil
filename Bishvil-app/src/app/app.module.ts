@@ -27,7 +27,7 @@ import { AlertComponent } from './alert/alert.component';
 import { MessagesComponent } from './messages/messages.component';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import {ProfilesComponent} from './profiles/profiles.component';
-
+import {DropdownModule} from "ng2-dropdown";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCjyJqa4ix5ZFAfQIPfNCLZfcV6dOpLX18",
@@ -64,6 +64,7 @@ const routes: Routes = [
     DatePickerModule,
     BootstrapModalModule,
     Ng2AutoCompleteModule,
+    DropdownModule,
     
   ],
   declarations: [
