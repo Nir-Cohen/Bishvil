@@ -15,6 +15,7 @@ export class AF {
   public item: FirebaseListObservable<any>;
   public hosting: FirebaseListObservable<any>;
   public news: FirebaseListObservable<any>;
+  public privateMessages : FirebaseListObservable<any>;
 
   public OK_key:string;
   public storageRef : any;
@@ -43,6 +44,7 @@ export class AF {
     this.hosting = this.af.database.list("hosting");
     this.status = "1";
     this.news = this.af.database.list("news");
+    this.privateMessages = this.af.database.list("privateMessages")
     //this.af.auth.getAuth().auth.sendEmailVerification();
   }
 

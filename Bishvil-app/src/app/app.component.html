@@ -7,38 +7,22 @@
       <div class="navbar-header col-xs-5">
         <a class="navbar-brand" href="#">Bishvil App</a>
       </div>
-
+<!--
       <div class="col-xs-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a>EN</a></li>
         </ul>
       </div>
-      
-
-
+-->
       <div *ngIf="isLoggedIn">
-        <!-- <div class="col-xs-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a [routerLink] = "['/messages']" class = "glyphicon glyphicon-envelope"></a></li>
-          </ul>
-        </div>
-       
-        <div class="col-xs-3">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a [routerLink] = "['/profile']">{{afService.displayName }}</a></li>
-          </ul>
-        </div>
-        -->    
          <div class="col-xs-2">   
-          <div class="dropdown" dropdown [dropdownToggle]="true">
-              <button class="btn btn-default" dropdown-open><i class="glyphicon glyphicon-user"></i>
-                  <span class="caret"></span></button>
-                  
+          <div class="dropdown nav navbar-nav navbar-right" dropdown [dropdownToggle]="true">
+              <div class="btn btn-default navbar-btn" dropdown-open><i class="glyphicon glyphicon-user"></i>
+                  <span class="caret"></span></div>                  
               <ul class="dropdown-menu">
                 <li>Signed in as<br><a [routerLink] = "['/profile']"><strong>{{afService.displayName }}</strong></a></li><hr>
                   <li><a [routerLink] = "['/messages']"><a class="glyphicon glyphicon-envelope"></a> Messages</a></li>
-                  <li><a>Sadman</a></li>
-                  <li><a>Lieman</a></li>
+                  <li><a><a class = "glyphicon glyphicon-earphone"></a> Contact Us</a></li>
               </ul>
           </div>
          </div>

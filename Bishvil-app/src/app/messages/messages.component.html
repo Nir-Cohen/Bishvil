@@ -18,7 +18,7 @@
                     <label for = "message">Message</label>
                   </div>
                   <div class="col-xs-8">
-                    <input class="form-control" type="text" [(ngModel)] = "message" name = "message" autocomplete="off" placeholder="Type.." #check="ngModel" required/>
+                    <input class="form-control" type="text" [(ngModel)] = "message" name = "message" autocomplete="off" placeholder="Type.." #check="ngModel" (keyup.enter)="sendMessage()" required/>
                   </div>
                 </div>
 
@@ -26,27 +26,62 @@
                       please fill all Fields!!
                 </small>
                 <br>
-                <div class = "btn btn-success sndbtn" (click) = "sendMessage()">Send Message</div>
-
+                <div class = "btn btn-success sndbtn" name = "formSend" (click) = "sendMessage(message , 'form')">Send Message</div>
               </div>
           </div>
         </form>
-        <label for="sendTo">Filter by sender:</label>
-        <div ng2-auto-complete [source]= "recievedFrom" placeholder= "Look for user" (valueChanged)="filterMessages($event)">
+        <label for="sendTo">Filter by user:</label>
+        <div ng2-auto-complete [source]= "nameArray" placeholder= "Look for user" (valueChanged)="getMessages($event)">
               <input [ngModel] = "model1" name = "aaa" autocomplete="off"/>
         </div>
         <br><br>
+
+        <div class = "list-group list-group-root well" *ngFor="let user of recievedFrom" (click) = "showDiv(user.key)">
+          <a class="list-group-item clearfix"><img *ngIf = "user.photo" [src] = "user.photo" class="img-rounded img-responsive">{{user.name}}</a>
+
+          <div [hidden] = "!hideDiv[user.key]" >
+            <div #scrollMe class="bs-example" id="messages">
+              <div *ngFor="let message of myMessages | async">
+                <div class="bubble" [class.you]="message.sentfromID != afService.currUserID" [class.me]="message.sentfromID == afService.currUserID">
+                  <div class = "pull-right glyphicon glyphicon-trash" (click)="deleteMessage(message.$key)" title = "Delete"></div>
+                  <p>{{ message.message }}</p>
+                  <div class="author">{{ message.timestamp | date:"MM/dd/yy HH:mm" }}</div>
+                  
+                </div>
+              </div>
+
+            </div>
+                  <figure class="highlight row">
+        <div class="col-xs-10"><input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage(newMessage , user.name)"/></div>
+        <div class="col-xs-2"><button class="btn btn-primary" (click)="sendMessage(newMessage , user.name)">SEND</button></div>
+      </figure>
+          </div>
+
+
+<!--
+          <div [hidden] = "!hideDiv[user.key]" 
+          *ngFor = "let message of myMessages | async">
+            <h3>{{message.message}}   {{ message.timestamp | date:"dd/MM/yy HH:mm"}}</h3>
+            <div *ngIf = "message.sentfromID == this.afService.currUserID" class = "pull-right glyphicon glyphicon-log-out text-warning"></div>
+            <div *ngIf = "message.senttoID == this.afService.currUserID" class = "pull-right glyphicon glyphicon-log-in text-warning"></div>
+          </div>
+        </div>
+        -->
+<!--
         <div class = "list-group" *ngFor = "let message of myMessages | async" (click) = "readMessage(message.$key)">
                   <a class="list-group-item clearfix">
                     <h4 class="list-group-item-heading">{{message.message}}</h4>
-                    <h4 class="list-group-item-text">Sent By:  {{message.sentbyName}}</h4>
+                    <h4 class="list-group-item-text"(click) = "showDiv(message.senttoID)">From:  {{message.sentfromName}}  To: {{message.senttoName}}</h4>
                     <div *ngIf = "message.read == false" class = "pull-right glyphicon glyphicon-bell text-warning"></div>
                     <p class="list-group-item-text">
                         &nbsp;&nbsp;&nbsp; {{ message.timestamp | date:"dd/MM/yy HH:mm"}}                      
                     </p>
-                    <div class = "pull-right glyphicon glyphicon-share-alt" (click)="replay(message.sentbyID)" title = "Replay"></div>
-                   <div class = "pull-right glyphicon glyphicon-trash" (click)="deleteMessage(message.$key)" title = "Delete"></div>
+                    <div class = "pull-right glyphicon glyphicon-share-alt" title = "Replay"></div>
+                   
                   </a>
+                  
+                  
         </div>
+        -->
   </div>
 </div>
