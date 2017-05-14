@@ -30,7 +30,7 @@ import {ProfilesComponent} from './profiles/profiles.component';
 import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
 import { ChatRoomsService } from './chat-rooms/chat-rooms.service';
 import { ChatRoomsSonComponent } from './chat-rooms-son/chat-rooms-son.component';
-
+import { DropdownModule } from 'ng2-dropdown';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCjyJqa4ix5ZFAfQIPfNCLZfcV6dOpLX18",
@@ -68,6 +68,7 @@ const routes: Routes = [
     DatePickerModule,
     BootstrapModalModule,
     Ng2AutoCompleteModule,
+    DropdownModule,
     
   ],
   declarations: [
