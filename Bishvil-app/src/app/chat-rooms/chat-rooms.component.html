@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row well">
+<div class="col-xs-6 col-lg-3">
+  <button class="btn btn-info maincmd" (click)="addMymail()">Add Groups</button>
+</div>
+
+<div class="col-xs-6 col-lg-3">
+<button class="btn btn-warning maincmd" (click)="getMyMail()">My Groups</button>
+</div>
+
+<div class="col-xs-6 col-lg-3">
+<a [routerLink]="['/chat']"><button class="btn btn-success maincmd">General<br>Chat</button></a>
+</div>
+
+
+ <a class="designLink" href="#">Bace To Home Page</a>
+<div *ngIf="ifClicked">
+  <div *ngIf = "myMail==true">
+<div class="form-group">
+
+<div class="designGroupList">
+<div class="col-xs-10"> <label for="name">Group Name:  </label>
+<input type="textarea" class="message-text" [(ngModel)]="name" (keyup.enter)="addGroup()"/></div>
+<h3><br></h3>
+
+
+<div class="design"> 
+  <head>
+<style>
+  #lines{
+    padding: 0px;
+  }
+</style>
+  </head>
+<h3>Select Users:</h3>
+   <div border="1">
+     <ul class="list-group-users">
+        <div  id="lines" *ngFor = "let user of users" 
+       class= "list-group-item">
+       <div *ngIf = "user.email!=myName;">
+       <app-chat-rooms-son [user] = user  (selectEvent)="select($event)"
+        (deleteEvent)="cancel($event)" >
+         </app-chat-rooms-son>
+          </div> 
+     </div>
+</ul>
+  </div>
+</div>
+
+ <figure class="highlight row"> 
+      <div class="col-xs-2"><button class="btn btn-primary " (click)="addGroup()">Create Group</button></div>
+    </figure>
+</div>
+</div>
+</div>
+</div>
+
+<div class="designGroupList2">
+<div *ngIf="ifClicked1">
+<div  class="design" *ngIf = "mail==true">
+  <h3>My Groups:</h3>
+    <div border="1">
+      <ul class="list-group-users">
+        <div id="lines" *ngFor = "let group of groups"  
+        [class.active]="currentUser2 == group"
+           (click)="select2(group)"
+            class= "list-group-item">  
+            <div *ngIf = "group.photoUrl">
+              <img [src]="group.photoUrl" class="img-thumbnail" width="150" height="150">
+  </div>
+  <div *ngIf="group.admin == myName" class="pull-right glyphicon glyphicon-trash" (click)="deleteUsers(group.$key)"></div>
+          <div  *ngFor = "let u of group.userArr">
+           <div *ngIf="myName == u">
+                &nbsp; Group Name:  {{group.name}}  
+            <p> &nbsp;Group Members:  {{group.userArr}}  ,   </p>
+         </div>           
+       </div>               
+      </div>
+     </ul>  
+    </div>
+   <figure class="highlight row"> 
+      <a [routerLink]="['/chat']"> <div class="col-xs-2"><button class="btn btn-primary">Go To The Chat</button></div></a>
+    </figure>
+   </div>
+</div>
+  </div>
+  </div>
+</div>

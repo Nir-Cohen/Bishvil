@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AF } from "../providers/af";
 import { Router } from "@angular/router";
 import * as firebase from 'firebase';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +32,7 @@ export class AppComponent {
                 this.afService.currUserCity = snapshot.val().city;
                 this.afService.currUserDOB = snapshot.val().dob;
                 this.afService.currUserURL =firebase.auth().currentUser.photoURL;
-                this.afService.currUserStatus = snapshot.val().status;
+                //this.afService.currUserStatus = snapshot.val().status;
               })
               .catch((error) => {
                 console.log("Cant access database");

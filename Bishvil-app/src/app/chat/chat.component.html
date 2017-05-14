@@ -1,17 +1,21 @@
 
 <div class="container">
   <div class="row">
+    <u> <h2> Group Name: </h2> </u> <h3>{{nameof}} </h3>
+     <a [routerLink]="['/chat-rooms']"> <div class="designButton"><button class="btn btn-success">Chat</button></div></a>
     <div class="col-md-8 col-md-offset-2">
 
       <div #scrollMe class="bs-example" id="messages">
         <div *ngFor="let message of messages | async">
-          <div class="bubble" [class.you]="isYou(message.email)" [class.me]="isMe(message.email)">
+         <div *ngIf = "nameof==message.nameOfGroup">
+           <div class="bubble" [class.you]="isYou(message.email)" [class.me]="isMe(message.email)">
             <p>{{ message.message }}</p>
             <div class="author">
               {{ message.displayName }} dd  {{ message.timestamp | date:"MM/dd/yy HH:mm" }}
             </div>
           </div>
         </div>
+  </div>
 
       </div>
 

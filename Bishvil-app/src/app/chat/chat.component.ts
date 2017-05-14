@@ -12,9 +12,16 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   public newMessage: string;
   public messages: FirebaseListObservable<any>;
+  nameof:string;
+  public group: FirebaseListObservable<any>;
+  public registeredUsers: FirebaseListObservable<any>;
 
   constructor(public afService: AF) {
     this.messages = this.afService.messages;
+    this.group = this.afService.group;
+    this.registeredUsers = this.afService.registeredUsers;
+    this.nameof=this.afService.nameOfGroup;
+    console.log(this.nameof);
 
   }
 
@@ -36,7 +43,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     if (this.newMessage == null || this.newMessage == "")
       return;
 
-    this.afService.sendMessage(this.newMessage);
+    this.afService.sendMessage(this.newMessage, this.nameof);
     
     this.newMessage = '';
   }

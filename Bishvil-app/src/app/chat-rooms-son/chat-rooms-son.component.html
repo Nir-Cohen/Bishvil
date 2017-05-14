@@ -1,0 +1,6 @@
+<span *ngIf = "isSelectUser" > &nbsp;&nbsp; Name:  {{user.name}},<br>&nbsp;&nbsp; Email:  {{user.email}} 
+      <button class="btn btn-success" type="button" (click)="sendselect(user)">Select User</button>
+      </span> 
+<span *ngIf = "isSelectUser==false" > &nbsp; Name:  {{user.name}},<br> Email:  {{user.email}} 
+      <button class="btn btn-danger" (click)="sendcancel(user)">Cancel User</button>
+      </span> 

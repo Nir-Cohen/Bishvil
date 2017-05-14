@@ -17,31 +17,17 @@
 
 
       <div *ngIf="isLoggedIn">
-        <!-- <div class="col-xs-1">
+        <div class="col-xs-1">
           <ul class="nav navbar-nav navbar-right">
             <li><a [routerLink] = "['/messages']" class = "glyphicon glyphicon-envelope"></a></li>
           </ul>
         </div>
-       
         <div class="col-xs-3">
           <ul class="nav navbar-nav navbar-right">
             <li><a [routerLink] = "['/profile']">{{afService.displayName }}</a></li>
           </ul>
-        </div>
-        -->    
-         <div class="col-xs-2">   
-          <div class="dropdown" dropdown [dropdownToggle]="true">
-              <button class="btn btn-default" dropdown-open><i class="glyphicon glyphicon-user"></i>
-                  <span class="caret"></span></button>
-                  
-              <ul class="dropdown-menu">
-                <li>Signed in as<br><a [routerLink] = "['/profile']"><strong>{{afService.displayName }}</strong></a></li><hr>
-                  <li><a [routerLink] = "['/messages']"><a class="glyphicon glyphicon-envelope"></a> Messages</a></li>
-                  <li><a>Sadman</a></li>
-                  <li><a>Lieman</a></li>
-              </ul>
-          </div>
-         </div>
+        </div>        
+
         <div class="col-xs-2">
           <ul class="nav navbar-nav navbar-right border-left">
             <li><a (click)="logout()">Logout</a></li>

@@ -15,6 +15,10 @@ export class AF {
   public item: FirebaseListObservable<any>;
   public hosting: FirebaseListObservable<any>;
   public news: FirebaseListObservable<any>;
+  public group: FirebaseListObservable<any>;
+  public nameOfGroup="~general Chet~";
+  public groups: FirebaseListObservable<any>;
+  public registeredUsers: FirebaseListObservable<any>;
 
   public OK_key:string;
   public storageRef : any;
@@ -43,6 +47,7 @@ export class AF {
     this.hosting = this.af.database.list("hosting");
     this.status = "1";
     this.news = this.af.database.list("news");
+    this.group = this.af.database.list("group");
     //this.af.auth.getAuth().auth.sendEmailVerification();
   }
 
@@ -162,12 +167,13 @@ emailVerfication()
    * Saves a message to the Firebase Realtime Database
    * @param text
    */
-  sendMessage(text) {
+  sendMessage(text,nameofgroup) {
     var message = {
       message: text,
       displayName: this.displayName,
       email: this.email,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      nameOfGroup: nameofgroup,
     };
     this.messages.push(message);
   }
@@ -224,6 +230,17 @@ emailVerfication()
         provider: AuthProviders.Password,
         method: AuthMethods.Password,
       });
+  }
+
+  addGroup(text,arr){
+    var details = {
+      name: text,
+      displayName: this.displayName,
+      email: this.email,
+      userArr:arr,
+      admin:arr[0]
+    };
+    this.group.push(details);
   }
 
 }

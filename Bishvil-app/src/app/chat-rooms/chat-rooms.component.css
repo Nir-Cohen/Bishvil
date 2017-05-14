@@ -1,0 +1,20 @@
+.maincmd{
+  width: 100%;
+  height: 100px;
+  margin: 10px 0px;
+  font-size: 18px;
+}
+
+.design{
+    margin-top:15%;
+}
+
+.designLink{
+    float: right;
+}
+.designGroupList{
+    margin-top:15%;
+}
+.designGroupList2{
+    margin-top:30%;
+}

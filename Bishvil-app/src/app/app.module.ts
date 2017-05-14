@@ -27,7 +27,10 @@ import { AlertComponent } from './alert/alert.component';
 import { MessagesComponent } from './messages/messages.component';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import {ProfilesComponent} from './profiles/profiles.component';
-import {DropdownModule} from "ng2-dropdown";
+import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
+import { ChatRoomsService } from './chat-rooms/chat-rooms.service';
+import { ChatRoomsSonComponent } from './chat-rooms-son/chat-rooms-son.component';
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCjyJqa4ix5ZFAfQIPfNCLZfcV6dOpLX18",
@@ -51,7 +54,8 @@ const routes: Routes = [
   { path: 'profile' , component: ProfileComponent},
   { path: 'box-messages', component:BoxMessagesComponent},
   { path: 'messages', component:MessagesComponent},
-  { path: 'profiles', component:ProfilesComponent}
+  { path: 'profiles', component:ProfilesComponent},
+  { path: 'chat-rooms', component:ChatRoomsComponent}
   
 ];
 
@@ -64,7 +68,6 @@ const routes: Routes = [
     DatePickerModule,
     BootstrapModalModule,
     Ng2AutoCompleteModule,
-    DropdownModule,
     
   ],
   declarations: [
@@ -82,9 +85,9 @@ const routes: Routes = [
      ProfileComponent, 
      BoxMessagesComponent, 
      DialogComponent, 
-     PromptComponent, ConfirmComponent, AlertComponent, MessagesComponent,ProfilesComponent ],
+     PromptComponent, ConfirmComponent, AlertComponent, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent ],
   bootstrap: [ AppComponent ],
-  providers: [AF],
+  providers: [AF,ChatRoomsService],
   entryComponents: [PromptComponent,ConfirmComponent]
 })
 
