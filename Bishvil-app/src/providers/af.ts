@@ -19,6 +19,8 @@ export class AF {
   public nameOfGroup="~general Chet~";
   public groups: FirebaseListObservable<any>;
   public registeredUsers: FirebaseListObservable<any>;
+  public privateMessages : FirebaseListObservable<any>;
+
 
   public OK_key:string;
   public storageRef : any;
@@ -47,7 +49,11 @@ export class AF {
     this.hosting = this.af.database.list("hosting");
     this.status = "1";
     this.news = this.af.database.list("news");
+<<<<<<< HEAD
     this.group = this.af.database.list("group");
+=======
+    this.privateMessages = this.af.database.list("privateMessages")
+>>>>>>> 87d138e61e0ea4fd2a785a8ad390546d990bfb83
     //this.af.auth.getAuth().auth.sendEmailVerification();
   }
 
