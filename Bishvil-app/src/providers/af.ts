@@ -77,6 +77,7 @@ addHosting(hosting){
       phoneOne:hosting.phoneOne,
       phoneTwo:hosting.phoneTwo,
       numberHost:hosting.numberHost,
+      userArr: [""] ,
     });
     console.log(hosting);
 }

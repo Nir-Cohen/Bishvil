@@ -26,9 +26,11 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
   message: string;
   counter: number;
   maxOfGusts=0;
+  userArr=[];
   obj;
-  arrusers = [];
-  bool =0;
+  bool = true;
+
+
   public hosting: FirebaseListObservable<any>;
   
   public ConfirmCounter: ConfirmCounter;
@@ -45,6 +47,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
       this.obj = snapshot;
       this.maxOfGusts=snapshot.numberHost;         
     this.counter = snapshot.counter; 
+    this.userArr = snapshot.userArr;
   });
   if(this.maxOfGusts<=this.counter )
   {
@@ -52,31 +55,35 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     this.close();
     return;
   }
- 
-    for(var i =0; i< this.arrusers.length; i++)
+  else
     {
-      if(this.arrusers[i] == this.afService.displayName)
+      this.af.database.object('/hosting/'+this.afService.OK_key).update({counter : this.counter});
+     var i = 0;
+     for(i=0;i<this.userArr.length;i++)
+     {
+        if(this.afService.displayName==this.userArr[i])
         {
-          this.bool=-1;
+          this.bool = false;
         }
-      
-    }
-    
-    console.log(this.bool);
-    if(this.bool != -1)
-    {
-      this.arrusers.push(this.afService.displayName);
-      this.counter=this.counter+1;
-    }
-    else
-    {
-      console.log("sdasd");
-      alert("you joined already");
-    }
-    //this.bool = true;
-    console.log(this.arrusers);
-    this.af.database.object('/hosting/'+this.afService.OK_key).update({counter : this.counter});
-    this.close();
+     }
+     if(this.bool == true)
+     {
+        this.userArr.push(this.afService.displayName);
+       console.log(this.userArr); 
+       this.af.database.object('/hosting/'+this.afService.OK_key).update({userArr :this.userArr});
+       this.close();
+     }
+     else
+     {
+       alert("you are already in this hosting");
+       this.close();
+       return;
+
+     }
+
+ }
+
+
   }
   cancel() {
     this.result = false;
