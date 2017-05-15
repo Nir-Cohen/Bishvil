@@ -1,4 +1,5 @@
 <div class="container">
+   <a class="designLink" href="#">Bace To Home Page</a>
   <div class="row well">
 <div class="col-xs-6 col-lg-3">
   <button class="btn btn-info maincmd" (click)="addMymail()">Add Groups</button>
@@ -13,7 +14,13 @@
 </div>
 
 
- <a class="designLink" href="#">Bace To Home Page</a>
+
+  </div>
+</div>
+
+
+
+<div class="container">
 <div *ngIf="ifClicked">
   <div *ngIf = "myMail==true">
 <div class="form-group">
@@ -21,7 +28,6 @@
 <div class="designGroupList">
 <div class="col-xs-10"> <label for="name">Group Name:  </label>
 <input type="textarea" class="message-text" [(ngModel)]="name" (keyup.enter)="addGroup()"/></div>
-<h3><br></h3>
 
 
 <div class="design"> 
@@ -32,7 +38,7 @@
   }
 </style>
   </head>
-<h3>Select Users:</h3>
+<label>Select Users:  </label>
    <div border="1">
      <ul class="list-group-users">
         <div  id="lines" *ngFor = "let user of users" 
@@ -54,11 +60,16 @@
 </div>
 </div>
 </div>
+</div>
 
+
+
+
+<div class="container">
 <div class="designGroupList2">
 <div *ngIf="ifClicked1">
 <div  class="design" *ngIf = "mail==true">
-  <h3>My Groups:</h3>
+  <label>My Groups:  </label>
     <div border="1">
       <ul class="list-group-users">
         <div id="lines" *ngFor = "let group of groups"  
@@ -83,6 +94,5 @@
     </figure>
    </div>
 </div>
-  </div>
   </div>
 </div>

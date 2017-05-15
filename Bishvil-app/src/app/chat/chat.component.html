@@ -1,8 +1,9 @@
-
+<div class="container">
+  <a [routerLink]="['/chat-rooms']"> <div class="designButton"><button class="btn btn-success">Chat</button></div></a>
+      <label> Group Name:  {{nameof}} </label> 
+</div>
 <div class="container">
   <div class="row">
-    <u> <h2> Group Name: </h2> </u> <h3>{{nameof}} </h3>
-     <a [routerLink]="['/chat-rooms']"> <div class="designButton"><button class="btn btn-success">Chat</button></div></a>
     <div class="col-md-8 col-md-offset-2">
 
       <div #scrollMe class="bs-example" id="messages">
