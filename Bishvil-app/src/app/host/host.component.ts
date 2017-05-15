@@ -50,6 +50,15 @@ export class HostComponent implements OnInit {
     });
     console.log(this.confirmResult);
   }
+  show(key: string) {
+    
+    this.afService.OK_key=key;
+    console.log(this.afService.OK_key);
+   
+  }
+
+
+
   showPeople(info:string)
   {
     /*
@@ -61,4 +70,6 @@ export class HostComponent implements OnInit {
     */
   }
 }
+
+
 

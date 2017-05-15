@@ -14,7 +14,11 @@
          <h4 class="list-group-item-heading">{{host.location}}</h4>
           
           <p class="list-group-item-text">
-          Hosting By: {{host.firstName}} &nbsp;&nbsp; {{host.lastName}} <br>The invited: &nbsp;&nbsp; {{host.userArr}}</p>
+          Hosting By: {{host.firstName}} &nbsp;&nbsp; {{host.lastName}} <br>
+          The invited: &nbsp;&nbsp; 
+          <a [routerLink]="['/profiles']"> <button class="btn btn-success addcmd" (click)="show(host.$key)">{{host.userArr}}</button></a>
+          
+          </p>
           <p class="list-group-item-text">
           {{host.time}} &nbsp;&nbsp;&nbsp; {{host.note}}</p>
            <!-- <div *ngFor="let i of host.count"> 

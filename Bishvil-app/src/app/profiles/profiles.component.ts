@@ -6,7 +6,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 import * as firebase from 'firebase';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
+//key is the host
 @Component({
   selector: 'app-profiles',
   templateUrl: './profiles.component.html',
@@ -21,7 +21,8 @@ export class ProfilesComponent implements OnInit {
   model1 : any;
 
   constructor(public afService : AF, public af : AngularFire, private router: Router) {
-      this.users = this.af.database.list('registeredUsers');      
+      this.users = this.af.database.list('registeredUsers');    
+         
    }
 
    getFilteredItems(city){
@@ -70,7 +71,7 @@ export class ProfilesComponent implements OnInit {
           return false;
         });
       });
-      this.getFilteredItems("");    
+      this.getFilteredItems(""); 
     }
 
 }
