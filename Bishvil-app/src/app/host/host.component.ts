@@ -50,14 +50,16 @@ export class HostComponent implements OnInit {
     });
     console.log(this.confirmResult);
   }
+  
   show(key: string) {
-    
-    this.afService.OK_key=key;
-    console.log(this.afService.OK_key);
-   
+    this.afService.OK_key=key;  
+    var host = this.af.database.object('/hosting/'+key); // How to get value
+    host.subscribe(snapshot => {  
+    this.arrusers = snapshot.userArr;
+  });
+   this.afService.arrusers=this.arrusers;
+
   }
-
-
 
   showPeople(info:string)
   {

@@ -31,6 +31,7 @@ import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
 import { ChatRoomsService } from './chat-rooms/chat-rooms.service';
 import { ChatRoomsSonComponent } from './chat-rooms-son/chat-rooms-son.component';
 import { DropdownModule } from 'ng2-dropdown';
+import { HostProfilesComponent } from './host-profiles/host-profiles.component';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCjyJqa4ix5ZFAfQIPfNCLZfcV6dOpLX18",
@@ -55,8 +56,8 @@ const routes: Routes = [
   { path: 'box-messages', component:BoxMessagesComponent},
   { path: 'messages', component:MessagesComponent},
   { path: 'profiles', component:ProfilesComponent},
-  { path: 'chat-rooms', component:ChatRoomsComponent}
-  
+  { path: 'chat-rooms', component:ChatRoomsComponent},
+  { path: 'host-profiles', component:HostProfilesComponent}
 ];
 
 @NgModule({
@@ -86,7 +87,7 @@ const routes: Routes = [
      ProfileComponent, 
      BoxMessagesComponent, 
      DialogComponent, 
-     PromptComponent, ConfirmComponent, AlertComponent, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent ],
+     PromptComponent, ConfirmComponent, AlertComponent, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent, HostProfilesComponent ],
   bootstrap: [ AppComponent ],
   providers: [AF,ChatRoomsService],
   entryComponents: [PromptComponent,ConfirmComponent]

@@ -17,6 +17,7 @@ export class AF {
   public news: FirebaseListObservable<any>;
   public group: FirebaseListObservable<any>;
   public nameOfGroup="~general Chet~";
+  public arrusers = [];
   public groups: FirebaseListObservable<any>;
   public registeredUsers: FirebaseListObservable<any>;
   public privateMessages : FirebaseListObservable<any>;
