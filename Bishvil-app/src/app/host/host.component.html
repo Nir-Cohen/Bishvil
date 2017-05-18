@@ -10,22 +10,30 @@
 <div class="list-group" *ngFor="let user of users | async">
     <div *ngIf = "user.status == 1 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
      <div class="list-group" *ngFor="let host of hosting | async">
-       <a  class="list-group-item" (click)="showConfirm(host.$key)">
-         <h4 class="list-group-item-heading">{{host.location}}</h4>
+       <a  class="list-group-item" >
+         <h4 class="list-group-item-heading">{{host.firstName}} {{host.lastName}}</h4>
           
           <p class="list-group-item-text">
-          Hosting By: {{host.firstName}} &nbsp;&nbsp; {{host.lastName}} <br>
-          The invited: &nbsp;&nbsp; 
-          <a [routerLink]="['/host-profiles']"> <button class="btn btn-success addcmd" (click)="show(host.$key)">{{host.userArr}}</button></a>
-          
+          Date: {{host.time}} &nbsp;&nbsp;&nbsp;<br>
+          Location: {{host.location}}<br>
+          Number Of Bnot Shierut: {{host.numberHost}}<br>
+          Phone: {{host.phoneOne}}<br>
+          Notes: {{host.note}}<br>
           </p>
-          <p class="list-group-item-text">
-          {{host.time}} &nbsp;&nbsp;&nbsp; {{host.note}}</p>
-           <!-- <div *ngFor="let i of host.count"> 
-          <p class = "pull-right glyphicon glyphicon-user" aria-hidden="true" (click)="showPeople(host.$key)"></p>
-            </div>-->
+          <div class = "t" *ngIf="host.photoURL">
+      
+                  <img [src]= "host.photoURL" class="img-thumbnail" width="200" height="150">
+                
+          </div>
+           <button class="btn btn-success addcmd" (click)="showConfirm(host.$key)">Join This Shabat</button>
+          <a [routerLink]="['/host-profiles']"> <button class="btn btn-success addcmd" (click)="show(host.$key)">See Who Is In</button></a>
+          
+          
+
+                  
           <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(host.$key)"></p>
           <br>
+           <br>
           </a>
      </div>
   </div>
