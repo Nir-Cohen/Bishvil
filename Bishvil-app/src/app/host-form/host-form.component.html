@@ -76,6 +76,10 @@
               </div>
             </div>
 
+             <label class ="control-label custom-file-upload">Browse Photo
+              <input type="file" accept="image/*" (change) ="upload($event)" size="50"/>
+            </label>
+
             <div class="text-left">
               <a [routerLink]="['/host']"><input type="button" class="btn btn-primary" value="Add Host" (click)="addHosting()" /></a>
               

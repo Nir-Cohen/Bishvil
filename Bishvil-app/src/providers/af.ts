@@ -79,6 +79,7 @@ addHosting(hosting){
       phoneTwo:hosting.phoneTwo,
       numberHost:hosting.numberHost,
       userArr: [""] ,
+      photoURL: hosting.photoURL,
     });
     console.log(hosting);
 }
