@@ -30,10 +30,7 @@
               </div>
           </div>
         </form>
-        <label for="sendTo">Filter by user:</label>
-        <div ng2-auto-complete [source]= "nameArray" placeholder= "Look for user" (valueChanged)="getMessages($event)">
-              <input [ngModel] = "model1" name = "aaa" autocomplete="off"/>
-        </div>
+
         <br><br>
 
         <div class = "list-group list-group-root well" *ngFor="let user of recievedFrom" (click) = "showDiv(user.key)">
@@ -41,7 +38,7 @@
 
           <div [hidden] = "!hideDiv[user.key]" >
             <div #scrollMe class="bs-example" id="messages">
-              <div *ngFor="let message of myMessages | async">
+              <div *ngFor="let message of myMessages | async" [class.t]="message.sentfromID == afService.currUserID">
                 <div class="bubble" [class.you]="message.sentfromID != afService.currUserID" [class.me]="message.sentfromID == afService.currUserID">
                   <div class = "pull-right glyphicon glyphicon-trash" (click)="deleteMessage(message.$key)" title = "Delete"></div>
                   <p>{{ message.message }}</p>
