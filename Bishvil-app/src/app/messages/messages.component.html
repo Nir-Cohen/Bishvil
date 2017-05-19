@@ -33,8 +33,13 @@
 
         <br><br>
 
-        <div class = "list-group list-group-root well" *ngFor="let user of recievedFrom" (click) = "showDiv(user.key)">
-          <a class="list-group-item clearfix"><img *ngIf = "user.photo" [src] = "user.photo" class="img-rounded img-responsive">{{user.name}}</a>
+        <div class = "list-group " *ngFor="let user of recievedFrom" (click) = "showDiv(user.key)">
+          <a class="list-group-item clearfix list-group-item-success">
+            <img *ngIf = "user.photo" [src] = "user.photo" class="img-rounded img-responsive">
+            &nbsp;{{user.name}}
+            <div class = "pull-right glyphicon glyphicon-trash" (click)="deleteChat(user.key)" title = "Delete Chat"></div>
+          </a>
+          
 
           <div [hidden] = "!hideDiv[user.key]" >
             <div #scrollMe class="bs-example" id="messages">
@@ -48,37 +53,10 @@
               </div>
 
             </div>
-                  <figure class="highlight row">
-        <div class="col-xs-10"><input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage(newMessage , user.name)"/></div>
-        <div class="col-xs-2"><button class="btn btn-primary" (click)="sendMessage(newMessage , user.name)">SEND</button></div>
-      </figure>
+            <figure class="highlight row">
+              <div class="col-xs-10"><input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage(newMessage , user.name)"/></div>
+              <div class="col-xs-2"><button class="btn btn-primary" (click)="sendMessage(newMessage , user.name)">SEND</button></div>
+            </figure>
           </div>
-
-
-<!--
-          <div [hidden] = "!hideDiv[user.key]" 
-          *ngFor = "let message of myMessages | async">
-            <h3>{{message.message}}   {{ message.timestamp | date:"dd/MM/yy HH:mm"}}</h3>
-            <div *ngIf = "message.sentfromID == this.afService.currUserID" class = "pull-right glyphicon glyphicon-log-out text-warning"></div>
-            <div *ngIf = "message.senttoID == this.afService.currUserID" class = "pull-right glyphicon glyphicon-log-in text-warning"></div>
-          </div>
-        </div>
-        -->
-<!--
-        <div class = "list-group" *ngFor = "let message of myMessages | async" (click) = "readMessage(message.$key)">
-                  <a class="list-group-item clearfix">
-                    <h4 class="list-group-item-heading">{{message.message}}</h4>
-                    <h4 class="list-group-item-text"(click) = "showDiv(message.senttoID)">From:  {{message.sentfromName}}  To: {{message.senttoName}}</h4>
-                    <div *ngIf = "message.read == false" class = "pull-right glyphicon glyphicon-bell text-warning"></div>
-                    <p class="list-group-item-text">
-                        &nbsp;&nbsp;&nbsp; {{ message.timestamp | date:"dd/MM/yy HH:mm"}}                      
-                    </p>
-                    <div class = "pull-right glyphicon glyphicon-share-alt" title = "Replay"></div>
-                   
-                  </a>
-                  
-                  
-        </div>
-        -->
   </div>
 </div>
