@@ -29,60 +29,46 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   filteredList : any;
   model1 : any;
   hideDiv : any;
-  nameArray =[];
+  IDArray =[];
   userPhoto : any;
   newMessage : any;
-
 
   constructor(public afService : AF,public af: AngularFire) {
       this.hideDiv = {};
       this.users = this.af.database.list('registeredUsers');
       this.sendtoID = "";
-      this.myMessages = this.af.database.list("privateMessages" , {query : {orderByChild : 'order'}});
+      //this.myMessages = this.af.database.list("privateMessages" , {query : {orderByChild : 'order'}});
+   }
 
-
-          //get user's name list that send me message
-      firebase.database().ref("privateMessages").orderByValue().on("value" ,(data)=>{
-        data.forEach((snap) =>{
-              if(this.afService.currUserID == snap.val().sentfromID || this.afService.currUserID == snap.val().senttoID){
-                this.nameArray.push(snap.val().sentfromName);
-                this.nameArray.push(snap.val().senttoName); 
-              }
-              return false;
-        })
-      });  
-
-      this.nameArray = Array.from(new Set(this.nameArray));
-      firebase.database().ref("privateMessages").orderByValue().on("value" ,(data)=>{
-          data.forEach((snap) =>{
-            if(this.nameArray.indexOf(snap.val().senttoName) > 0 || this.nameArray.indexOf(snap.val().sentfromName) > 0){// this.isInArray(this.nameArray,snap.val().senttoName)){
-              this.recievedFrom.push({"name" : snap.val().senttoName, "key" :snap.val().senttoID});
-              this.recievedFrom.push({"name" : snap.val().sentfromName, "key" :snap.val().sentfromID});
-            
-            }
-            return false;
-          })
-      });
-      this.recievedFrom.forEach(_json =>{
-        firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
-          data.forEach((snap) =>{
-                if(_json["key"] == snap.key)
-                  _json["photo"] = snap.val().photoURL;
-                return false;
-          })
-        });  
-      });
-      var temp = [];//remove dups from json object
-      this.recievedFrom = this.recievedFrom.filter((x,i) => {
-        if(temp.indexOf(x.name) < 0){
-          temp.push(x.name);
-          return true;
-        }
+  ngOnInit() {
+    //get user's name list for autocomplete
+    firebase.database().ref("registeredUsers").orderByValue().on("value" ,(data)=>{
+      data.forEach((snap) =>{
+        this.nameList.push(snap.val().name);
         return false;
       });
+    });
 
-      console.log(this.recievedFrom);
-   }
+      //get user's name list that send me message
+      firebase.database().ref("privateMessages").orderByValue().on("value" ,(data)=>{
+        data.forEach((snap) =>{
+              if(snap.val().sentfromID == snap.val().senttoID && snap.val().senttoID == this.afService.currUserID)
+                this.IDArray.unshift(snap.val().senttoID);
+              else if(this.afService.currUserID == snap.val().sentfromID)
+                this.IDArray.unshift(snap.val().senttoID);
+              else if(this.afService.currUserID == snap.val().sendtoID)
+                this.IDArray.unshift(snap.val().sentfromID);
+              return false;
+        })
+      });
+
+      this.IDArray = Array.from(new Set(this.IDArray));
+
+      this.IDArray.forEach(_key =>{
+        this.recievedFrom.push(this.getUserDetails(_key));
+      });
+  }
+
 
   scrollToBottom(): void {
     try {
@@ -95,7 +81,8 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   }
 
    sendMessage(messagetoSend, toName){
-
+      if(messagetoSend == "" || messagetoSend == undefined)
+        return;
       this.getUserID(toName);
       var ref = firebase.database().ref("privateMessages/");
       var messageToPush = {
@@ -105,17 +92,28 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
         senttoID : this.sendtoID,
         senttoName : this.sendtoName,
         timestamp: Date.now(),
-        read : false,
         order : -1 * new Date().getTime()
       };
       ref.push(messageToPush);
       this.message = "";
       this.newMessage = "";
       this.model1 = "";
+      var exist = false;
+      this.recievedFrom.forEach(_user=>{
+          if(_user["key"] == this.sendtoID)
+              exist = true;
+      });
+      if(!exist)
+          this.recievedFrom.unshift(this.getUserDetails(this.sendtoID));
+      else{
+        this.removeUserFromList(this.sendtoID);
+        this.recievedFrom.unshift(this.getUserDetails(this.sendtoID));
+        console.log(this.recievedFrom); 
+      }
    }; 
-     
-  getUserID(username){
-    //get the key of the user
+
+  //get the key of the user name 
+  getUserID(username) : void{    
     firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
       data.forEach((snap) =>{
         if(username == snap.val().name){
@@ -127,36 +125,45 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       });
     });
   };
+  
+  //delete all the chat from user
+  deleteChat(user_key): void{
+    firebase.database().ref("privateMessages").once("value").then(_messages=>{
+      _messages.forEach(_message=>{
+          if((_message.val().senttoID == user_key && _message.val().sentfromID == this.afService.currUserID) || (this.afService.currUserID == _message.val().senttoID && _message.val().sentfromID == user_key))
+              this.af.database.list("privateMessages").remove(_message.key);
+      })     
+    });
+    this.removeUserFromList(user_key);
+  };
 
-  deleteMessage(key : string){
+  removeUserFromList(user_key) : void{
+    var i = 0, keepLoop = true;
+    this.recievedFrom.forEach(_user=>{
+      if(keepLoop){
+        if(_user["key"] == user_key)
+          keepLoop = false;
+        else
+          i++;        
+      }
+    });
+    this.recievedFrom.splice(i,1);
+  };
+
+  deleteMessage(key : string) : void{
     this.af.database.list("privateMessages").remove(key);
   };
 
-  replay(sendTo){
-    console.log(sendTo);
+  getMessages(key) : void{
+      this.myMessages = this.getFilteredList(key);
   };
-
-  readMessage(key : string){
-
-      firebase.database().ref("privateMessages/" + key).update({read : true});      
-  };
-
-  getMessages(sender){
-      this.recievedFrom.forEach(_name =>{
-        if(_name["name"] == sender)
-          sender = _name["key"];        
-      });
-      this.myMessages = this.getFilteredList(sender);
-  };
-
+  
   getFilteredList(fromUser) : Observable<any[]>{
-    if(fromUser == undefined || fromUser == "" || fromUser == "(none)")
-      return this.af.database.list('privateMessages/');
-    else
         return this.af.database.list("privateMessages/").map(_message => _message.filter(message=> ((message.sentfromID == fromUser && message.senttoID == this.afService.currUserID) || (message.sentfromID ==this.afService.currUserID && message.senttoID == fromUser))));
    };
 
-   showDiv(key){
+   //change active divs
+   showDiv(key) : void{
      Object.keys(this.hideDiv).forEach(h => {
        this.hideDiv[h] = false;
      })
@@ -164,18 +171,22 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
      this.getMessages(key);
    }
 
-
-  ngOnInit() {
-    //get user's name list
-    firebase.database().ref("registeredUsers").orderByValue().on("value" ,(data)=>{
-      data.forEach((snap) =>{
-        this.nameList.push(snap.val().name);
-        return false;
-      });
+   //return object user user id,name,photo
+   getUserDetails(_key) : Object{
+    var obj={};
+    var keepLoop = true;
+    firebase.database().ref("registeredUsers").once("value").then(data=>{
+      if(keepLoop){
+        data.forEach(_obj=>{          
+          if(_obj.key == _key){
+            obj["name"] = _obj.val().name;
+            obj["key"] = _obj.key;
+            obj["photo"] = _obj.val().photoURL;
+            keepLoop = false;
+          }          
+        })
+      }                  
     });
-
-  }
-  isInArray(days, day) {
-    return days.indexOf(day) > -1;
-  }
+    return obj;
+   }
 }
