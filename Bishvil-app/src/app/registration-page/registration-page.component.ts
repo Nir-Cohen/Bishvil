@@ -9,10 +9,15 @@ import {Router} from "@angular/router";
 })
 export class RegistrationPageComponent {
   public error: any;
+userType:Array<Object>  = [
+       {id: 1, name: "Bat Sherut"},
+       {id: 2, name: "Torem"},
+     ];
 
   constructor(private afService: AF, private router: Router) { }
 
   register(event, name, email, password,status) {
+    console.log(status);
     event.preventDefault();
     this.afService.registerUser(email, password).then((user) => {//,"1").then((user) => {
       this.afService.saveUserInfoFromForm(user.uid, name, email,"1").then(() => {

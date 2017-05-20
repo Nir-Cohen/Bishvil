@@ -13,8 +13,8 @@ export class HostFormComponent implements OnInit {
     targetRef:any;
     storageRef:any;
 
-countries:Array<Object>  = [
-       {id: 1, name: "Hebrew"},
+userType:Array<Object>  = [
+       {id: 1, name: "Bat Sherut"},
        {id: 2, name: "French"},
        {id: 3, name: "English"},
        {id: 4, name: "Moroccan"},
