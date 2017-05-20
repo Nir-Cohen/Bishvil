@@ -33,12 +33,11 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   userPhoto : any;
   newMessage : any;
 
-
   constructor(public afService : AF,public af: AngularFire) {
       this.hideDiv = {};
       this.users = this.af.database.list('registeredUsers');
       this.sendtoID = "";
-      this.myMessages = this.af.database.list("privateMessages" , {query : {orderByChild : 'order'}});
+      //this.myMessages = this.af.database.list("privateMessages" , {query : {orderByChild : 'order'}});
    }
 
   ngOnInit() {
@@ -53,24 +52,20 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       //get user's name list that send me message
       firebase.database().ref("privateMessages").orderByValue().on("value" ,(data)=>{
         data.forEach((snap) =>{
-              if(this.afService.currUserID == snap.val().sentfromID || this.afService.currUserID == snap.val().senttoID){
-                this.IDArray.push(snap.val().sentfromID);
-                this.IDArray.push(snap.val().senttoID);
-              }
+              if(snap.val().sentfromID == snap.val().senttoID && snap.val().senttoID == this.afService.currUserID)
+                this.IDArray.unshift(snap.val().senttoID);
+              else if(this.afService.currUserID == snap.val().sentfromID)
+                this.IDArray.unshift(snap.val().senttoID);
+              else if(this.afService.currUserID == snap.val().sendtoID)
+                this.IDArray.unshift(snap.val().sentfromID);
               return false;
-      })});
+        })
+      });
+
       this.IDArray = Array.from(new Set(this.IDArray));
 
       this.IDArray.forEach(_key =>{
         this.recievedFrom.push(this.getUserDetails(_key));
-          /*firebase.database().ref("registeredUsers").once("value").then(data=>{
-            data.forEach(_obj=>{
-             if(_obj.key == _key)
-                this.recievedFrom.push({"name" : _obj.val().name, "key" :_obj.key, "photo" : _obj.val().photoURL});
-                return false;
-            })
-            return false;              
-          });*/
       });
   }
 
@@ -109,7 +104,12 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
               exist = true;
       });
       if(!exist)
-          this.recievedFrom.push(this.getUserDetails(this.sendtoID));
+          this.recievedFrom.unshift(this.getUserDetails(this.sendtoID));
+      else{
+        this.removeUserFromList(this.sendtoID);
+        this.recievedFrom.unshift(this.getUserDetails(this.sendtoID));
+        console.log(this.recievedFrom); 
+      }
    }; 
 
   //get the key of the user name 
@@ -125,7 +125,8 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       });
     });
   };
-
+  
+  //delete all the chat from user
   deleteChat(user_key): void{
     firebase.database().ref("privateMessages").once("value").then(_messages=>{
       _messages.forEach(_message=>{
@@ -133,6 +134,10 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
               this.af.database.list("privateMessages").remove(_message.key);
       })     
     });
+    this.removeUserFromList(user_key);
+  };
+
+  removeUserFromList(user_key) : void{
     var i = 0, keepLoop = true;
     this.recievedFrom.forEach(_user=>{
       if(keepLoop){
@@ -152,7 +157,6 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   getMessages(key) : void{
       this.myMessages = this.getFilteredList(key);
   };
-
   
   getFilteredList(fromUser) : Observable<any[]>{
         return this.af.database.list("privateMessages/").map(_message => _message.filter(message=> ((message.sentfromID == fromUser && message.senttoID == this.afService.currUserID) || (message.sentfromID ==this.afService.currUserID && message.senttoID == fromUser))));
@@ -165,8 +169,7 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
      })
      this.hideDiv[key] = true;
      this.getMessages(key);
-   } 
-
+   }
 
    //return object user user id,name,photo
    getUserDetails(_key) : Object{
@@ -176,7 +179,6 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       if(keepLoop){
         data.forEach(_obj=>{          
           if(_obj.key == _key){
-            //obj = {"name" : , "key" :_obj.key, "photo" : };
             obj["name"] = _obj.val().name;
             obj["key"] = _obj.key;
             obj["photo"] = _obj.val().photoURL;

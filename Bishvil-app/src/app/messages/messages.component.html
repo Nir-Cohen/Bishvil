@@ -33,7 +33,7 @@
 
         <br><br>
 
-        <div class = "list-group " *ngFor="let user of recievedFrom" (click) = "showDiv(user.key)">
+        <div class = "list-group " *ngFor="let user of recievedFrom; let i = index"  (click) = "showDiv(user.key,i)">
           <a class="list-group-item clearfix list-group-item-success">
             <img *ngIf = "user.photo" [src] = "user.photo" class="img-rounded img-responsive">
             &nbsp;{{user.name}}
@@ -43,15 +43,13 @@
 
           <div [hidden] = "!hideDiv[user.key]" >
             <div #scrollMe class="bs-example" id="messages">
-              <div *ngFor="let message of myMessages | async" [class.t]="message.sentfromID == afService.currUserID">
+              <div *ngFor="let message of myMessages | async">
                 <div class="bubble" [class.you]="message.sentfromID != afService.currUserID" [class.me]="message.sentfromID == afService.currUserID">
                   <div class = "pull-right glyphicon glyphicon-trash" (click)="deleteMessage(message.$key)" title = "Delete"></div>
                   <p>{{ message.message }}</p>
-                  <div class="author">{{ message.timestamp | date:"MM/dd/yy HH:mm" }}</div>
-                  
+                  <div class="author">{{ message.timestamp | date:"MM/dd/yy HH:mm" }}</div>                  
                 </div>
               </div>
-
             </div>
             <figure class="highlight row">
               <div class="col-xs-10"><input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage(newMessage , user.name)"/></div>
