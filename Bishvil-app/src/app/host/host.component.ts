@@ -20,12 +20,14 @@ export class HostComponent implements OnInit {
   key:string;
   author:string;
   arrusers=[];
-
+  userArr=[];
+  c=[];
   public hosting: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
   constructor(private dialogService:DialogService,public afService: AF,public af: AngularFire) { 
   this.hosting = this.afService.hosting;
   this.users = this.af.database.list("registeredUsers");
+
   }
   deleteItem(key : string){
     console.log("Removing "+ key);
@@ -36,6 +38,29 @@ export class HostComponent implements OnInit {
 
   ngOnInit() {
   }
+
+leave(key:string)
+{
+      this.afService.OK_key=key;
+    var host = this.af.database.object('/hosting/'+this.afService.OK_key); // How to get value
+    host.subscribe(snapshot => {  
+    this.userArr = snapshot.userArr;
+  });
+  var i = 0; 
+  for(i = 0 ;i <this.userArr.length;i++)
+  {
+    if(this.afService.displayName == this.userArr[i] ||this.afService.email == this.userArr[i])
+    {
+       break;
+    }
+  }
+    console.log( this.userArr);
+     this.userArr.splice(i,1);
+     console.log( this.userArr);
+     this.af.database.object('/hosting/'+this.afService.OK_key).update({userArr : this.userArr});
+}
+
+
 
   showConfirm(key: string) {
     
@@ -50,6 +75,25 @@ export class HostComponent implements OnInit {
     });
     console.log(this.confirmResult);
   }
+
+    checkIfIn(key: string) {
+    var i = 0;
+
+    var host = this.af.database.object('/hosting/'+key); // How to get value
+    host.subscribe(snapshot => {  
+    this.c = snapshot.userArr;
+  });
+
+
+     for(i=0;i<this.c.length;i++)
+     {
+        if(this.afService.displayName==this.c[i]||this.afService.email==this.c[i])
+        {
+          return true;
+        }
+     }
+     return false;
+  }
   
   show(key: string) {
     this.afService.OK_key=key;  
@@ -61,16 +105,7 @@ export class HostComponent implements OnInit {
 
   }
 
-  showPeople(info:string)
-  {
-    /*
-    var host = this.af.database.object('/hosting/'+info,{ preserveSnapshot: true}); // How to get value
-    host.subscribe(snapshot => {          
-    this.author = snapshot.val().author;   
-  });
-    console.log(this.author);
-    */
-  }
+
 }
 
 

@@ -25,7 +25,12 @@
                   <img [src]= "host.photoURL" class="img-thumbnail" width="200" height="150">
                 
           </div>
+        <div *ngIf = "checkIfIn(host.$key) == true"> 
+          <button class="btn btn-danger addcmd" (click)="leave(host.$key)">Leave this shabat</button>
+        </div>
+        <div *ngIf = "checkIfIn(host.$key) == false"> 
            <button class="btn btn-success addcmd" (click)="showConfirm(host.$key)">Join This Shabat</button>
+        </div>
           <a [routerLink]="['/host-profiles']"> <button class="btn btn-success addcmd" (click)="show(host.$key)">See Who Is In</button></a>
           
           
