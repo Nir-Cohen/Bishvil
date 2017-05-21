@@ -48,6 +48,8 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
         return false;
       });
     });
+    if(this.afService.currUserStatus == 1)
+      this.nameList.unshift("Broadcast");
 
       //get user's name list that send me message
       firebase.database().ref("privateMessages").orderByValue().on("value" ,(data)=>{
@@ -83,21 +85,29 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
    sendMessage(messagetoSend, toName){
       if(messagetoSend == "" || messagetoSend == undefined)
         return;
-      this.getUserID(toName);
-      var ref = firebase.database().ref("privateMessages/");
-      var messageToPush = {
-        message: messagetoSend,
-        sentfromID: this.afService.currUserID,
-        sentfromName : this.afService.currUserName,
-        senttoID : this.sendtoID,
-        senttoName : this.sendtoName,
-        timestamp: Date.now(),
-        order : -1 * new Date().getTime()
-      };
-      ref.push(messageToPush);
+      //make fields empty
       this.message = "";
       this.newMessage = "";
       this.model1 = "";
+
+      //Broadcast message      
+      if(this.sendtoName == "Broadcast"){
+        firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
+          data.forEach((snap) =>{
+            this.sendMess(messagetoSend,snap.val().name, snap.key);
+            return false;
+          });
+        });
+        return;
+      }
+      
+      //private message
+      else{
+        if(toName != "form")
+          this.getUserID(toName);
+        this.sendMess(messagetoSend, this.sendtoName,this.sendtoID);
+      }
+
       var exist = false;
       this.recievedFrom.forEach(_user=>{
           if(_user["key"] == this.sendtoID)
@@ -108,12 +118,38 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       else{
         this.removeUserFromList(this.sendtoID);
         this.recievedFrom.unshift(this.getUserDetails(this.sendtoID));
-        console.log(this.recievedFrom); 
       }
    }; 
 
+   sendMess(messagetoSend,sendTo, sendToID) : void{
+     var sentFrom,sentFromID;
+      if(this.sendtoName == "Broadcast"){
+        sentFrom = "Bisvhil-Admin";
+        sentFromID = "";
+      }
+      else{
+        sentFrom = this.afService.currUserName;
+        sentFromID = this.afService.currUserID;
+      }
+      var ref = firebase.database().ref("privateMessages/");
+      var messageToPush = {
+        message: messagetoSend,
+        sentfromID: sentFromID,        
+        sentfromName :sentFrom,
+        senttoID : sendToID,
+        senttoName : sendTo,
+        timestamp: Date.now(),
+        order : -1 * new Date().getTime()
+      };
+      ref.push(messageToPush);
+   }
+
   //get the key of the user name 
-  getUserID(username) : void{    
+  getUserID(username) : void{
+    if(username == "Broadcast"){
+      this.sendtoName = "Broadcast";
+      return;
+    }
     firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
       data.forEach((snap) =>{
         if(username == snap.val().name){

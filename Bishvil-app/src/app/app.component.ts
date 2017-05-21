@@ -32,7 +32,7 @@ export class AppComponent {
                 this.afService.currUserCity = snapshot.val().city;
                 this.afService.currUserDOB = snapshot.val().dob;
                 this.afService.currUserURL =firebase.auth().currentUser.photoURL;
-                //this.afService.currUserStatus = snapshot.val().status;
+                this.afService.currUserStatus = snapshot.val().status;
               })
               .catch((error) => {
                 console.log("Cant access database");
