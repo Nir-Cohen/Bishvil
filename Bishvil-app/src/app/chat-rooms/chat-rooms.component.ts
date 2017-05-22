@@ -1,4 +1,3 @@
-import { Component, OnInit } from '@angular/core';
 import {ChatRoomsService} from '../chat-rooms/chat-rooms.service';
 import {NgForm} from '@angular/forms';
 import {AF} from "../../providers/af";
@@ -6,16 +5,18 @@ import { FirebaseListObservable, AngularFire, FirebaseObjectObservable } from "a
 import {ChatRooms} from './chat-rooms';
 import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
 import * as firebase from 'firebase';
-
+import { Component, OnInit ,Input, AfterViewChecked, ElementRef, ViewChild} from '@angular/core';
 @Component({
   selector: 'app-chat-rooms',
   templateUrl: './chat-rooms.component.html',
   styleUrls: ['./chat-rooms.component.css']
 })
 export class ChatRoomsComponent implements OnInit {
+   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
     targetRef:any;
     storageRef:any;
   user:ChatRooms;
+  user2;
   mail;
   myMail;
   public myName;
@@ -30,8 +31,14 @@ export class ChatRoomsComponent implements OnInit {
   currentUser2;
   public group:string;
   nameOfGroup="-1";
+
+arruserHTML=[];
   chatArr=[];
-  
+    users2:any;
+   sendtoID : any;
+      nameList = [];
+  hideDiv : any;
+  IDArray =[];
 
   getMyMail(){  
     this.mail=true;
@@ -67,6 +74,7 @@ export class ChatRoomsComponent implements OnInit {
     this.afService.addGroup(this.name,this.arruser);
     this.saveGroupName=this.name;
     this.arruser=[];
+    this.arruserHTML=[];
     console.log(this.name);
     this.name = '';
     this.myMail=false;
@@ -74,14 +82,38 @@ export class ChatRoomsComponent implements OnInit {
 
   }
 
-    select(user,group){
+    select(user,st: HTMLInputElement){
    if(this.arruser[0]!=firebase.auth().currentUser.email )
    {
      this.arruser.push(firebase.auth().currentUser.email);
    }
 		this.currentUser = user; 
     this.currentUser2 = user; 
-    this.arruser.push(user.email);
+    if(this.user2==undefined)
+    {
+      alert("Please Select a freind.")
+      return;
+    }
+
+    for(var i = 0 ; i<this.arruser.length;i++)
+    {
+      if(this.user2==this.arruser[i])
+       {
+          alert("You Already Added This Freind.")
+          st.value = null;
+           return;
+        }
+    }
+
+    this.arruser.push(this.user2);
+    for(var i = 1 ; i<this.arruser.length;i++)
+    {
+      this.arruserHTML[i-1]=this.arruser[i];
+    }
+
+    this.user2=undefined;  
+    st.value = null;
+   
     console.log(this.arruser);
    console.log(user);
  }
@@ -112,6 +144,10 @@ export class ChatRoomsComponent implements OnInit {
 
   constructor(private _groupsService: ChatRoomsService,public af:AngularFire,public afService: AF) { 
      this.storageRef = firebase.storage().ref();
+      this.hideDiv = {};
+      this.users2 = this.af.database.list('registeredUsers');
+      this.sendtoID = "";
+      
   }
 
  ngOnInit() {
@@ -119,7 +155,37 @@ export class ChatRoomsComponent implements OnInit {
     .subscribe(users => {this.users = users});
     this._groupsService.getGroups()
     .subscribe(groups => {this.groups = groups});
-    console.log(this.groups);
+
+
+    //get user's name list for autocomplete
+    firebase.database().ref("registeredUsers").orderByValue().on("value" ,(data)=>{
+      data.forEach((snap) =>{
+        this.nameList.push(snap.val().name);
+        return false;
+      });
+    });
+    if(this.afService.currUserStatus == 1)
+      this.nameList.unshift("Broadcast");
+
+      //get user's name list that send me message
+      firebase.database().ref("privateMessages").orderByValue().on("value" ,(data)=>{
+        data.forEach((snap) =>{
+              if(snap.val().sentfromID == snap.val().senttoID && snap.val().senttoID == this.afService.currUserID)
+                this.IDArray.unshift(snap.val().senttoID);
+              else if(this.afService.currUserID == snap.val().sentfromID)
+                this.IDArray.unshift(snap.val().senttoID);
+              else if(this.afService.currUserID == snap.val().sendtoID)
+                this.IDArray.unshift(snap.val().sentfromID);
+              return false;
+        })
+      });
+
+      this.IDArray = Array.from(new Set(this.IDArray));
+
+
+
+
+
   }
 
 
@@ -145,6 +211,7 @@ export class ChatRoomsComponent implements OnInit {
      this.chatArr.splice(i,1);
      console.log( this.chatArr);
      this.af.database.object('/group/'+key).update({userArr : this.chatArr});
+     this.af.database.object('/group/'+key).update({admin : ""});
 }
 
 
@@ -184,6 +251,24 @@ export class ChatRoomsComponent implements OnInit {
     }
 
 
+
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  getUserID(username) : void{
+
+    this.user2=username;
+    console.log(username);
+
+  };
 
 
 

@@ -39,19 +39,15 @@
           <br>
 
           <fieldset class="form-group">
-              <legend>Pick-up Options:</legend>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optionsRadios" id="own-pick" value="option1" checked>
-                    The picker will take care to the transport
-                </label>
-              </div>
-              <div class="form-check">
-              <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optionsRadios" id="ideliver" value="option2">
-                  I will deliver the item to the Bat-Sherut
-              </label>
-              </div>
+              <legend>Contact Information:</legend>
+               <div class="form-group">
+                 <label for="location">Phone number</label>
+                 <input type="text" class="form-control" id="phone" name = "phone" [(ngModel)]= 'item.phone'/>
+               </div>
+               <div class="form-group">
+                 <label for="location">Email</label>
+                 <input type="text" class="form-control" id="email" name = "email" [(ngModel)]= 'item.email'/>
+               </div>
           </fieldset>
           
           <div class="form-group">            
