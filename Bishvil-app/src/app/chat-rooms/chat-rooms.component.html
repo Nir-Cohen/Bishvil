@@ -2,15 +2,15 @@
   <div class="row well">
 
     <div class="col-xs-6 col-lg-4">
-      <button class="btn btn-info maincmd" (click)="addMymail()">Add Groups</button>
+      <button class="btn maincmd adbtn" (click)="addMymail()"></button>
     </div>
 
     <div class="col-xs-6 col-lg-4">
-      <button class="btn btn-warning maincmd" (click)="getMyMail()">My Groups</button>
+      <button class="btn maincmd mybtn" (click)="getMyMail()"></button>
     </div>
 
     <div class="col-xs-12 col-lg-4">
-      <a [routerLink]="['/chat']"><button class="btn btn-success maincmd">General Chat</button></a>
+      <a [routerLink]="['/chat']"><button class="btn maincmd chbtn"></button></a>
     </div>
 
   </div>
@@ -22,35 +22,33 @@
   <div *ngIf="ifClicked">
     <div *ngIf = "myMail==true">
 
-          <div class = "form-group">
-            <label for="name">Group Name:  </label>
-            <input type="textarea" class="form-control" [(ngModel)]="name" (keyup.enter)="addGroup()"/>
-          </div>
+      <div class = "form-group">
+        <label for="name">Group Name:  </label>
+        <input type="textarea" class="form-control" [(ngModel)]="name" (keyup.enter)="addGroup()"/>
+      </div>
 
-                <div class="row">
-                  <div class="col-xs-4">
-                    <label  for="sendTo">Select Freinds</label>
-                  </div>
-                  <div class="col-xs-4" ng2-auto-complete [source]= "nameList"  (valueChanged)="getUserID($event)">
-                    <input #something  class="form-control " placeholder= "Look for user" [ngModel] = "model1" name = "aaa" autocomplete="off" />
-                  </div>
-               <div class="col-xs-4" >
-                 <button class="btn btn-warning addcmd" (click)="select($event,something )">Select</button>
-               </div>               
-                </div>
+      <div class="row">
+        <div class="col-xs-4">
+          <label  for="sendTo">Select Freinds: </label>
+        </div>
+        <div class="col-xs-5" ng2-auto-complete [source]= "nameList"  (valueChanged)="getUserID($event)">
+          <input #something  class="form-control " placeholder= "Look for user" [ngModel] = "model1" name = "aaa" autocomplete="off" />
+        </div>
+        <div class="col-xs-3" >
+          <button class="btn btn-warning addcmd" (click)="select($event,something )">Select</button>
+        </div>               
+      </div>
 
-<br>
-  <div *ngIf="arruserHTML[0]!=undefined">
-           <h4 class="list-group-item-heading"> My Selected Freinds </h4>
-  </div>
-        {{arruserHTML}}
+      <br>
+      <div *ngIf="arruserHTML[0]!=undefined">
+           <h4 class="list-group-item-heading"> My Selected Freinds: </h4>
+      </div>
+      {{arruserHTML}}
+      <br><br>
 
-<br>
-<br>
-
-        <figure class="highlight row"> 
-          <div class="col-xs-2"><button class="btn btn-primary " (click)="addGroup()">Create Group</button></div>
-        </figure>
+      <figure class="highlight row"> 
+        <div class="col-xs-12"><button class="btn btn-primary " (click)="addGroup()">Create Group</button></div>
+      </figure>
       
     </div>
   </div>
@@ -89,10 +87,47 @@
           </div>  
          </div>           
        </div> 
-                     
+
+  <div *ngIf="ifClicked1 && mail==true">
+    <div  *ngFor = "let group of groups"   >  
+            
+      <div *ngIf = "group.photoUrl">
+        <img [src]="group.photoUrl" class="img-thumbnail" width="150" height="150">
+
       </div>
+
+      <div *ngIf="group.admin == myName" class="delbtn pull-right glyphicon glyphicon-trash" (click)="deleteUsers(group.$key)"></div>
+
+      <div *ngFor = "let u of group.userArr">
+        <div *ngIf="myName == u">
+          <div class="well well-sm">      
+                    
+
+                <h4 class="list-group-item-heading">Group Name:  {{group.name}} </h4>
+
+                <div class = "t" *ngIf="group.photoURL">
+                    <img [src]= "group.photoURL" class="img-thumbnail" width="200" height="150">
+                </div>
+
+                Group Admin:  {{group.admin}} <br><br>
+
+                <div class="row">
+                  <div class="col-xs-4"> <a [routerLink]="['/chat']"> <button class="btn btn-info addcmd" (click)="select2(group)">Go Chat</button></a> </div>
+                  <div class="col-xs-4"> <a [routerLink]="['/chat-profiles']">  <button class="btn btn-warning addcmd" (click)="show(group)">View Freinds</button></a> </div>
+                  <div class="col-xs-4"> <button class="btn btn-danger addcmd" (click)="leave(group,group.$key)">Leave</button> </div>
+                </div>
+                <div class="form-group">            
+                  <label class ="control-label custom-file-upload">Add/ Change Photo
+                  <input type="file" accept="image/*" (change) ="upload($event,group.$key)" size="50"/>
+                  </label>
+                </div>
+
+                      
+          </div>
+        </div>
       </div>
-</div>
-</div>
-</div>
+
+    </div>
+  </div>
+
 </div>
