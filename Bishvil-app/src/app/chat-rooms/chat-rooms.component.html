@@ -26,17 +26,27 @@
             <label for="name">Group Name:  </label>
             <input type="textarea" class="form-control" [(ngModel)]="name" (keyup.enter)="addGroup()"/>
           </div>
-          <label>Select Users:  </label>
-          <div border="1">
-            <ul class="list-group-users">
-              <div  id="lines" *ngFor = "let user of users" class= "list-group-item">
-                <div *ngIf = "user.email!=myName;">
-                  <app-chat-rooms-son [user] = user  (selectEvent)="select($event)" (deleteEvent)="cancel($event)" >
-                  </app-chat-rooms-son>
-                </div> 
-              </div>
-            </ul>
-          </div>
+
+                <div class="row">
+                  <div class="col-xs-4">
+                    <label  for="sendTo">Select Freinds</label>
+                  </div>
+                  <div class="col-xs-4" ng2-auto-complete [source]= "nameList"  (valueChanged)="getUserID($event)">
+                    <input #something  class="form-control " placeholder= "Look for user" [ngModel] = "model1" name = "aaa" autocomplete="off" />
+                  </div>
+               <div class="col-xs-4" >
+                 <button class="btn btn-warning addcmd" (click)="select($event,something )">Select</button>
+               </div>               
+                </div>
+
+<br>
+  <div *ngIf="arruserHTML[0]!=undefined">
+           <h4 class="list-group-item-heading"> My Selected Freinds </h4>
+  </div>
+        {{arruserHTML}}
+
+<br>
+<br>
 
         <figure class="highlight row"> 
           <div class="col-xs-2"><button class="btn btn-primary " (click)="addGroup()">Create Group</button></div>
