@@ -95,7 +95,9 @@ addItem(item){
       description: item.description,
       type: item.type,
       author : item.author,
-      photoURL : item.photoURL
+      photoURL : item.photoURL,
+      phone: item.phone,
+      email: item.email,
   });
 
 }
