@@ -40,6 +40,4 @@ export class PromptComponent extends DialogComponent<PromptModel, string> implem
 export class news{
   message: string;
 
-
-  
 }

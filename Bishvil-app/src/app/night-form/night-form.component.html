@@ -1,28 +1,39 @@
 <div class="container">
-
   <div [hidden]="submitted">
-
-    <h1>New Event</h1>
-
-    
+    <h1>Meetings!</h1>
       <div class="row">
-        <div class="col-md-8 col-md-offset-2 well">
+        <div class="col-md-8 col-md-offset-2 well ">
           <form class="form-horizontal">
 
+      <!-- Location -->
             <div class="form-group">
-              <label class="col-xs-2 control-label">Location: </label>
-              <div class="col-xs-10">
-                <input type="text" class="form-control" name="location" [(ngModel)]="event.location"/>
+              <label class="col-xs-3 control-label">Location: </label>
+              <div class="col-xs-9">
+                <input type="text" class="form-control" name="location" required [(ngModel)]="event.location"/>
                 <span class="help-block">For Example: Jabotinsky pub, shimon ben shetach, Jerusalem</span>
               </div>
             </div>
-
+      <!-- Date && Kind of meeting -->
             <div class="form-group">
-              <label class="col-xs-2 control-label">When: </label>
-                <div class="col-xs-10">
+              <label class="col-xs-2 control-label">When?: </label>
+                <div class="col-xs-4">
                   <input type="datetime-local" class="form-control" name="time" [(ngModel)]="event.time"/>
               </div>
+
+              <label class="col-xs-2 control-label">Kind of Meeting: </label>
+              <div class="col-xs-4">
+                <select class = "form-control "  name = "type" [(ngModel)]= 'event.type'>
+                  <option></option>
+                 <option>Electrics</option>
+                 <option>Furniture</option>
+                 <option>Home Staff</option>
+                  <option>Clothes</option>
+                 <option>Other..</option>
+                </select>
+              </div>
             </div>
+
+     <!-- Notes -->
 
             <div class="form-group">
               <label class="col-xs-2 control-label">Notes: </label>
@@ -31,8 +42,13 @@
               </div>
             </div>
 
+             <label class ="control-label custom-file-upload">Browse Photo
+              <input type="file" accept="image/*" (change) ="upload($event)" size="50"/>
+            </label>
+
             <div class="text-left">
-              <input type="button" class="btn btn-primary" value="Add Event" (click)="addEvent()" />
+              <a [routerLink]="['/host']"><input type="button" class="btn btn-primary" value="Add Host" (click)="addHosting()" /></a>
+              
             </div>
 
           </form>
