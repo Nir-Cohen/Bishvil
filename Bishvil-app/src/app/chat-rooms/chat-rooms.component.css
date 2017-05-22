@@ -3,6 +3,7 @@
   height: 100px;
   margin: 10px 0px;
   font-size: 18px;
+   height: 40px;
 }
 
 
@@ -28,3 +29,4 @@ input[type="file"] {
     margin-top:30%;
 }
 
+ 
