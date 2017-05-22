@@ -65,7 +65,8 @@
   </div>
   <div *ngIf="group.admin == myName" class="pull-right glyphicon glyphicon-trash" (click)="deleteUsers(group.$key)"></div>
           <div *ngFor = "let u of group.userArr">
-           <div *ngIf="myName == u">
+           <div *ngIf="myName == u || this.afService.displayName == u">
+             
                 <div class="well well-sm">              
                     <div class="row">
                         <div class="col-sm-6 col-md-4">

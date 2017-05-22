@@ -56,6 +56,7 @@ arruserHTML=[];
   }
 
    addGroup(){
+
     if(this.name==""||this.name==null){
     alert("please enter group name");
       return;
@@ -143,6 +144,7 @@ arruserHTML=[];
  }
 
   constructor(private _groupsService: ChatRoomsService,public af:AngularFire,public afService: AF) { 
+    console.log(this.afService.displayName);
      this.storageRef = firebase.storage().ref();
       this.hideDiv = {};
       this.users2 = this.af.database.list('registeredUsers');
