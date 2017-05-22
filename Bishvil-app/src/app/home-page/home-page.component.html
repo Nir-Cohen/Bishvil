@@ -44,18 +44,21 @@
 
         <div *ngIf = "user.status == 1 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
           <div *ngFor="let news of news | async">
-            {{news.message}}
+            {{news.message}} 
             <span class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(news.$key)"></span>
+            <span class="pull-right" >{{ news.timestamp | date:"dd/MM/yy HH:mm" }} </span>
+            
             <hr>
           </div>
           <div class="col-xs-12 btndiv">
-            <button class="btn" (click)=showPrompt()>Add message</button>
+            <button class="btn" (click)=AddMessage()>Add message</button>
           </div>
         </div>
 
         <div *ngIf = "user.status == 0 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
           <div *ngFor="let news of news | async">
-            {{news.message}}
+            {{news.message}} 
+            <span class="pull-right" >{{ news.timestamp | date:"dd/MM/yy HH:mm" }} </span>
             <hr>
           </div>
         </div>

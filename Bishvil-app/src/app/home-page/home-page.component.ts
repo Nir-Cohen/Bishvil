@@ -29,7 +29,7 @@ export class HomePageComponent implements OnInit {
   confirmResult:boolean = null;
   promptMessage:string = '';
 
- showPrompt() {
+ AddMessage() {
     this.dialogService.addDialog(PromptComponent, {
       title:'News messages',
       question:'Please enter your message:'})
