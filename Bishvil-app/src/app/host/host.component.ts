@@ -41,7 +41,7 @@ export class HostComponent implements OnInit {
 
 leave(key:string)
 {
-      this.afService.OK_key=key;
+    this.afService.OK_key=key;
     var host = this.af.database.object('/hosting/'+this.afService.OK_key); // How to get value
     host.subscribe(snapshot => {  
     this.userArr = snapshot.userArr;
@@ -76,7 +76,7 @@ leave(key:string)
     console.log(this.confirmResult);
   }
 
-    checkIfIn(key: string) {
+  checkIfIn(key: string) {
     var i = 0;
 
     var host = this.af.database.object('/hosting/'+key); // How to get value

@@ -20,7 +20,6 @@ export class PromptComponent extends DialogComponent<PromptModel, string> implem
   title: string;
   question: string;
   message: string = '';
-
   public news: news;
 
   ngOnInit() {
@@ -33,7 +32,6 @@ export class PromptComponent extends DialogComponent<PromptModel, string> implem
 
   apply() {
     this.news.message = this.message;
-    console.log(this.message);
     this.afService.addNews(this.news);
     this.close();
   }
@@ -41,4 +39,7 @@ export class PromptComponent extends DialogComponent<PromptModel, string> implem
 
 export class news{
   message: string;
+
+
+  
 }

@@ -52,11 +52,20 @@
                   <input type="text" class="form-control" name="lastName" [(ngModel)]="host.numberHost"/>
               </div>
            
+
+
+           
               <label class="col-xs-3 control-label">Spooken Lang: </label>
                 <div class="col-xs-3">
-                  <select class="form-control" > <!-- [(ngModel)]="selectedValue"> -->
-                     <option *ngFor="let c of countries"  name="lastName" [ngValue]="c">{{c.name}}</option>
+                  <select class="form-control" >
+                   <option>Hebrew</option>
+                   <option>English</option>
+                   <option>French</option>
+                   <option>Italy</option>
+                   <option>London UK</option>
                   </select>
+
+
               </div>
             </div>
 

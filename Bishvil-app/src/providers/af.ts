@@ -104,8 +104,8 @@ addItem(item){
 
 addNews(news){
   this.news.push({
-    message: news.message
-
+    message: news.message,
+    timestamp: Date.now(),
   });
 
 }
