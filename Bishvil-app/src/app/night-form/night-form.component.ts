@@ -15,7 +15,7 @@ export class NightFormComponent implements OnInit {
   constructor(public afService: AF) {  }
 
   ngOnInit() {
-    this.event = { location: "", time: "", note: "" };
+    this.event = { location: "", time: "", note: "", type: "" };
   }
 
   addEvent(){
@@ -28,5 +28,6 @@ export class event{
   location: string;
   time: string;
   note: string;
+  type: string;
 }
 

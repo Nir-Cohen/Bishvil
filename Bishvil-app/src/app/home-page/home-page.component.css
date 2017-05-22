@@ -1,16 +1,29 @@
 
-.maincmd{
+.maincmd
+{
   width: 100%;
   height: 100px;
   margin: 10px 0px;
-  font-size: 18px;
+
+  background: #ededed;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+  border-color: rebeccapurple;
 }
 
-.secondcmd{
+.secondcmd
+{
   width: 100%;
   height: 40px;
   margin: 10px 0px;
-  font-size: 18px;
+  background: #ededed;
+  border-color: rebeccapurple;
+
+  background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/mainbtn/profile.png?raw=true);
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
 }
 
 hr{
@@ -30,3 +43,8 @@ img{
 .links{
   text-align: center;
 }
+
+.hsbtn{ background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/mainbtn/hostsha.png?raw=true); }
+.itbtn{ background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/mainbtn/itemdel.png?raw=true); }
+.nlbtn{ background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/mainbtn/nl.png?raw=true); }
+.chbtn{ background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/mainbtn/chat.png?raw=true); }
