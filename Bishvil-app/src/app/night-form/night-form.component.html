@@ -42,14 +42,14 @@
               </div>
             </div>
 
-             <label class ="control-label custom-file-upload">Browse Photo
+          <div class="form-group">            
+            <label class ="control-label custom-file-upload">Browse Photo
               <input type="file" accept="image/*" (change) ="upload($event)" size="50"/>
             </label>
+          </div> 
 
-            <div class="text-left">
-              <a [routerLink]="['/host']"><input type="button" class="btn btn-primary" value="Add Host" (click)="addHosting()" /></a>
-              
-            </div>
+           <input type="button" class="btn btn-primary"  [routerLink]="['/night']" value="Add Item" (click)="addEvent()" />
+          <button type="reset" class="btn btn-danger">Reset Form</button>
 
           </form>
         </div>
@@ -58,3 +58,4 @@
   </div>
 
 </div>
+             
