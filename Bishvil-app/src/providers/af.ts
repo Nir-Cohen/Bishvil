@@ -21,7 +21,7 @@ export class AF {
   public groups: FirebaseListObservable<any>;
   public registeredUsers: FirebaseListObservable<any>;
   public privateMessages : FirebaseListObservable<any>;
-
+  public chatArrusers=[]
 
   public OK_key:string;
   public storageRef : any;
@@ -246,7 +246,8 @@ emailVerfication()
       displayName: this.displayName,
       email: this.email,
       userArr:arr,
-      admin:arr[0]
+      admin:arr[0],
+      photoURL:""
     };
     this.group.push(details);
   }

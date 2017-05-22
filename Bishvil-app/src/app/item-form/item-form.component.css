@@ -3,7 +3,6 @@ input[type="file"] {
 }
 
 .custom-file-upload {
-
     padding: 10px 30px ;
     cursor: pointer;
     background-color: #337ab7;

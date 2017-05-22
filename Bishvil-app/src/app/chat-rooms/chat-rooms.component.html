@@ -14,11 +14,11 @@
     </div>
 
   </div>
-</div>
 
 
 
-<div class="container">
+
+
   <div *ngIf="ifClicked">
     <div *ngIf = "myMail==true">
 
@@ -26,7 +26,6 @@
             <label for="name">Group Name:  </label>
             <input type="textarea" class="form-control" [(ngModel)]="name" (keyup.enter)="addGroup()"/>
           </div>
-
           <label>Select Users:  </label>
           <div border="1">
             <ul class="list-group-users">
@@ -45,37 +44,44 @@
       
     </div>
   </div>
-</div>
 
 
 
-
-<div class="container">
-    <div *ngIf="ifClicked1">
-      <div *ngIf = "mail==true">
-
-        <label>My Groups:  </label>
-        <div border="1">
-          <ul class="list-group-users">
-            <div id="lines" *ngFor = "let group of groups" [class.active]="currentUser2 == group" (click)="select2(group)" class= "list-group-item">  
-              <div *ngIf = "group.photoUrl">
-                <img [src]="group.photoUrl" class="img-thumbnail" width="150" height="150">
-              </div>
-              <div *ngIf="group.admin == myName" class="pull-right glyphicon glyphicon-trash" (click)="deleteUsers(group.$key)"></div>
-              <div  *ngFor = "let u of group.userArr">
-                <div *ngIf="myName == u">
-                  Group Name: {{group.name}} <p>
-                  Group Members: {{group.userArr}} </p>
-                </div>           
-              </div>               
-            </div>
-          </ul>  
-        </div>
-
-        <figure class="highlight row"> 
-          <a [routerLink]="['/chat']"> <div class="col-xs-2"><button class="btn btn-primary">Go To The Chat</button></div></a>
-        </figure>
-
+<div *ngIf="ifClicked1 && mail==true">
+        <div  *ngFor = "let group of groups"   >  
+          
+            <div *ngIf = "group.photoUrl">
+              <img [src]="group.photoUrl" class="img-thumbnail" width="150" height="150">
+  </div>
+  <div *ngIf="group.admin == myName" class="pull-right glyphicon glyphicon-trash" (click)="deleteUsers(group.$key)"></div>
+          <div *ngFor = "let u of group.userArr">
+           <div *ngIf="myName == u">
+                <div class="well well-sm">              
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                <h4 class="list-group-item-heading">  &nbsp; Group Name:  {{group.name}} </h4>
+                        <div class = "t" *ngIf="group.photoURL">
+      
+                  <img [src]= "group.photoURL" class="img-thumbnail" width="200" height="150">
+                
+          </div>
+                <br>
+                 &nbsp; Group Admin:  {{group.admin}} 
+               <br> <br>
+             <a [routerLink]="['/chat']"> <button class="btn btn-info addcmd" (click)="select2(group)">Chat</button></a>
+             <a [routerLink]="['/chat-profiles']">  <button class="btn btn-warning addcmd" (click)="show(group)">Freinds</button></a>
+             <button class="btn btn-success addcmd" (click)="leave(group,group.$key)">Leave This Group</button>
+          <div class="form-group">            
+            <label class ="control-label custom-file-upload">Browse Photo
+              <input type="file" accept="image/*" (change) ="upload($event,group.$key)" size="50"/>
+            </label>
+          </div>  
+         </div>           
+       </div> 
+                     
       </div>
-    </div>
+      </div>
+</div>
+</div>
+</div>
 </div>
