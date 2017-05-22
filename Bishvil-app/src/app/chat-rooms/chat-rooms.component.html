@@ -63,7 +63,7 @@
   </div>
   <div *ngIf="group.admin == myName" class="pull-right glyphicon glyphicon-trash" (click)="deleteUsers(group.$key)"></div>
           <div *ngFor = "let u of group.userArr">
-           <div *ngIf="myName == u || this.afService.displayName == u">
+           <div *ngIf="myName == u || u == this.afService.displayName">
              
                 <div class="well well-sm">              
                     <div class="row">
@@ -87,47 +87,11 @@
           </div>  
          </div>           
        </div> 
-
-  <div *ngIf="ifClicked1 && mail==true">
-    <div  *ngFor = "let group of groups"   >  
-            
-      <div *ngIf = "group.photoUrl">
-        <img [src]="group.photoUrl" class="img-thumbnail" width="150" height="150">
-
-      </div>
-
-      <div *ngIf="group.admin == myName" class="delbtn pull-right glyphicon glyphicon-trash" (click)="deleteUsers(group.$key)"></div>
-
-      <div *ngFor = "let u of group.userArr">
-        <div *ngIf="myName == u">
-          <div class="well well-sm">      
-                    
-
-                <h4 class="list-group-item-heading">Group Name:  {{group.name}} </h4>
-
-                <div class = "t" *ngIf="group.photoURL">
-                    <img [src]= "group.photoURL" class="img-thumbnail" width="200" height="150">
-                </div>
-
-                Group Admin:  {{group.admin}} <br><br>
-
-                <div class="row">
-                  <div class="col-xs-4"> <a [routerLink]="['/chat']"> <button class="btn btn-info addcmd" (click)="select2(group)">Go Chat</button></a> </div>
-                  <div class="col-xs-4"> <a [routerLink]="['/chat-profiles']">  <button class="btn btn-warning addcmd" (click)="show(group)">View Freinds</button></a> </div>
-                  <div class="col-xs-4"> <button class="btn btn-danger addcmd" (click)="leave(group,group.$key)">Leave</button> </div>
-                </div>
-                <div class="form-group">            
-                  <label class ="control-label custom-file-upload">Add/ Change Photo
-                  <input type="file" accept="image/*" (change) ="upload($event,group.$key)" size="50"/>
-                  </label>
-                </div>
-
+ </div> 
+ 
                       
           </div>
         </div>
       </div>
 
     </div>
-  </div>
-
-</div>
