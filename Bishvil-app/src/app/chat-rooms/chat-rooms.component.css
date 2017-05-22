@@ -4,13 +4,28 @@
   margin: 10px 0px;
   font-size: 18px;
    height: 40px;
+     background: #ededed;
+   background-repeat: no-repeat;
+   background-size: auto 100%;
+   background-position: center;
+   border-color: rebeccapurple;
 }
 
-
+.adbtn { background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/Buttons/addgrp.png?raw=true) }
+ .mybtn { background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/Buttons/mygrp.png?raw=true) }
+ .chbtn { background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/Buttons/regchat.png?raw=true) }
+ 
+.delbtn { margin: 15px; }
 input[type="file"] {
     display: none;    
 }
-
+.control-label{
+     height: auto;
+     width: 100%;
+     text-align: center;
+     padding: 5px;
+ }
+ 
 .custom-file-upload {
     margin-top: 10px;
     padding: 10px 30px ;
@@ -28,5 +43,8 @@ input[type="file"] {
 .designGroupList2{
     margin-top:30%;
 }
-
+.btn{
+     width: 100%;
+ }
+ 
  
