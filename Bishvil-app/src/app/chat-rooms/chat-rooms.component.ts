@@ -84,12 +84,19 @@ arruserHTML=[];
   }
 
     select(user,st: HTMLInputElement){
+
    if(this.arruser[0]!=firebase.auth().currentUser.email )
    {
      this.arruser.push(firebase.auth().currentUser.email);
    }
 		this.currentUser = user; 
     this.currentUser2 = user; 
+     if(this.user2==this.afService.displayName ||this.user2==this.afService.email )
+    {
+      alert("you already in this group")
+       st.value = null;
+      return;
+    }   
     if(this.user2==undefined)
     {
       alert("Please Select a freind.")
