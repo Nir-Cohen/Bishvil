@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AF} from "../../providers/af";
 import {Router} from "@angular/router";
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-login-page',
@@ -13,9 +14,10 @@ export class LoginPageComponent {
   constructor(public afService: AF, private router: Router) {}
 
   loginWithGoogle() {
+    
     this.afService.loginWithGoogle().then((data) => {
       // Send them to the homepage if they are logged in
-      console.log( "dasdasd");
+      console.log(firebase.auth().currentUser.emailVerified);
       this.afService.addUserInfo();
       this.router.navigate(['']);
     })
@@ -23,14 +25,19 @@ export class LoginPageComponent {
 
   loginWithEmail(event, email, password,status){
     event.preventDefault();
-    this.afService.loginWithEmail(email, password).then(() => {//,"0").then(() => {
-      this.router.navigate(['']);
-    })
-      .catch((error: any) => {
-        if (error) {
-          this.error = error;
-          console.log(this.error);
-        }
-      });
+
+      this.afService.loginWithEmail(email, password).then(() => {//,"0").then(() => {
+        
+        if(firebase.auth().currentUser.emailVerified)
+          this.router.navigate(['']);
+        else
+          alert("Please verify your email!");        
+      })
+        .catch((error: any) => {
+          if (error) {
+            this.error = error;
+            console.log(this.error);
+          }
+        });
   }
 }

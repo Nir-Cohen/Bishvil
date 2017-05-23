@@ -23,6 +23,11 @@ export class AppComponent {
           this.isLoggedIn = false;
           this.router.navigate(['login']);
         }
+        //email not verified yet
+        else if(!firebase.auth().currentUser.emailVerified){
+            this.isLoggedIn = false;
+            this.router.navigate(['login']);
+        }
         else {
           console.log("Successfully Logged in.");
             //set current user properties
@@ -38,13 +43,13 @@ export class AppComponent {
                 console.log("Cant access database");
               });
           // Set the Display Name and Email so we can attribute messages to them
-          if(auth.google) {
+          if(auth.google) {            
             this.afService.displayName = auth.google.displayName;
             this.afService.email = auth.google.email;
             //this.afService.status = auth.auth.status;
           }
           else {
-            this.afService.displayName = auth.auth.email;            
+            this.afService.displayName = firebase.auth().currentUser.displayName;         
             this.afService.email = auth.auth.email;
           }
           this.isLoggedIn = true;

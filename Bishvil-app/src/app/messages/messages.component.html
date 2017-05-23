@@ -33,11 +33,11 @@
 
         <br><br>
 
-        <div class = "list-group " *ngFor="let user of recievedFrom; let i = index"  (click) = "showDiv(user.key,i)">
-          <a class="list-group-item clearfix list-group-item-success">
+        <div class = "list-group " *ngFor="let user of recievedFrom; let i = index" >
+          <a class="list-group-item clearfix list-group-item-success"  (click) = "showDiv(user.key,i)">
             <img *ngIf = "user.photo" [src] = "user.photo" class="img-rounded img-responsive">
             &nbsp;{{user.name}}
-            <div class = "pull-right glyphicon glyphicon-trash" (click)="deleteChat(user.key)" title = "Delete Chat"></div>
+            <div  class = "pull-right glyphicon glyphicon-trash" (click)="deleteChat(user.key)" title = "Delete Chat"></div>
           </a>
           
 
@@ -51,7 +51,7 @@
                 </div>
               </div>
             </div>
-            <figure class="highlight row">
+            <figure *ngIf = "user.name != 'Bishvil Admin'" class="highlight row">
               <div class="col-xs-10"><input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage(newMessage , user.name)"/></div>
               <div class="col-xs-2"><button class="btn btn-primary" (click)="sendMessage(newMessage , user.name)">SEND</button></div>
             </figure>
