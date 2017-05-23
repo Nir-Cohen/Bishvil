@@ -10,6 +10,7 @@ import * as firebase from 'firebase';
 })
 export class LoginPageComponent {
   public error: any;
+  mail : any;
 
   constructor(public afService: AF, private router: Router) {}
 
@@ -39,5 +40,18 @@ export class LoginPageComponent {
             console.log(this.error);
           }
         });
+  }
+
+  forgetPass(){
+    console.log(this.mail);
+    if(this.mail != ""){
+      firebase.auth().sendPasswordResetEmail(this.mail).then(function() {
+        alert("mail sent!");
+      }, function(error) {
+      // An error happened.
+      });
+    }
+    else
+      alert("please fill your email field!");
   }
 }
