@@ -42,16 +42,5 @@ export class LoginPageComponent {
         });
   }
 
-  forgetPass(){
-    console.log(this.mail);
-    if(this.mail != ""){
-      firebase.auth().sendPasswordResetEmail(this.mail).then(function() {
-        alert("mail sent!");
-      }, function(error) {
-      // An error happened.
-      });
-    }
-    else
-      alert("please fill your email field!");
-  }
+
 }
