@@ -29,6 +29,16 @@
            <button class="btn btn-warning addcmd" (click)="select($event,something )">Select</button>
          </div>               
        </div>
+
+    <br>
+     <div *ngIf="arruserHTML[0]!=undefined">
+            <h4 class="list-group-item-heading"> My Selected Freinds </h4>
+     </div>
+        {{arruserHTML}}
+ 
+    <br>
+    <br>
+
       <figure class="highlight row"> 
          <div class="col-xs-12"><button class="btn btn-primary " (click)="addGroup()">Create Group</button></div>
        </figure>  
