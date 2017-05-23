@@ -33,11 +33,12 @@ export class ProfilesComponent implements OnInit {
       if(city == undefined || city == "" || city == "(none)")
         return this.af.database.list('registeredUsers');
       else
-          return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.city == city))    
+          return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.city == city));   
    };
 
    deleteUser(key,name){
      console.log(name);
+     //var user = FirebaseAuth
      if(confirm("Are You sure you want to delete " + name +"?")){
         this.af.database.list("registeredUsers").remove(key);
      }

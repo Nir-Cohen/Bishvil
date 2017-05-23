@@ -112,30 +112,6 @@ addNews(news){
 
 }
 
-/*
-  uploadFile(fbsPath,targetFile) {
-      let promise = new Promise((res,rej) => {
-        this.targetRef =this.storageRef.child(fbsPath);
-        let task=this.targetRef.put(targetFile);
-        task.on('state_changed',
-          (snapshot:any) => {
-            console.log(snapshot.state);
-          },
-          (error:any) => {
-            console.log(error.code);
-            rej(error);
-          },
-          () => {
-            let downloadUrl = task.snapshot.downloadURL;
-            //this.url = downloadUrl;
-            console.log(downloadUrl);
-            res(downloadUrl);
-          }
-        );
-      })
-      return promise;
-    }
-*/
   /**
    * Logs in the user
    * @returns {firebase.Promise<FirebaseAuthState>}
@@ -218,7 +194,7 @@ emailVerfication()
       name: name,
       email: email,
       status:status,
-      photoURL : firebase.auth().currentUser.photoURL,
+      photoURL : "https://www.drupal.org/files/profile_default.jpg",
       
     });
     

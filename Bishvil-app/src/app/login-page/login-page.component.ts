@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AF} from "../../providers/af";
 import {Router} from "@angular/router";
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-login-page',
@@ -9,13 +10,15 @@ import {Router} from "@angular/router";
 })
 export class LoginPageComponent {
   public error: any;
+  mail : any;
 
   constructor(public afService: AF, private router: Router) {}
 
   loginWithGoogle() {
+    
     this.afService.loginWithGoogle().then((data) => {
       // Send them to the homepage if they are logged in
-      console.log( "dasdasd");
+      console.log(firebase.auth().currentUser.emailVerified);
       this.afService.addUserInfo();
       this.router.navigate(['']);
     })
@@ -23,14 +26,32 @@ export class LoginPageComponent {
 
   loginWithEmail(event, email, password,status){
     event.preventDefault();
-    this.afService.loginWithEmail(email, password).then(() => {//,"0").then(() => {
-      this.router.navigate(['']);
-    })
-      .catch((error: any) => {
-        if (error) {
-          this.error = error;
-          console.log(this.error);
-        }
+
+      this.afService.loginWithEmail(email, password).then(() => {//,"0").then(() => {
+        
+        if(firebase.auth().currentUser.emailVerified)
+          this.router.navigate(['']);
+        else
+          alert("Please verify your email!");        
+      })
+        .catch((error: any) => {
+          if (error) {
+            this.error = error;
+            console.log(this.error);
+          }
+        });
+  }
+
+  forgetPass(){
+    console.log(this.mail);
+    if(this.mail != ""){
+      firebase.auth().sendPasswordResetEmail(this.mail).then(function() {
+        alert("mail sent!");
+      }, function(error) {
+      // An error happened.
       });
+    }
+    else
+      alert("please fill your email field!");
   }
 }

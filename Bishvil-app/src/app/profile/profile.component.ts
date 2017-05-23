@@ -30,24 +30,28 @@ export class ProfileComponent implements OnInit {
     this.storageRef = firebase.storage().ref();
     this.users = this.afService.users;
     this.maxDate = new Date((new Date().getFullYear()-18),new Date().getMonth(),new Date().getDate()).toJSON().split('T')[0];
-    //retrieve current user from firebase
   }
  
   updateProfile(){
       if(confirm("Save changes?")){
-        if(this.userinfo.city!= "")
+        if(this.userinfo.city!= ""){
           firebase.database().ref('registeredUsers/'+ this.user.uid).update({city : this.userinfo.city});
-        if(this.userinfo.dob != "")
+          this.afService.currUserCity = this.userinfo.city;
+        }
+        if(this.userinfo.dob != ""){
           firebase.database().ref('registeredUsers/'+ this.user.uid).update({dob : this.userinfo.dob});
+          this.afService.currUserDOB = this.userinfo.dob;
+        }
       }
       this.router.navigate([""]);
   }
 
   upload(event:any){
-         let targetFile = event.srcElement.files[0];
-         let fbsPath = 'images/' + targetFile.name;
-         console.log("The Path:" +fbsPath);
-          this.uploadFile(fbsPath,targetFile);
+    alert("Please wait while uploading!");
+    let targetFile = event.srcElement.files[0];
+    let fbsPath = 'images/' + targetFile.name;
+    console.log("The Path:" +fbsPath);
+    this.uploadFile(fbsPath,targetFile);
   }
 
   uploadFile(fbsPath,targetFile) {
@@ -71,7 +75,7 @@ export class ProfileComponent implements OnInit {
             alert("Photo Changed!");
           }
         );
-      })      
+      })
       return promise;
     }
 
@@ -83,11 +87,13 @@ export class ProfileComponent implements OnInit {
         if(auth == null) {
           console.log("Not Logged in.");
         }
-        else{
+        else{              
               this.user = firebase.auth().currentUser;
+              this.photo = this.user.photoURL;              
               this.email = this.user.email;
-              this.photo = this.user.photoURL;
-        }}); 
+        }
+      }
+    );
   }
 }
 

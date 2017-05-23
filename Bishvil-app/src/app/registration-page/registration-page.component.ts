@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AF} from "../../providers/af";
 import {Router} from "@angular/router";
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-registration-page',
@@ -19,14 +20,17 @@ userType:Array<Object>  = [
 
   register(event, name, email, password,status) {
     console.log(status);
-  if(status == "Bat Sherut")
-    this.status=1;
-  else
-    this.status=2;
+    if(status == "Bat Sherut")
+      this.status=1;
+    else
+      this.status=2;
     event.preventDefault();
-    this.afService.registerUser(email, password).then((user) => {//,"1").then((user) => {
+    this.afService.registerUser(email, password).then((user) => {
       this.afService.saveUserInfoFromForm(user.uid, name, email,this.status).then(() => {
-        this.router.navigate(['']);
+          //send Email Verification and return to login page
+          firebase.auth().currentUser.sendEmailVerification();
+          firebase.auth().currentUser.updateProfile({displayName : name, photoURL : "https://www.drupal.org/files/profile_default.jpg"}).then(function(){console.log("updated!!");},function(error){});
+          this.router.navigate(['login']);
       })
         .catch((error) => {
           this.error = error;
@@ -36,6 +40,7 @@ userType:Array<Object>  = [
         this.error = error;
         console.log(this.error);
       });
-      
+        
+        
   }
 }
