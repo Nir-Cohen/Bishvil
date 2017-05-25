@@ -9,7 +9,6 @@ export class AF {
   public users: FirebaseListObservable<any>;
   public displayName: string;
   public email: string;
-  public status: string;
   public user: FirebaseObjectObservable<any>;
   public event: FirebaseListObservable<any>;
   public item: FirebaseListObservable<any>;
@@ -48,7 +47,6 @@ export class AF {
     this.event = this.af.database.list("events");
     this.item = this.af.database.list("items");
     this.hosting = this.af.database.list("hosting");
-    this.status = "1";
     this.news = this.af.database.list("news");
 
     this.group = this.af.database.list("group");
@@ -65,6 +63,7 @@ addEvent(item){
       note: item.note,
       userAreComing: [""],
       author:this.displayName,
+      photoURL: item.photoURL,
     });
 }
 
@@ -143,7 +142,7 @@ emailVerfication()
       return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).update({
         name: this.displayName,
         email: this.email,
-        status:this.status,
+        status:0,
         photoURL : firebase.auth().currentUser.photoURL
         /*city : "",//removes itself every time
         dob : ""*/
@@ -173,8 +172,6 @@ emailVerfication()
    * @returns {firebase.Promise<void>}
    */
   registerUser(email, password){//,status) {
-    console.log(email);
-    console.log(status);
     return this.af.auth.createUser({
       email: email,
       password: password,
@@ -195,7 +192,7 @@ emailVerfication()
     return this.af.database.object('registeredUsers/' + uid).update({
       name: name,
       email: email,
-      status:status,
+      status:0,
       photoURL : "https://www.drupal.org/files/profile_default.jpg",
       
     });

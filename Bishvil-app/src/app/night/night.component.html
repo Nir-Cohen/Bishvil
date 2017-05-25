@@ -16,10 +16,7 @@
           Location: {{event.location}}<br>
           Notes: {{event.note}}<br>
           </p>
-      
-
     <div class="row">
-     
             <div *ngIf = "checkIfIn(event.$key) == true" class="col-xs-5"> 
               <button class="btn btn-danger addcmd" (click)="leave(event.$key)">Leave</button>
             </div>
@@ -36,27 +33,31 @@
    </div>
    </a>
       </div>
-<!--
-
-
-
-  <div *ngIf = "user.status == 0 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
-    <div class="list-group" (click)="showConfirm($event)" *ngFor="let host of hosting | async">
-      <div class="col-sm-4" *ngIf="confirmResult != null">
-        <b [ngClass]="{'text-danger': !confirmResult, 'text-success': confirmResult}">{{confirmResult ? 'Accepted': 'Declined'}}</b>
-      </div>
-       <a  class="list-group-item">
-        <h4 class="list-group-item-heading">{{event.type}}</h4>
+    </div>
+    <div *ngIf = "user.status == 0 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
+     <div class="list-group" *ngFor="let event of events | async">
+       <a  class="list-group-item" >
+         <h4 class="list-group-item-heading"> {{event.type}}</h4>
           <p class="list-group-item-text">
-          Date: {{event.time}} &nbsp;&nbsp;&nbsp;<br>
+          Date: {{event.time | date:"dd/MM/yy HH:mm"}}  &nbsp;&nbsp;&nbsp;<br>
           Location: {{event.location}}<br>
-          Notes: {{host.note}}<br>
-          
-          <p class = "pull-right glyphicon glyphicon-trash" *ngIf = "(afService.displayName == event.author || afService.email == event.author)" (click)="deleteItem(host.$key)"></p>
-          <br>
-          </a>
-     </div>
-</div>
--->
+          Notes:  {{event.note}}<br>
+          </p>
+    <div class="row">
+            <div *ngIf = "checkIfIn(event.$key) == true" class="col-xs-5"> 
+              <button class="btn btn-danger addcmd" (click)="leave(event.$key)">Leave</button>
+            </div>
+            <div *ngIf = "checkIfIn(event.$key) == false" class="col-xs-5"> 
+              <button class="btn btn-success addcmd" (click)="Join(event.$key)">Join</button>
+            </div>
+            <div  class="col-xs-6">
+              <a [routerLink]="['']"> <button class="btn btn-info addcmd" (click)="show(event.$key)">See Who Is In</button></a>
+            </div>
+            
+   </div>
+   </a>
+      </div>
+    </div>
+
 </div>
 </div>
