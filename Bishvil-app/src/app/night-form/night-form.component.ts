@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {AF} from 'providers/af';
-import {FirebaseListObservable} from "angularfire2";
+import {FirebaseListObservable,AngularFire} from "angularfire2";
 
 @Component({
   selector: 'app-night-form',
@@ -9,12 +9,12 @@ import {FirebaseListObservable} from "angularfire2";
 })
 export class NightFormComponent implements OnInit {
 
-  
+  public ComingUsers: [""];
   public event: event;
   targetRef:any;
   storageRef:any;
 
-  constructor(public afService: AF) {  }
+  constructor(public afService: AF,public af:AngularFire) {  }
 
   ngOnInit() {
     this.event = { location: "", time: "", note: "", type: "", photoURL: "" };

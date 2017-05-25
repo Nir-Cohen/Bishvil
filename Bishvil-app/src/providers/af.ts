@@ -62,7 +62,9 @@ addEvent(item){
   this.event.push({
       location: item.location,
       time: item.time,
-      note: item.note
+      note: item.note,
+      userAreComing: [""],
+      author:this.displayName,
     });
 }
 
