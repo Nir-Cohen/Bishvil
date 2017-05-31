@@ -17,7 +17,8 @@ export class NightComponent implements OnInit {
   public UserAreComing = [];
   public comingFromSnap = [];
   confirmResult:boolean = null;
-
+  arrusers=[];
+  
   constructor(public afService: AF, public af: AngularFire,private dialogService:DialogService) 
   {
     this.events = this.afService.event;
@@ -85,5 +86,15 @@ export class NightComponent implements OnInit {
     this.events.remove(key);
    }
 
+
+show(key : string) {
+    this.afService.OK_key=key;  
+    var host = this.af.database.object('/events/'+key); // How to get value
+    host.subscribe(snapshot => {  
+    this.arrusers = snapshot.userArr;
+  });
+   this.afService.arrusers=this.arrusers;
+
+  }
 
 }
