@@ -83,8 +83,6 @@ leave(key:string)
     host.subscribe(snapshot => {  
     this.c = snapshot.userArr;
   });
-
-
      for(i=0;i<this.c.length;i++)
      {
         if(this.afService.displayName==this.c[i]||this.afService.email==this.c[i])
@@ -102,11 +100,5 @@ leave(key:string)
     this.arrusers = snapshot.userArr;
   });
    this.afService.arrusers=this.arrusers;
-
   }
-
-
 }
-
-
-

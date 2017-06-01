@@ -17,8 +17,7 @@ export class NightComponent implements OnInit {
   public UserAreComing = [];
   public comingFromSnap = [];
   confirmResult:boolean = null;
-  arrusers=[];
-  
+
   constructor(public afService: AF, public af: AngularFire,private dialogService:DialogService) 
   {
     this.events = this.afService.event;
@@ -28,16 +27,11 @@ export class NightComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteItem(key: any)
-   {
-    this.events.remove(key);
-   }
-
   leave(key: string) 
   {
     this.afService.OK_key = key;
-    var host = this.af.database.object('/hosting/' + this.afService.OK_key); // How to get value
-    host.subscribe(snapshot => {
+    var event = this.af.database.object('/events/' + this.afService.OK_key); // How to get value
+    event.subscribe(snapshot => {
       this.UserAreComing = snapshot.userArr;
     });
     var i = 0;
@@ -54,47 +48,32 @@ export class NightComponent implements OnInit {
 
   checkIfIn(key: string)
   {
-    console.log(key);
     var i = 0;
     var event = this.af.database.object('/events/' + key); // How to get value
     event.subscribe(snapshot =>
      {
       this.comingFromSnap = snapshot.userAreComing;
     });
-    for(var i=0 ;i<this.comingFromSnap.length;i++)
+    for(i=0 ;i<this.comingFromSnap.length; i++)
     {
-      if(this.comingFromSnap[i] == this.afService.email)
+      if(this.comingFromSnap[i] == this.afService.email || this.comingFromSnap[i] == this.afService.displayName)
       {
         return true;
       }
-    }
+    }            
+    console.log(key);
     return false;
-    
-   // console.log(this.arrayNoIdea);
   }
 
  Join(key: string) 
  {
     this.afService.OK_key=key; 
-    var x  = this.comingFromSnap.concat(this.afService.email);
+    var x  = this.comingFromSnap.fill(this.afService.email);
     this.af.database.object('/events/'+this.afService.OK_key).update({userAreComing : x});
+    console.log({userAreComing : x});
   }
-
 
   delete(key : string){
-    console.log("Removing "+ key);
     this.events.remove(key);
    }
-
-
-show(key : string) {
-    this.afService.OK_key=key;  
-    var host = this.af.database.object('/events/'+key); // How to get value
-    host.subscribe(snapshot => {  
-    this.arrusers = snapshot.userArr;
-  });
-   this.afService.arrusers=this.arrusers;
-
-  }
-
 }
