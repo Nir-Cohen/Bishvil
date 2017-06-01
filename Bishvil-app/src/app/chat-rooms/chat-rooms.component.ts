@@ -39,7 +39,7 @@ arruserHTML=[];
       nameList = [];
   hideDiv : any;
   IDArray =[];
-
+email2;
   getMyMail(){  
     this.mail=true;
       this.myName =firebase.auth().currentUser.email;
@@ -84,7 +84,13 @@ arruserHTML=[];
   }
 
     select(user,st: HTMLInputElement){
-
+   for(var i = 0 ; i< this.users.length; i++)
+   {
+      if(this.users[i].name==this.user2)
+      {
+        this.email2=this.users[i].email;
+      }
+   }
    if(this.arruser[0]!=firebase.auth().currentUser.email )
    {
      this.arruser.push(firebase.auth().currentUser.email);
@@ -111,9 +117,16 @@ arruserHTML=[];
           st.value = null;
            return;
         }
+
+          else if(this.email2==this.arruser[i])
+       {
+        alert("You already in this group");
+          st.value = null;
+           return;
+        }
     }
 
-    this.arruser.push(this.user2);
+    this.arruser.push(this.email2);
     for(var i = 1 ; i<this.arruser.length;i++)
     {
       this.arruserHTML[i-1]=this.arruser[i];
