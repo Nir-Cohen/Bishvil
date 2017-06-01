@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PComponent } from './p.component';
+import { ForgetPassComponent } from './forget-pass.component';
 
-describe('PComponent', () => {
-  let component: PComponent;
-  let fixture: ComponentFixture<PComponent>;
+describe('ForgetPassComponent', () => {
+  let component: ForgetPassComponent;
+  let fixture: ComponentFixture<ForgetPassComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PComponent ]
+      declarations: [ ForgetPassComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PComponent);
+    fixture = TestBed.createComponent(ForgetPassComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
