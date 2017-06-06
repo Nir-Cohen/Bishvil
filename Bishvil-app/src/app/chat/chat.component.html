@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
   <a [routerLink]="['/chat-rooms']"> <div class="designButton"><button class="btn btn-success">Chat</button></div></a>
       <label> Group Name:  {{nameof}} </label> 
@@ -5,6 +6,25 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
+=======
+<div class="container all">
+
+  <!--Header-->
+  <div class="row top">
+    <div class="col-xs-8 chgroup">
+      Group:  {{nameof}}
+    </div>
+
+    <div class="col-xs-4">
+      <a class="chback" [routerLink]="['/chat-rooms']"><button class="btn btn-success chback">Chat Menu</button></a>
+    </div>
+  </div>
+      
+
+  <!--Chat window-->
+  <div class="row col-md-8 col-md-offset-2">
+    
+>>>>>>> c574be965efb85dbc52cbd7e04b48d2e22271ee3
 
       <div #scrollMe class="bs-example" id="messages">
         <div *ngFor="let message of messages | async">

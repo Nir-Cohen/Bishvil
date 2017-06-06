@@ -8,7 +8,11 @@
   border-width: 1px 0;
   background-color: #E1E2E3;
   box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+<<<<<<< HEAD
   height: 60vh;
+=======
+  height: 80vh;
+>>>>>>> c574be965efb85dbc52cbd7e04b48d2e22271ee3
   overflow-y: scroll;
 }
 #messages {
@@ -105,4 +109,29 @@ p {
 }
 .designButton{
 float: right;
+<<<<<<< HEAD
  }
+=======
+ }
+
+ .chgroup
+ {
+  font-family: calibri;
+  font-size: 18px;
+  font-style: bold;
+  color: #3B5060;
+
+ }
+
+ .chback
+ {
+   width: 100%;
+ }
+
+ .buttom{
+   padding: 3px;
+ }
+
+
+
+>>>>>>> c574be965efb85dbc52cbd7e04b48d2e22271ee3
