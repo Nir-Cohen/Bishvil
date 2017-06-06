@@ -108,7 +108,6 @@ addItem(item){
       photoURL : item.photoURL,
       phone: item.phone,
       email: item.email,
-      time: item.time,
   });
 
 }

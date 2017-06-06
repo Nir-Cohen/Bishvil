@@ -64,7 +64,7 @@ const routes: Routes = [
   { path: 'host-profiles', component:HostProfilesComponent},
   { path: 'chat-profiles', component:ChatProfilesComponent},
   { path: 'forget-pass', component:ForgetPassComponent},
-    { path: 'night-profiles', component:NightProfilesComponent}
+  { path: 'night-profiles', component:NightProfilesComponent}
 ];
 
 @NgModule({
