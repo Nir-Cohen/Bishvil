@@ -21,7 +21,7 @@ export class ItemFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.item = { location: "", description: "", type: "" , author : "" ,photoURL :"", phone:"", email:""};
+    this.item = { location: "", description: "", type: "" , author : "" ,photoURL :"", phone:"", email:"", time: "",};
     firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
         this.item.author = snapshot.val().name;        
     });
@@ -89,4 +89,5 @@ export class item{
     photoURL : String;
     phone: String;
     email: String;
+    time : String;
 }
