@@ -49,9 +49,10 @@
                     <input type="text" class="form-control" name="lastName" [(ngModel)]="host.numberHost"/>
                 </div>
             
-                <label class="col-xs-2 control-label">Spoken Language: </label>
+                <label for="hostlang" class="col-xs-2 control-label">Spoken Language: </label>
                 <div class="col-xs-5">
-                  <select class="form-control">
+                  <select class="form-control" id ="hostlang" name = "lang" [(ngModel)]="host.lang">
+                    <option></option>
                     <option>Hebrew</option>
                     <option>English</option>
                     <option>French</option>

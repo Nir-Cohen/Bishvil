@@ -43,8 +43,11 @@ selectedValue = null;
 
   addHosting(){
       if(confirm("Save changes?")){
-        if(this.host.firstName!= "" && this.host.lastName != "")
+        if(this.host.firstName!= "")
            this.afService.addHosting(this.host);
+        else
+          alert("Please fill required fields")
+
       }
   
   }
@@ -97,7 +100,7 @@ export class host{
   lastName: string;
   phoneOne:any;
   phoneTwo:any;
-  lang:any;
+  lang: string;
   numberHost:any;
   photoURL:any;
 }
