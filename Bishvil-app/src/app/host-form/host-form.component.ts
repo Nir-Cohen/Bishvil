@@ -43,7 +43,7 @@ selectedValue = null;
   }
 
   addHosting(){
-      if(confirm("Save changes?")){
+      if(confirm("Add Event?")){
         if(this.host.firstName!= "")
            this.afService.addHosting(this.host);
 
