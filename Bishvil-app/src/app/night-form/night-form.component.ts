@@ -20,7 +20,7 @@ export class NightFormComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.event = { location: "", time: "", note: "", type: "", photoURL: "" };
+    this.event = { location: "", time: "", note: "", type: "", photoURL: "",numberOfJoin:"" };
   }
 
   addEvent(){
@@ -70,5 +70,6 @@ export class event{
   note: string;
   type: string;
   photoURL:string;
+   numberOfJoin:string; 
 }
 

@@ -13,6 +13,7 @@ export class AF {
   public event: FirebaseListObservable<any>;
   public item: FirebaseListObservable<any>;
   public hosting: FirebaseListObservable<any>;
+    public events: FirebaseListObservable<any>;
   public news: FirebaseListObservable<any>;
   public group: FirebaseListObservable<any>;
   public nameOfGroup="~general Chet~";
@@ -47,6 +48,7 @@ export class AF {
     this.event = this.af.database.list("events");
     this.item = this.af.database.list("items");
     this.hosting = this.af.database.list("hosting");
+    this.events = this.af.database.list("events");
     this.news = this.af.database.list("news");
 
     this.group = this.af.database.list("group");
@@ -61,9 +63,10 @@ addEvent(item){
       location: item.location,
       time: item.time,
       note: item.note,
-      userAreComing: [""],
+            userArr: [""] ,
       author:this.displayName,
       photoURL: item.photoURL,
+      numberOfJoin: item.numberOfJoin,
     });
 }
 
@@ -88,6 +91,11 @@ addHosting(hosting){
 removeHosting(hosting)
 {
   this.hosting.remove();
+  
+}
+removeEvent(events)//nights
+{
+  this.events.remove();
   
 }
 addItem(item){
