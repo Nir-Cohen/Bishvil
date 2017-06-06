@@ -14,7 +14,7 @@
          <h4 class="list-group-item-heading">{{host.firstName}} {{host.lastName}}</h4>
           
           <p class="list-group-item-text">
-          Date: {{host.time}} &nbsp;&nbsp;&nbsp;<br>
+          Date: {{ host.time | date:"dd/MM/yy HH:mm" }}  &nbsp;&nbsp;&nbsp;<br>
           Location: {{host.location}}<br>
           Number Of Bnot Shierut: {{host.numberHost}}<br>
           Phone: {{host.phoneOne}}<br>
