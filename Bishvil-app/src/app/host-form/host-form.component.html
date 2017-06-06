@@ -3,13 +3,13 @@
     <h1>Host in Shabat!</h1>
       <div class="row">
         <div class="col-md-8 col-md-offset-2 well ">
-          <form class="form-horizontal">
+          <form class="form-horizontal" (ngSubmit) ="addHosting()">
 
             <div class="form-group">
               <label class="col-xs-2 control-label">Location: </label>
               <div class="col-xs-10">
-                <input type="text" class="form-control" name="location" required [(ngModel)]="host.location"/>
-                <span class="help-block">For Example: Jabotinsky pub, shimon ben shetach, Jerusalem</span>
+                <input type="text" class="form-control" name="location" #location = "ngModel" required [(ngModel)]="host.location"/>
+                <small [hidden]="location.valid" class="text-danger">  Location is required!! </small>
               </div>
             </div>
 
@@ -31,7 +31,8 @@
             <div class="form-group">
                 <label class="col-xs-2 control-label">Phone #1: </label>
                   <div class="col-xs-10">
-                    <input type="text" class="form-control" name="phoneOne" required [(ngModel)]="host.phoneOne"/>
+                    <input type="text" class="form-control" name="phoneOne" #phoneOne = "ngModel" required [(ngModel)]="host.phoneOne"/>
+                    <small [hidden]="phoneOne.valid" class="text-danger">  Required!! </small>
                 </div>
             </div>
 
@@ -49,9 +50,10 @@
                     <input type="text" class="form-control" name="lastName" [(ngModel)]="host.numberHost"/>
                 </div>
             
-                <label class="col-xs-2 control-label">Spoken Language: </label>
+                <label for="hostlang" class="col-xs-2 control-label">Spoken Language: </label>
                 <div class="col-xs-5">
-                  <select class="form-control">
+                  <select class="form-control" id ="hostlang" name = "lang" [(ngModel)]="host.lang">
+                    <option></option>
                     <option>Hebrew</option>
                     <option>English</option>
                     <option>French</option>
@@ -64,7 +66,8 @@
             <div class="form-group">
                 <label class="col-xs-2 control-label">When: </label>
                 <div class="col-xs-10">
-                  <input type="datetime-local" class="form-control" name="time" [(ngModel)]="host.time"/>
+                  <input type="datetime-local" class="form-control" name="time" #time = "ngModel" [(ngModel)]="host.time" required/>
+                  <small [hidden]="time.valid" class="text-danger"> Date is Required!! </small>
                 </div>
             </div>
 
@@ -82,7 +85,7 @@
               </div>
 
               <div class="text-left col-xs-4">
-                  <a [routerLink]="['/host']"><input type="button" class="btn btn-primary" value="Add Host" (click)="addHosting()" /></a>
+                  <input type="submit" class="btn btn-primary" value="Add Host"  />
               </div>
 
             </div>

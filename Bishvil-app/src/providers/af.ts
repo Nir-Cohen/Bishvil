@@ -82,6 +82,7 @@ addHosting(hosting){
       phoneOne:hosting.phoneOne,
       phoneTwo:hosting.phoneTwo,
       numberHost:hosting.numberHost,
+      lang:hosting.lang,
       userArr: [""] ,
       photoURL: hosting.photoURL,
     });

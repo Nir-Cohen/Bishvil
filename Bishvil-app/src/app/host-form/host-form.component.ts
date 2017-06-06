@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { DatePickerOptions, DateModel } from 'ng2-datepicker';
+import {Router} from "@angular/router";
 import {AF} from 'providers/af'
 import * as firebase from 'firebase';
 @Component({
@@ -21,7 +22,7 @@ userType:Array<Object>  = [
        {id: 5, name: "Arabic"},
      ];
 selectedValue = null;
-  constructor(public afService: AF) { 
+  constructor(public afService: AF, private router: Router) { 
      this.storageRef = firebase.storage().ref();
    }
 
@@ -43,9 +44,11 @@ selectedValue = null;
 
   addHosting(){
       if(confirm("Save changes?")){
-        if(this.host.firstName!= "" && this.host.lastName != "")
+        if(this.host.firstName!= "")
            this.afService.addHosting(this.host);
+
       }
+      this.router.navigate([""]);
   
   }
 
@@ -97,7 +100,7 @@ export class host{
   lastName: string;
   phoneOne:any;
   phoneTwo:any;
-  lang:any;
+  lang: string;
   numberHost:any;
   photoURL:any;
 }
