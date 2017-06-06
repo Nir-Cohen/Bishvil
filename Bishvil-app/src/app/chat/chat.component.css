@@ -8,7 +8,7 @@
   border-width: 1px 0;
   background-color: #E1E2E3;
   box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
-  height: 60vh;
+  height: 80vh;
 
 
   overflow-y: scroll;
@@ -93,22 +93,6 @@ p {
   right: -9px;
 }
 
-.bs-example+.highlight, .bs-example+.zero-clipboard+.highlight {
-  margin: 0px -15px 15px;
-  border-width: 0 0 1px;
-  border-radius: 0;
-}
-.highlight {
-  padding: 9px 14px;
-  margin-bottom: 14px;
-  background-color: #f7f7f9;
-  border: 1px solid #e1e1e8;
-  border-radius: 4px;
-}
-.designButton{
-float: right;
-}
-
 
  .chgroup
  {
@@ -116,15 +100,10 @@ float: right;
   font-size: 18px;
   font-style: bold;
   color: #3B5060;
-
  }
 
- .chback
- {
-   width: 100%;
- }
-
- .buttom{
-   padding: 3px;
- }
+ .chback{ width: 100%; }
+ .buttom{ padding: 3px; }
+ .txtbtm { width: 80vw; margin: 0px; }
+ .btnbtm { width: 20vw; margin: 0px; }
 

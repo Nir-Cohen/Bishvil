@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-<div class="container">
-  <a [routerLink]="['/chat-rooms']"> <div class="designButton"><button class="btn btn-success">Chat</button></div></a>
-      <label> Group Name:  {{nameof}} </label> 
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-=======
+
+
 <div class="container all">
 
   <!--Header-->
@@ -23,28 +16,26 @@
 
   <!--Chat window-->
   <div class="row col-md-8 col-md-offset-2">
-    
->>>>>>> c574be965efb85dbc52cbd7e04b48d2e22271ee3
 
-      <div #scrollMe class="bs-example" id="messages">
-        <div *ngFor="let message of messages | async">
+    <div #scrollMe class="bs-example" id="messages">
+      <div *ngFor="let message of messages | async">
          <div *ngIf = "nameof==message.nameOfGroup">
            <div class="bubble" [class.you]="isYou(message.email)" [class.me]="isMe(message.email)">
-            <p>{{ message.message }}</p>
-            <div class="author">
+              <p>{{ message.message }}</p>
+              <div class="author">
               {{ message.displayName }} dd  {{ message.timestamp | date:"MM/dd/yy HH:mm" }}
             </div>
           </div>
         </div>
-  </div>
-
       </div>
 
-      <figure class="highlight row">
-        <div class="col-xs-10"><input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()"/></div>
-        <div class="col-xs-2"><button class="btn btn-primary" (click)="sendMessage()">SEND</button></div>
-      </figure>
-      
     </div>
+
+    <div class="row buttom">
+        <div class="col-xs-9"><input type="textarea" class="message-text btnobj" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()"/></div>
+        <div class="col-xs-2"><button class="btn btn-primary btnobj" (click)="sendMessage()">SEND</button></div>
+    </div>
+      
   </div>
 </div>
+
