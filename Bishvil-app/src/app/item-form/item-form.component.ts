@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AF} from 'providers/af';
 import {FirebaseListObservable} from "angularfire2";
 import * as firebase from 'firebase';
-
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-item-form',
@@ -16,12 +16,12 @@ export class ItemFormComponent implements OnInit {
     targetRef:any;
     storageRef:any;
 
-  constructor(public afService : AF) { 
+  constructor(public afService : AF, private router: Router) { 
       this.storageRef = firebase.storage().ref();
   }
 
   ngOnInit() {
-    this.item = { location: "", description: "", type: "" , author : "" ,photoURL :"", phone:"", email:"", time: "",};
+    this.item = { location: "", description: "", type: "" , author : "" ,photoURL :"", phone:"", email:"",};
     firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
         this.item.author = snapshot.val().name;        
     });
@@ -30,21 +30,17 @@ export class ItemFormComponent implements OnInit {
   //add item to database
   addItem(){
     console.log(this.item);
-    if(this.item.author=="" ||this.item.description=="" ||this.item.email=="" ||this.item.location=="" ||this.item.type=="")
-    {
-      alert("the fields its requried");
-      return;
-    }
     
-for(var i = 0 ; i<this.item.phone.length; i++ )
-{
-  if(this.item.phone[i]<"0"||this.item.phone[i]>"9")
-  {
-      alert("phone need to be numbers");
-      return;
-  }
-}
+    for(var i = 0 ; i<this.item.phone.length; i++ )
+    {
+      if(this.item.phone[i]<"0"||this.item.phone[i]>"9")
+      {
+          alert("Phone can contains only numbers");
+          return;
+      }
+    }
     this.afService.addItem(this.item);
+    this.router.navigate([""]);
   }
 
   //setup path to upload
@@ -89,5 +85,4 @@ export class item{
     photoURL : String;
     phone: String;
     email: String;
-    time : String;
 }

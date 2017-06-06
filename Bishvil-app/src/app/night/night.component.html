@@ -12,7 +12,7 @@
          <h4 class="list-group-item-heading">{{event.author}}</h4>
           
           <p class="list-group-item-text">
-          Date: {{event.time}} &nbsp;&nbsp;&nbsp;<br>
+          Date: {{event.time | date:"dd/MM/yy HH:mm" }} &nbsp;&nbsp;&nbsp;<br>
           Location: {{event.location}}<br>
           Number Of Bnot Shierut: {{event.numberOfJoin}}<br>
           Notes: {{event.note}}<br>
@@ -34,14 +34,20 @@
             <div  class="col-xs-6">
               <a [routerLink]="['/night-profiles']"> <button class="btn btn-info addcmd" (click)="show(event.$key)">See Who Is In</button></a>
             </div>
-          <div class="list-group" *ngFor="let user of users | async"> 
+        <div class="list-group" *ngFor="let user of users | async">    
+          <div *ngIf = "user.status == 0 && event.author == user.name && afService.displayName == user.name">
+            <div class="col-xs-1">
+              <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(event.$key)"></p>
+          </div>
+            
           <div *ngIf = "user.status == 1 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())">
             <div class="col-xs-1">
               <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(event.$key)"></p>
             </div>
           </div>
-          </div>
         </div>
+       </div>
+     </div>
     
         </a>
      </div>
