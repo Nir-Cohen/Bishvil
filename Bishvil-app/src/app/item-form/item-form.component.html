@@ -27,14 +27,21 @@
                 <option>Badly</option>
               </select>
           </div>
+
+           <div class="form-group">
+                <label class="col-xs-2 control-label">When: </label>
+                <div class="col-xs-10">
+                  <input type="datetime-local" class="form-control" name="time" [(ngModel)]="item.time"/>
+                </div>
+            </div>
           <div class = "from-group">
             <label for = "itemDesc">Item Description</label>
-            <input type = "text" class = "form-control" id = "itemDesc" placeholder="Item Description" name = "description" [(ngModel)]= 'item.description'/>
+            <input type = "text" class = "form-control" id = "itemDesc" placeholder="Item Description" name = "description" [(ngModel)]= 'item.description' >
           </div>
           <br>
           <div class="form-group">
             <label for="location">Item Location</label>
-            <input type="text" class="form-control" id="location" name = "location" [(ngModel)]= 'item.location'/>
+            <input type="text" class="form-control" id="location" name = "location" [(ngModel)]= 'item.location' >
           </div>
           <br>
 
