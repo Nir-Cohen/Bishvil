@@ -50,9 +50,6 @@
           <div *ngFor="let new of news | async">
             {{new.message}} 
             <span class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(news.$key)"></span>
-
-            <span class="pull-right" >{{ news.timestamp | date:"dd/MM/yy HH:mm" }} </span>        
-
             <span class="pull-right" >{{ new.timestamp | date:"dd/MM/yy HH:mm" }} </span>
             
             <hr>
