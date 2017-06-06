@@ -161,7 +161,7 @@ emailVerfication()
       return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).update({
         name: this.displayName,
         email: this.email,
-        status:this.status2,
+        status:"1",
         photoURL : firebase.auth().currentUser.photoURL
         /*city : "",//removes itself every time
         dob : ""*/
