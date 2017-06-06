@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {AF} from 'providers/af';
 import {FirebaseListObservable,AngularFire} from "angularfire2";
 import * as firebase from 'firebase';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-night-form',
@@ -15,7 +16,7 @@ export class NightFormComponent implements OnInit {
   targetRef:any;
   storageRef:any;
 
-  constructor(public afService: AF,public af:AngularFire) { 
+  constructor(public afService: AF,public af:AngularFire, private router: Router) { 
     this.storageRef = firebase.storage().ref();
    }
 
@@ -25,6 +26,7 @@ export class NightFormComponent implements OnInit {
 
   addEvent(){
     this.afService.addEvent(this.event);
+    this.router.navigate([""]);
   }
 
  upload(event:any){

@@ -7,6 +7,8 @@ import * as firebase from 'firebase';
 export class AF {
   public messages: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
+    public status: string;
+    public status2: string;
   public displayName: string;
   public email: string;
   public user: FirebaseObjectObservable<any>;
@@ -108,7 +110,6 @@ addItem(item){
       photoURL : item.photoURL,
       phone: item.phone,
       email: item.email,
-      time: item.time,
   });
 
 }
@@ -149,14 +150,23 @@ emailVerfication()
    *
    */
   addUserInfo(){
+
+            firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+                this.status2 = snapshot.val().status;
+              })
+              .catch((error) => {
+                console.log("Cant access database");
+              });
+
       return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).update({
         name: this.displayName,
         email: this.email,
-        status:0,
+        status:"1",
         photoURL : firebase.auth().currentUser.photoURL
         /*city : "",//removes itself every time
         dob : ""*/
       });
+
 
   }
 
