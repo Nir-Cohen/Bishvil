@@ -1,12 +1,17 @@
 // lang-en.ts
 
-export const LANG_EN_NAME = 'en';
+export const LANG_HE_NAME = 'HE';
 
-export const LANG_EN_TRANS = {
+export const LANG_HE_TRANS = {
     'hello world': 'שלום עולם',
-    'date': 'תאריך',
+    'Date': 'תאריך',
     'name': 'שם',
     'from': 'שולח',
     'to': 'נמען',
+    'Location': 'מיקום',
+    'Notes': 'הערות',
+    'Phone': 'מספר טלפון',
+    'Number Of Bnot Shierut': 'מספר בנות שירות שמגיעות',
+    'Spoken Language': 'שפות שמדברים אצלנו',
 };
 

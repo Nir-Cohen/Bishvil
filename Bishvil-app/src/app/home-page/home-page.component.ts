@@ -6,7 +6,6 @@ import * as firebase from 'firebase';
 import {Injectable} from "@angular/core";
 import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
-//import { TranslateService } from 'app/translation/translation.service';
 import { TranslateService } from 'app/translation';
 
 @Component({
@@ -33,9 +32,10 @@ export class HomePageComponent implements OnInit {
   {
     this.supportedLanguages = [
         { display: 'English', value: 'en' },
+        { display: 'HE', value: 'HE' },
        
       ];
-      this.selectLang('es');
+      this.selectLang('en');
    }
 
  isCurrentLang(lang: string) {
@@ -44,6 +44,7 @@ export class HomePageComponent implements OnInit {
     
     selectLang(lang: string) {
       // set default;
+      console.log(lang);
       this._translate.use(lang);
       this.refreshText();
     }

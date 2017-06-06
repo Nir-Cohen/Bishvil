@@ -89,7 +89,7 @@
     <button *ngFor="let lang of supportedLanguages"
       (click)="selectLang(lang.value)"
       class="btn btn-default" [class.btn-primary]="isCurrentLang(lang.value)">
-      {{ lang.display }}
+      {{ lang.display }} 
     </button>
   </div>
   <div style="margin-top: 20px">

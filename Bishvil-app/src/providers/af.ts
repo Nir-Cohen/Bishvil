@@ -36,6 +36,7 @@ export class AF {
   public currUserURL : any;
   public currUserStatus : any;
 
+  public choosen_lan:string;
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
       (auth) => {

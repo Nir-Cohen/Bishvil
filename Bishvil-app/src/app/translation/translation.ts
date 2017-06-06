@@ -3,7 +3,8 @@
 import { OpaqueToken } from '@angular/core';
 
 // import translations
-import { LANG_EN_NAME, LANG_EN_TRANS } from 'app/translation/lang-he';
+import { LANG_EN_NAME, LANG_EN_TRANS } from 'app/translation/lang-en';
+import { LANG_HE_NAME, LANG_HE_TRANS } from 'app/translation/lang-he';
 
 // translation token
 export const TRANSLATIONS = new OpaqueToken('translations');
@@ -11,6 +12,7 @@ export const TRANSLATIONS = new OpaqueToken('translations');
 // all traslations
 const dictionary = {
 	[LANG_EN_NAME]: LANG_EN_TRANS,
+	[LANG_HE_NAME]: LANG_HE_TRANS,
 };
 
 // providers

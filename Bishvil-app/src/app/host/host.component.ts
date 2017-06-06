@@ -7,6 +7,7 @@ import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, Firebas
 import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
 import { DialogService } from "ng2-bootstrap-modal";
 import { ConfirmComponent } from "app/confirm/confirm.component";
+import { TranslateService } from 'app/translation'
 
 @Component({
   selector: 'app-host',
@@ -24,7 +25,15 @@ export class HostComponent implements OnInit {
   c=[];
   public hosting: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
-  constructor(private dialogService:DialogService,public afService: AF,public af: AngularFire) { 
+
+  public Date: string;
+  public Location: string;
+  public Notes: string;
+  public Phone: string;
+  public Num_Bnut_Sherot: string;
+  public Spooken: string;
+
+  constructor(private dialogService:DialogService,public afService: AF,public af: AngularFire,private _translate: TranslateService) { 
   this.hosting = this.afService.hosting;
   this.users = this.af.database.list("registeredUsers");
 
@@ -36,8 +45,30 @@ export class HostComponent implements OnInit {
 
 
 
-  ngOnInit() {
+  ngOnInit()
+   {
+     this.selectLang('EN');
   }
+
+ isCurrentLang(lang: string) {
+      return lang === this._translate.currentLang;
+    }
+    
+    selectLang(lang: string) {
+      // set default;
+      console.log(lang);
+      this._translate.use(lang);
+      this.refreshText();
+    }
+    
+    refreshText() {
+      this.Date = this._translate.instant('Date');
+      this.Location = this._translate.instant('Location');
+      this.Notes = this._translate.instant('Notes');
+      this.Phone = this._translate.instant('Phone');
+      this.Num_Bnut_Sherot = this._translate.instant('Number Of Bnot Shierut');
+      this.Spooken = this._translate.instant('Spoken Language');
+    }
 
 leave(key:string)
 {

@@ -1,4 +1,13 @@
 
+<div *ngIf = "afService.choosen_lan == 'HE'" class="col-xs-5">
+  {{ Date }}
+  {{ Location }}
+  {{ Notes }}
+
+</div>
+
+
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -12,12 +21,12 @@
          <h4 class="list-group-item-heading">{{host.firstName}} {{host.lastName}}</h4>
           
           <p class="list-group-item-text">
-          Date: {{ host.time | date:"dd/MM/yy HH:mm" }}  &nbsp;&nbsp;&nbsp;<br>
-          Location: {{host.location}}<br>
-          Number Of Bnot Shierut: {{host.numberHost}}<br>
-          Phone: {{host.phoneOne}}<br>
-          Spoken Language: {{host.lang}}<br>
-          Notes: {{host.note}}<br>
+          {{ Date }}: {{ host.time | date:"dd/MM/yy HH:mm" }}  &nbsp;&nbsp;&nbsp;<br>
+          {{ Location }} : {{host.location}}<br>
+          {{Num_Bnut_Sherot}}: {{host.numberHost}}<br>
+          {{Phone}}: {{host.phoneOne}}<br>
+          {{Spooken }}: {{host.lang}}<br>
+          {{ Notes }} : {{host.note}}<br>
           </p>
           <div class = "t" *ngIf="host.photoURL">
       
