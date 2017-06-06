@@ -29,6 +29,21 @@ export class ItemFormComponent implements OnInit {
 
   //add item to database
   addItem(){
+    console.log(this.item);
+    if(this.item.author=="" ||this.item.description=="" ||this.item.email=="" ||this.item.location=="" ||this.item.type=="")
+    {
+      alert("the fields its requried");
+      return;
+    }
+    
+for(var i = 0 ; i<this.item.phone.length; i++ )
+{
+  if(this.item.phone[i]<"0"||this.item.phone[i]>"9")
+  {
+      alert("phone need to be numbers");
+      return;
+  }
+}
     this.afService.addItem(this.item);
   }
 
