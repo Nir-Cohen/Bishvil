@@ -7,8 +7,8 @@ import * as firebase from 'firebase';
 export class AF {
   public messages: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
-    public status: string;
-    public status2: string;
+  public status: string;
+  public status2: string;
   public displayName: string;
   public email: string;
   public user: FirebaseObjectObservable<any>;

@@ -67,4 +67,11 @@ export class AppComponent {
   logout() {
     this.afService.logout();
   }
+
+  select(key: string)
+  {
+    console.log(key);
+  }
 }
+
+

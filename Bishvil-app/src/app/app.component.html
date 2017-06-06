@@ -28,6 +28,22 @@
               </ul>
           </div>
          </div>
+
+        <div class="col-xs-2">   
+          <div class="dropdown nav navbar-nav navbar-right" dropdown [dropdownToggle]="true">
+              <div class="btn btn-default navbar-btn" dropdown-open><i class="glyphicon glyphicon-globe"></i>
+             
+                  <span class="caret"></span></div>                  
+             <ul class="dropdown-menu">
+            <li><a (click)="select($value)">EN</a></li>
+            <li><a (click)="select($value)">FR</a></li>
+            <li><a (click)="select($value)">HE</a></li>
+        </ul>
+          </div>
+         </div>
+
+
+
         <div class="col-xs-2">
           <ul class="nav navbar-nav navbar-right border-left">
             <li><a (click)="logout()">Logout</a></li>
