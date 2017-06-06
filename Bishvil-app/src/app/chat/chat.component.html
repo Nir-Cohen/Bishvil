@@ -23,7 +23,7 @@
            <div class="bubble" [class.you]="isYou(message.email)" [class.me]="isMe(message.email)">
               <p>{{ message.message }}</p>
               <div class="author">
-              {{ message.displayName }} dd  {{ message.timestamp | date:"MM/dd/yy HH:mm" }}
+              {{ message.displayName }} {{ message.timestamp | date:"dd/MM/yy HH:mm" }} 
             </div>
           </div>
         </div>
