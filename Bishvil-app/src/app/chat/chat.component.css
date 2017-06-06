@@ -8,8 +8,10 @@
   border-width: 1px 0;
   background-color: #E1E2E3;
   box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
-  height: 60vh;
+  /*height: 80vh;*/
   overflow-y: scroll;
+
+
 }
 #messages {
   background-color: #2d384a !important;
@@ -106,3 +108,30 @@ p {
 .designButton{
 float: right;
  }
+
+ .chgroup
+ {
+  font-family: calibri;
+  font-size: 18px;
+  font-style: bold;
+  color: #3B5060;
+
+ }
+
+ .chback
+ {
+   width: 100%;
+ }
+
+
+.top {
+  height: 6vh;
+}
+.middle {
+  height: 82vh;
+}
+.buttom {
+  height: 8vh;
+  padding: 3px;
+}
+
