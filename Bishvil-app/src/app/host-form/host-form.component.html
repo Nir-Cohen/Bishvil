@@ -13,85 +13,78 @@
               </div>
             </div>
 
-           <div class="form-group">
-              <label class="col-xs-3 control-label">First Name: </label>
-                <div class="col-xs-3">
-                        <input type = "text" class="col-xs-10 form-control" 
-                            placeholder ="e.g. Adam" name ="firstName" [(ngModel)] = "host.firstName" 
-                            #firstName = "ngModel" required>
-                              <small [hidden]="firstName.valid" class="text-danger">
-                                    Name is required!!
-                              </small>
-                    </div>
-            
-              <label class="col-xs-3 control-label">Last Name: </label>
-                <div class="col-xs-3">
+            <div class="form-group">
+              <label class="col-xs-2 control-label">First Name: </label>
+              <div class="col-xs-10">
+                  <input type = "text" class="col-xs-10 form-control" placeholder ="e.g. Adam" name ="firstName" [(ngModel)] = "host.firstName" #firstName = "ngModel" required>
+                  <small [hidden]="firstName.valid" class="text-danger">  Name is required!! </small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-xs-2 control-label">Last Name: </label>
+                <div class="col-xs-10">
                   <input type="text" class="form-control" name="lastName"  [(ngModel)]="host.lastName"/>
               </div>
             </div>
 
-           <div class="form-group">
-              <label class="col-xs-3 control-label">Phone number#1 </label>
-                <div class="col-xs-3">
-                  <input type="text" class="form-control" name="phoneOne" required [(ngModel)]="host.phoneOne"/>
-              </div>
-            
-              <label class="col-xs-3 control-label">Phone number#2: </label>
-                <div class="col-xs-3">
-                  <input type="text" class="form-control" name="phoneTwo" [(ngModel)]="host.phoneTwo"/>
-              </div>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">Phone #1: </label>
+                  <div class="col-xs-10">
+                    <input type="text" class="form-control" name="phoneOne" required [(ngModel)]="host.phoneOne"/>
+                </div>
             </div>
 
-
-
-
-
-          <div class="form-group">
-              <label class="col-xs-3 control-label">Host people</label>
-                <div class="col-xs-3">
-                  <input type="text" class="form-control" name="lastName" [(ngModel)]="host.numberHost"/>
+            <div class="form-group"> 
+                <label class="col-xs-2 control-label">Phone #2: </label>
+                  <div class="col-xs-10">
+                    <input type="text" class="form-control" name="phoneTwo" [(ngModel)]="host.phoneTwo"/>
+                </div>
               </div>
-           
 
 
-           
-              <label class="col-xs-3 control-label">Spooken Lang: </label>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">Host people:</label>
                 <div class="col-xs-3">
-                  <select class="form-control" >
-                   <option>Hebrew</option>
-                   <option>English</option>
-                   <option>French</option>
-                   <option>Italy</option>
-                   <option>London UK</option>
+                    <input type="text" class="form-control" name="lastName" [(ngModel)]="host.numberHost"/>
+                </div>
+            
+                <label class="col-xs-2 control-label">Spoken Language: </label>
+                <div class="col-xs-5">
+                  <select class="form-control">
+                    <option>Hebrew</option>
+                    <option>English</option>
+                    <option>French</option>
+                    <option>Italy</option>
+                    <option>London UK</option>
                   </select>
-
-
-              </div>
+                </div>
             </div>
 
             <div class="form-group">
-              <label class="col-xs-2 control-label">When?: </label>
+                <label class="col-xs-2 control-label">When: </label>
                 <div class="col-xs-10">
                   <input type="datetime-local" class="form-control" name="time" [(ngModel)]="host.time"/>
-              </div>
+                </div>
             </div>
-
 
 
             <div class="form-group">
-              <label class="col-xs-2 control-label">Notes: </label>
+                <label class="col-xs-2 control-label">Notes: </label>
                 <div class="col-xs-10">
-                  <input type="text" class="form-control" name="note" [(ngModel)]="host.note"/>
-              </div>
+                    <input type="text" class="form-control" name="note" [(ngModel)]="host.note"/>
+                </div>
             </div>
 
-             <label class ="control-label custom-file-upload">Browse Photo
-              <input type="file" accept="image/*" (change) ="upload($event)" size="50"/>
-            </label>
+            <div class="row">
+              <div class="col-xs-8">
+                <label class ="custom-file-upload"> <input type="file" class="file-button" accept="image/*" (change) ="upload($event)" size="50"/> </label>
+              </div>
 
-            <div class="text-left">
-              <a [routerLink]="['/host']"><input type="button" class="btn btn-primary" value="Add Host" (click)="addHosting()" /></a>
-              
+              <div class="text-left col-xs-4">
+                  <a [routerLink]="['/host']"><input type="button" class="btn btn-primary" value="Add Host" (click)="addHosting()" /></a>
+              </div>
+
             </div>
 
           </form>

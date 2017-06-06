@@ -36,8 +36,8 @@ selectedValue = null;
       phoneOne:"",
       phoneTwo:"",
       lang:"",
-     numberHost:"",
-     photoURL:"",
+      numberHost:"",
+      photoURL:"",
     };
   }
 
