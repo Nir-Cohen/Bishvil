@@ -21,6 +21,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.group = this.afService.group;
     this.registeredUsers = this.afService.registeredUsers;
     this.nameof=this.afService.nameOfGroup;
+    this.afService.nameOfGroup="~general Chat~";
     console.log(this.nameof);
 
   }

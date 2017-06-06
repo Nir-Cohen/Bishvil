@@ -13,10 +13,10 @@ export class AF {
   public event: FirebaseListObservable<any>;
   public item: FirebaseListObservable<any>;
   public hosting: FirebaseListObservable<any>;
-    public events: FirebaseListObservable<any>;
+  public events: FirebaseListObservable<any>;
   public news: FirebaseListObservable<any>;
   public group: FirebaseListObservable<any>;
-  public nameOfGroup="~general Chet~";
+  public nameOfGroup="~general Chat~";
   public arrusers = [];
   public groups: FirebaseListObservable<any>;
   public registeredUsers: FirebaseListObservable<any>;
