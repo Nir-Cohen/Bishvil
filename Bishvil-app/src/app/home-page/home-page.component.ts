@@ -6,7 +6,8 @@ import * as firebase from 'firebase';
 import {Injectable} from "@angular/core";
 import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
-
+//import { TranslateService } from 'app/translation/translation.service';
+import { TranslateService } from 'app/translation';
 
 @Component({
   selector: 'app-home-page',
@@ -15,16 +16,42 @@ import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
 })
 export class HomePageComponent implements OnInit {
 
+  public translatedText: string;
+  public translatedText2: string;
+  public supportedLanguages: any[];
+
+
   public news: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
 
-  constructor(public afService:AF,private dialogService:DialogService, public af: AngularFire) { 
+  constructor(public afService:AF,private dialogService:DialogService, public af: AngularFire,private _translate: TranslateService) { 
     this.news = this.afService.news;
     this.users = this.af.database.list("registeredUsers");
   }
   
-  ngOnInit() { }
+  ngOnInit() 
+  {
+    this.supportedLanguages = [
+        { display: 'English', value: 'en' },
+       
+      ];
+      this.selectLang('es');
+   }
 
+ isCurrentLang(lang: string) {
+      return lang === this._translate.currentLang;
+    }
+    
+    selectLang(lang: string) {
+      // set default;
+      this._translate.use(lang);
+      this.refreshText();
+    }
+    
+    refreshText() {
+      this.translatedText = this._translate.instant('hello world');
+      this.translatedText2 = this._translate.instant('date');
+    }
 
   confirmResult:boolean = null;
   promptMessage:string = '';
