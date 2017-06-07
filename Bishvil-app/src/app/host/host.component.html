@@ -1,10 +1,8 @@
 
-<div *ngIf = "afService.choosen_lan == 'HE'" class="col-xs-5">
-<button (click)="selectLang(afService.choosen_lan)">HE</button>
+<div *ngIf = "afService.choosen_lan == 'HE' && selectLang(afService.choosen_lan)" class="col-xs-5">
 </div>
 
-<div *ngIf = "afService.choosen_lan == 'EN'" class="col-xs-5">
-<button (click)="selectLang(afService.choosen_lan)">EN</button>
+<div *ngIf = "afService.choosen_lan == 'EN' && selectLang(afService.choosen_lan)" class="col-xs-5">
 </div>
 
 
