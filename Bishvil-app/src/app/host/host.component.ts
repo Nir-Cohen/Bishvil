@@ -57,7 +57,7 @@ export class HostComponent implements OnInit {
     selectLang(lang: string) {
       // set default;
       console.log(lang);
-      this._translate.use(lang);
+      this._translate.use(this.afService.choosen_lan);
       this.refreshText();
     }
     

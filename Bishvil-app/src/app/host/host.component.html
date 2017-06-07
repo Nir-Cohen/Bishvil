@@ -1,9 +1,10 @@
 
 <div *ngIf = "afService.choosen_lan == 'HE'" class="col-xs-5">
-  {{ Date }}
-  {{ Location }}
-  {{ Notes }}
+<button (click)="selectLang(afService.choosen_lan)">HE</button>
+</div>
 
+<div *ngIf = "afService.choosen_lan == 'EN'" class="col-xs-5">
+<button (click)="selectLang(afService.choosen_lan)">EN</button>
 </div>
 
 
