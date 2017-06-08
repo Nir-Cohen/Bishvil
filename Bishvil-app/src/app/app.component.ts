@@ -23,11 +23,7 @@ export class AppComponent {
           this.isLoggedIn = false;
           this.router.navigate(['login']);
         }
-        //email not verified yet
-        else if(!firebase.auth().currentUser.emailVerified){
-            this.isLoggedIn = false;
-            this.router.navigate(['login']);
-        }
+        
         else {
           console.log("Successfully Logged in.");
             //set current user properties
@@ -38,28 +34,38 @@ export class AppComponent {
                 this.afService.currUserDOB = snapshot.val().dob;
                 this.afService.currUserURL =firebase.auth().currentUser.photoURL;
                 this.afService.currUserStatus = snapshot.val().status;
+
+                
+                if(this.afService.currUserStatus == undefined){//user hasnt been verified yet
+                  alert("user status undefined");
+                  this.isLoggedIn = false;
+                  //this.afService.logout();
+                  this.router.navigate(['/wait-for-confirm']);
+                  //this.afService.logout();
+                  return;
+                }
               })
-              .catch((error) => {
-                console.log("Cant access database");
-              });
+            .catch((error) => {
+              console.log("Cant access database");
+            });
           // Set the Display Name and Email so we can attribute messages to them
-          if(auth.google) {            
-            this.afService.displayName = auth.google.displayName;
-            this.afService.email = auth.google.email;
+            if(auth.google) {            
+              this.afService.displayName = auth.google.displayName;
+              this.afService.email = auth.google.email;
 
 
 
 
 
-            //this.afService.status = auth.auth.status;
+              //this.afService.status = auth.auth.status;
+            }
+            else {
+              this.afService.displayName = firebase.auth().currentUser.displayName;         
+              this.afService.email = auth.auth.email;
+            }
+            this.isLoggedIn = true;
+            this.router.navigate(['']);
           }
-          else {
-            this.afService.displayName = firebase.auth().currentUser.displayName;         
-            this.afService.email = auth.auth.email;
-          }
-          this.isLoggedIn = true;
-          this.router.navigate(['']);
-        }
       }
     );
   }

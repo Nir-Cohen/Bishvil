@@ -152,17 +152,19 @@ emailVerfication()
    */
   addUserInfo(){
 
-            firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
-                this.status2 = snapshot.val().status;
-              })
-              .catch((error) => {
-                console.log("Cant access database");
-              });
+      firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+          this.status2 = snapshot.val().status;
+          // if(this.status2 == undefined)
+            
+        })
+        .catch((error) => {
+          console.log("Cant access database!!!");
+        });
 
       return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).update({
         name: this.displayName,
         email: this.email,
-        status:"1",
+        //status:"1",/////////////
         photoURL : firebase.auth().currentUser.photoURL
         /*city : "",//removes itself every time
         dob : ""*/
@@ -213,7 +215,7 @@ emailVerfication()
     return this.af.database.object('registeredUsers/' + uid).update({
       name: name,
       email: email,
-      status:0,
+      //status:0,
       photoURL : "https://www.drupal.org/files/profile_default.jpg",
       
     });

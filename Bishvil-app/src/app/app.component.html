@@ -25,6 +25,7 @@
                 <li>Signed in as<br><a [routerLink] = "['/profile']"><strong>{{afService.displayName }}</strong></a></li><hr>
                   <li><a [routerLink] = "['/messages']"><a class="glyphicon glyphicon-envelope"></a> Messages</a></li>
                   <li><a><a class = "glyphicon glyphicon-earphone"></a> Contact Us</a></li>
+                  <div *ngIf = "afService.currUserStatus == 1"><li><a [routerLink] = "['/user-verify']"><a class = "glyphicon glyphicon-earphone" ></a> Verify Users</a></li></div>
               </ul>
           </div>
          </div>
