@@ -47,7 +47,8 @@ userType:Array<Object>  = [
     this.afService.registerUser(email, password).then((user) => {
       this.afService.saveUserInfoFromForm(user.uid, name, email,this.status).then(() => {
           //send Email Verification and return to login page
-          firebase.auth().currentUser.sendEmailVerification();
+          
+          //firebase.auth().currentUser.sendEmailVerification();
           firebase.auth().currentUser.updateProfile({displayName : name, photoURL : "https://www.drupal.org/files/profile_default.jpg"}).then(function(){console.log("updated!!");},function(error){});
           this.router.navigate(['login']);
       })
