@@ -34,7 +34,7 @@ export class VerifyUserComponent implements OnInit {
 
   ngOnInit() {
     this.waitingUsers = this.getUserList();
-    console.log(this.waitingUsers.length);
+    
   }
 
 }

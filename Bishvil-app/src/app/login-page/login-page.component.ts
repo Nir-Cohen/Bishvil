@@ -18,9 +18,9 @@ export class LoginPageComponent {
     
     this.afService.loginWithGoogle().then((data) => {
       // Send them to the homepage if they are logged in
-      console.log(firebase.auth().currentUser.emailVerified);
       this.afService.addUserInfo();
-      this.router.navigate(['']);
+      /*if(this.afService.currUserStatus != undefined)
+        this.router.navigate(['']);*/
     })
   }
 
