@@ -3,6 +3,9 @@ import {AF} from 'providers/af';
 import {FirebaseListObservable} from "angularfire2";
 import * as firebase from 'firebase';
 import {Router} from "@angular/router";
+import { TranslateService } from 'app/translation'
+
+
 
 @Component({
   selector: 'app-item-form',
@@ -16,7 +19,25 @@ export class ItemFormComponent implements OnInit {
     targetRef:any;
     storageRef:any;
 
-  constructor(public afService : AF, private router: Router) { 
+  public NewItem: string;
+  public Typeofitem: string;
+  public ItemCondition: string;
+  public New: string;
+  public AlmostNew: string;
+  public FineUsed: string;
+  public Badly: string;
+  public ItemDescription: string;
+  public ItemLocation: string;
+  public ContactInformation: string;
+  public BrowsePhoto: string;
+  public ResetForm: string;
+  public Phone: string;
+  public Email: string;
+  public Add: string;
+
+
+
+  constructor(public afService : AF, private router: Router,private _translate: TranslateService) { 
       this.storageRef = firebase.storage().ref();
   }
 
@@ -25,7 +46,45 @@ export class ItemFormComponent implements OnInit {
     firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
         this.item.author = snapshot.val().name;        
     });
+    this.selectLang('EN');
   }
+
+isCurrentLang(lang: string)
+  {
+      return lang === this._translate.currentLang;
+  }
+    
+    selectLang(lang: string) 
+    {
+      // set default;
+      console.log(lang);
+      this._translate.use(this.afService.choosen_lan);
+      this.refreshText();
+    }
+    
+    refreshText() 
+    {
+      this.NewItem = this._translate.instant('New Item');
+      this.Typeofitem = this._translate.instant('Type of item');
+      this.ItemCondition = this._translate.instant('Item Condition');
+      this.New = this._translate.instant('New');
+      this.AlmostNew = this._translate.instant('Almost New');
+      this.FineUsed = this._translate.instant('Fine Used');
+      this.Badly = this._translate.instant('Badly');
+      this.ItemDescription = this._translate.instant('Item Description');
+      this.ItemLocation = this._translate.instant('Item Location');
+      this.ContactInformation = this._translate.instant('Contact Information');
+      this.BrowsePhoto = this._translate.instant('Browse Photo');
+      this.ResetForm = this._translate.instant('Reset Form');
+      this.Phone = this._translate.instant('Phone');
+      this.Email = this._translate.instant('Email');
+      this.Add = this._translate.instant('Add item')
+      
+    }
+
+
+
+
 
   //add item to database
   addItem(){

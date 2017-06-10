@@ -1,8 +1,13 @@
+<div *ngIf = "afService.choosen_lan == 'HE' && selectLang(afService.choosen_lan)" class="col-xs-5">
+</div>
+
+<div *ngIf = "afService.choosen_lan == 'EN' && selectLang(afService.choosen_lan)" class="col-xs-5">
+</div>
 
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <a [routerLink]="['/night-form']"><button class="btn btn-success addcmd">Add Night</button></a>
+      <a [routerLink]="['/night-form']"><button class="btn btn-success addcmd">{{AddMeet}}</button></a>
       </div>
   </div>
 
@@ -12,10 +17,10 @@
          <h4 class="list-group-item-heading">{{event.author}}</h4>
           
           <p class="list-group-item-text">
-          Date: {{event.time | date:"dd/MM/yy HH:mm" }} &nbsp;&nbsp;&nbsp;<br>
-          Location: {{event.location}}<br>
-          Number Of Bnot Shierut: {{event.numberOfJoin}}<br>
-          Notes: {{event.note}}<br>
+          {{Date}}: {{event.time | date:"dd/MM/yy HH:mm" }} &nbsp;&nbsp;&nbsp;<br>
+          {{Location}}: {{event.location}}<br>
+          {{NumOfGirls}}: {{event.numberOfJoin}}<br>
+          {{Notes}}: {{event.note}}<br>
           </p>
           <div class = "t" *ngIf="event.photoURL">
       
@@ -26,13 +31,13 @@
           <div class="row">
 
             <div *ngIf = "checkIfIn(event.$key) == true" class="col-xs-5"> 
-              <button class="btn btn-danger addcmd" (click)="leave(event.$key)">Leave</button>
+              <button class="btn btn-danger addcmd" (click)="leave(event.$key)">{{Leave}}</button>
             </div>
             <div *ngIf = "checkIfIn(event.$key) == false" class="col-xs-5"> 
-              <button class="btn btn-success addcmd" (click)="showConfirm(event.$key)">Join</button>
+              <button class="btn btn-success addcmd" (click)="showConfirm(event.$key)">{{Join}}</button>
             </div>
             <div  class="col-xs-6">
-              <a [routerLink]="['/night-profiles']"> <button class="btn btn-info addcmd" (click)="show(event.$key)">See Who Is In</button></a>
+              <a [routerLink]="['/night-profiles']"> <button class="btn btn-info addcmd" (click)="show(event.$key)">{{WhoComes}}</button></a>
             </div>
         <div class="list-group" *ngFor="let user of users | async">    
           <div *ngIf = "user.status == 0 && event.author == user.name && afService.displayName == user.name">

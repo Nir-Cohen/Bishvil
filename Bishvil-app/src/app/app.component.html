@@ -25,9 +25,26 @@
                 <li>Signed in as<br><a [routerLink] = "['/profile']"><strong>{{afService.displayName }}</strong></a></li><hr>
                   <li><a [routerLink] = "['/messages']"><a class="glyphicon glyphicon-envelope"></a> Messages</a></li>
                   <li><a><a class = "glyphicon glyphicon-earphone"></a> Contact Us</a></li>
+                  <li *ngIf = "afService.currUserStatus == 1"><a [routerLink] = "['/user-verify']"><a class = "glyphicon glyphicon-ok" ></a> Verify Users</a></li>
               </ul>
           </div>
          </div>
+
+        <div class="col-xs-2">   
+          <div class="dropdown nav navbar-nav navbar-right" dropdown [dropdownToggle]="true">
+              <div class="btn btn-default navbar-btn" dropdown-open><i class="glyphicon glyphicon-globe"></i>
+             
+                  <span class="caret"></span></div>                  
+             <ul class="dropdown-menu">
+            <li><a (click)="select('EN')">EN</a></li>
+            <li><a (click)="select('FR')">FR</a></li>
+            <li><a (click)="select('HE')">HE</a></li>
+        </ul>
+          </div>
+         </div>
+
+
+
         <div class="col-xs-2">
           <ul class="nav navbar-nav navbar-right border-left">
             <li><a (click)="logout()">Logout</a></li>

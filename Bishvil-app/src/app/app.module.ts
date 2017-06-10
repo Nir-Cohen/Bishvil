@@ -36,6 +36,10 @@ import { ChatProfilesComponent } from './chat-profiles/chat-profiles.component';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { Confirm2Component } from './confirm2/confirm2.component';
 import { NightProfilesComponent } from './night-profiles/night-profiles.component';
+import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService }   from './translation';
+import { VerifyUserComponent } from './verify-user/verify-user.component';
+import { WaitForConfirmComponent } from './wait-for-confirm/wait-for-confirm.component';
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCjyJqa4ix5ZFAfQIPfNCLZfcV6dOpLX18",
@@ -64,7 +68,9 @@ const routes: Routes = [
   { path: 'host-profiles', component:HostProfilesComponent},
   { path: 'chat-profiles', component:ChatProfilesComponent},
   { path: 'forget-pass', component:ForgetPassComponent},
-  { path: 'night-profiles', component:NightProfilesComponent}
+  { path: 'night-profiles', component:NightProfilesComponent},
+  { path: 'user-verify', component:VerifyUserComponent},
+  { path: 'wait-for-confirm', component:WaitForConfirmComponent}
 ];
 
 @NgModule({
@@ -94,9 +100,9 @@ const routes: Routes = [
      ProfileComponent, 
      BoxMessagesComponent, 
      DialogComponent, 
-     PromptComponent, ConfirmComponent,Confirm2Component, AlertComponent, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent, HostProfilesComponent, ChatProfilesComponent, ForgetPassComponent, Confirm2Component, NightProfilesComponent ],
+     PromptComponent, ConfirmComponent,Confirm2Component, AlertComponent, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent, HostProfilesComponent, ChatProfilesComponent, ForgetPassComponent, Confirm2Component, NightProfilesComponent, VerifyUserComponent, WaitForConfirmComponent ],
   bootstrap: [ AppComponent ],
-  providers: [AF,ChatRoomsService],
+  providers: [AF,ChatRoomsService,TRANSLATION_PROVIDERS, TranslateService],
   entryComponents: [PromptComponent,ConfirmComponent,Confirm2Component]
 })
 

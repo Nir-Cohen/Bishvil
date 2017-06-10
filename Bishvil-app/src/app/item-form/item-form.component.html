@@ -1,13 +1,20 @@
+
+<div *ngIf = "afService.choosen_lan == 'HE' && selectLang(afService.choosen_lan)" class="col-xs-5">
+</div>
+
+<div *ngIf = "afService.choosen_lan == 'EN' && selectLang(afService.choosen_lan)" class="col-xs-5">
+</div>
+
 <div class = "container">
   <div [hidden]="submitted">
-      <h1 style="text-align: center">New Item</h1>
+      <h1 style="text-align: center">{{NewItem}}</h1>
 
       <div class="row">
       <div class="col-md-8 col-md-offset-2 well">
       <form (ngSubmit) ="addItem()">
 
           <div class = "form-group">
-              <label for = "itemType">Type of item</label>
+              <label for = "itemType">{{Typeofitem}}</label>
              <select class = "form-control" id ="itemType" name = "type" [(ngModel)]= 'item.type' required>
                 <option></option>
                 <option>Electrics</option>
@@ -18,47 +25,47 @@
               </select>
           </div>
           <div class = "form-group">
-              <label for = "itemCond">Item Condition</label>
+              <label for = "itemCond">{{ItemCondition}}</label>
               <select class = "form-control" id ="itemCond" required>
                 <option></option>
-                <option>New</option>
-                <option>Almost New</option>
-                <option>Fine Used</option>
-                <option>Badly</option>
+                <option>{{New}}</option>
+                <option>{{AlmostNew}}</option>
+                <option>{{FineUsed}}</option>
+                <option>{{Badly}}</option>
               </select>
           </div>
 
           <div class = "from-group">
-            <label for = "itemDesc">Item Description</label>
+            <label for = "itemDesc">{{ItemDescription}}</label>
             <input type = "text" class = "form-control" id = "itemDesc" placeholder="Item Description" name = "description" [(ngModel)]= 'item.description' required />
           </div>
           <br>
           <div class="form-group">
-            <label for="location">Item Location</label>
+            <label for="location">{{ItemLocation}}</label>
             <input type="text" class="form-control" id="location" name = "location" [(ngModel)]= 'item.location' />
           </div>
           <br>
 
           <fieldset class="form-group">
-              <legend>Contact Information:</legend>
+              <legend>{{ContactInformation}}:</legend>
                <div class="form-group">
-                 <label for="location">Phone number</label>
+                 <label for="location">{{Phone }}</label>
                  <input type="text" class="form-control" id="phone" name = "phone" [(ngModel)]= 'item.phone' required />
                </div>
                <div class="form-group">
-                 <label for="location">Email</label>
+                 <label for="location">{{Email}}</label>
                  <input type="text" class="form-control" id="email" name = "email" [(ngModel)]= 'item.email'/>
                </div>
           </fieldset>
           
           <div class="form-group">            
-            <label class ="control-label custom-file-upload">Browse Photo
+            <label class ="control-label custom-file-upload">{{BrowsePhoto}}
               <input type="file" accept="image/*" (change) ="upload($event)" size="50"/>
             </label>
           </div>     
 
-          <input type="submit" class="btn btn-primary" value="Add Item" />
-          <button type="reset" class="btn btn-danger">Reset Form</button>
+          <input type="submit" class="btn btn-primary" value="{{Add}}" />
+          <button type="reset" class="btn btn-danger">{{ResetForm}}</button>
 
       </form>
       </div>

@@ -1,8 +1,16 @@
 
+<div *ngIf = "afService.choosen_lan == 'HE' && selectLang(afService.choosen_lan)" class="col-xs-5">
+</div>
+
+<div *ngIf = "afService.choosen_lan == 'EN' && selectLang(afService.choosen_lan)" class="col-xs-5">
+</div>
+
+
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <a [routerLink]="['/host-form']"><button class="btn btn-success addcmd">Add Hosting</button></a>
+      <a [routerLink]="['/host-form']"><button class="btn btn-success addcmd">{{Add}}</button></a>
       </div>
   </div>
 
@@ -12,12 +20,12 @@
          <h4 class="list-group-item-heading">{{host.firstName}} {{host.lastName}}</h4>
           
           <p class="list-group-item-text">
-          Date: {{ host.time | date:"dd/MM/yy HH:mm" }}  &nbsp;&nbsp;&nbsp;<br>
-          Location: {{host.location}}<br>
-          Number Of Bnot Shierut: {{host.numberHost}}<br>
-          Phone: {{host.phoneOne}}<br>
-          Spoken Language: {{host.lang}}<br>
-          Notes: {{host.note}}<br>
+          {{ Date }}: {{ host.time | date:"dd/MM/yy HH:mm" }}  &nbsp;&nbsp;&nbsp;<br>
+          {{ Location }} : {{host.location}}<br>
+          {{Num_Bnut_Sherot}}: {{host.numberHost}}<br>
+          {{Phone}}: {{host.phoneOne}}<br>
+          {{Spooken }}: {{host.lang}}<br>
+          {{ Notes }} : {{host.note}}<br>
           </p>
           <div class = "t" *ngIf="host.photoURL">
       
@@ -28,13 +36,13 @@
           <div class="row">
 
             <div *ngIf = "checkIfIn(host.$key) == true" class="col-xs-5"> 
-              <button class="btn btn-danger addcmd" (click)="leave(host.$key)">Leave</button>
+              <button class="btn btn-danger addcmd" (click)="leave(host.$key)">{{Leave}}</button>
             </div>
             <div *ngIf = "checkIfIn(host.$key) == false" class="col-xs-5"> 
-              <button class="btn btn-success addcmd" (click)="showConfirm(host.$key)">Join</button>
+              <button class="btn btn-success addcmd" (click)="showConfirm(host.$key)">{{Join}}</button>
             </div>
             <div  class="col-xs-6">
-              <a [routerLink]="['/host-profiles']"> <button class="btn btn-info addcmd" (click)="show(host.$key)">See Who Is In</button></a>
+              <a [routerLink]="['/host-profiles']"> <button class="btn btn-info addcmd" (click)="show(host.$key)">{{WhoIsComing}}</button></a>
             </div>
 
         <div class="list-group" *ngFor="let user of users | async">    

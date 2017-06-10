@@ -4,6 +4,11 @@ import { DatePickerOptions, DateModel } from 'ng2-datepicker';
 import {Router} from "@angular/router";
 import {AF} from 'providers/af'
 import * as firebase from 'firebase';
+import { TranslateService } from 'app/translation'
+
+
+
+
 @Component({
   selector: 'app-host-form',
   templateUrl: './host-form.component.html',
@@ -14,6 +19,21 @@ export class HostFormComponent implements OnInit {
     targetRef:any;
     storageRef:any;
 
+  public Date: string;
+  public Location: string;
+  public Notes: string;
+  public Phone: string;
+  public Num_Bnut_Sherot: string;
+  public Spooken: string;
+  public Join: string;
+  public Leave: string;
+  public Add: string;
+  public PeopleAmount: string;
+  public FirstName: string;
+  public LastName: string;
+  public shbbat: string;
+
+
 userType:Array<Object>  = [
        {id: 1, name: "Bat Sherut"},
        {id: 2, name: "French"},
@@ -22,7 +42,7 @@ userType:Array<Object>  = [
        {id: 5, name: "Arabic"},
      ];
 selectedValue = null;
-  constructor(public afService: AF, private router: Router) { 
+  constructor(public afService: AF, private router: Router,private _translate: TranslateService) { 
      this.storageRef = firebase.storage().ref();
    }
 
@@ -40,7 +60,42 @@ selectedValue = null;
       numberHost:"",
       photoURL:"",
     };
+    this.selectLang('en');
   }
+
+ isCurrentLang(lang: string)
+  {
+      return lang === this._translate.currentLang;
+  }
+    
+    selectLang(lang: string) 
+    {
+      // set default;
+      console.log(lang);
+      this._translate.use(this.afService.choosen_lan);
+      this.refreshText();
+    }
+    
+    refreshText() 
+    {
+      this.Date = this._translate.instant('Date');
+      this.Location = this._translate.instant('Location');
+      this.Notes = this._translate.instant('Notes');
+      this.Phone = this._translate.instant('Phone');
+      this.Num_Bnut_Sherot = this._translate.instant('Number Of Bnot Shierut');
+      this.Spooken = this._translate.instant('Spoken Language');
+      this.Join = this._translate.instant('Join');
+      this.Leave = this._translate.instant('Leave');
+      this.Add = this._translate.instant('Add Hosting');
+      this.PeopleAmount = this._translate.instant('Host people');
+      this.FirstName = this._translate.instant('First Name');
+      this.LastName = this._translate.instant('Last Name');
+      this.shbbat = this._translate.instant('Host in Shabat');
+      
+    }
+
+
+
 
   addHosting(){
       if(confirm("Add Event?")){
