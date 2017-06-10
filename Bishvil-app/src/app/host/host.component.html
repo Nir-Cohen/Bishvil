@@ -38,7 +38,7 @@
             </div>
 
         <div class="list-group" *ngFor="let user of users | async">    
-          <div *ngIf = "user.status == 0 && host.author == user.name && afService.displayName == user.name">
+          <div *ngIf = "(user.status == 0|| user.status == 2) && host.author == user.name && afService.displayName == user.name">
             <div class="col-xs-1">
               <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(event.$key)"></p>
             </div>
