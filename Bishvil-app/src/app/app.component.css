@@ -1,3 +1,14 @@
 .border-left {
   border-left: solid 1px;
 }
+
+.hederlogo
+{
+  height: 100%;
+}
+
+.navbar .navbar-default .container
+{
+  padding: 0px;
+  margin: 0px;
+}

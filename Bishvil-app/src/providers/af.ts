@@ -129,7 +129,8 @@ addNews(news){
    * Logs in the user
    * @returns {firebase.Promise<FirebaseAuthState>}
    */
-  loginWithGoogle() {
+  loginWithGoogle()
+  {
     return this.af.auth.login({
       provider: AuthProviders.Google,
       method: AuthMethods.Popup,
@@ -164,7 +165,7 @@ emailVerfication()
       return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).update({
         name: this.displayName,
         email: this.email,
-        //status:"1",/////////////
+        //status:"3",
         photoURL : firebase.auth().currentUser.photoURL
         /*city : "",//removes itself every time
         dob : ""*/
