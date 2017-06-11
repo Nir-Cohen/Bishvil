@@ -7,6 +7,7 @@ import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, Firebas
 import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
 import { DialogService } from "ng2-bootstrap-modal";
 import { Confirm2Component } from "app/confirm2/confirm2.component";
+import { TranslateService } from 'app/translation'
 
 @Component({
   selector: 'app-night',
@@ -24,7 +25,17 @@ export class NightComponent implements OnInit {
   c=[];
   public events: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
-  constructor(private dialogService:DialogService,public afService: AF,public af: AngularFire) { 
+
+  public AddMeet:string;
+  public Date:string;
+  public NumOfGirls:string;
+  public Join:string;
+  public Notes:string;
+  public Leave:string;
+  public WhoComes:string;
+  public Location:string;
+
+  constructor(private dialogService:DialogService,public afService: AF,public af: AngularFire,private _translate: TranslateService) { 
   this.events = this.afService.events;
   this.users = this.af.database.list("registeredUsers");
 
@@ -37,7 +48,37 @@ export class NightComponent implements OnInit {
 
 
   ngOnInit() {
+    this.selectLang('EN');
   }
+
+isCurrentLang(lang: string)
+  {
+      return lang === this._translate.currentLang;
+  }
+    
+    selectLang(lang: string) 
+    {
+      // set default;
+      
+      console.log(lang);
+      this._translate.use(this.afService.choosen_lan);
+      this.refreshText();
+    }
+    
+    refreshText() 
+    {
+      this.Location = this._translate.instant('Location');
+      this.AddMeet = this._translate.instant('Add Meeting');
+      this.Date = this._translate.instant('Date');
+      this.NumOfGirls = this._translate.instant('Number Of Bnot Shierut');
+      this.Join = this._translate.instant('Join');
+      this.Notes = this._translate.instant('Notes');
+      this.Leave = this._translate.instant('Leave');
+      this.WhoComes = this._translate.instant('Who is Coming');
+      
+    }
+
+
 
 leave(key:string)
 {

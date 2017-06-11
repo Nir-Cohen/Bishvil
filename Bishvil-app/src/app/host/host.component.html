@@ -10,7 +10,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <a [routerLink]="['/host-form']"><button class="btn btn-success addcmd">Add Hosting</button></a>
+      <a [routerLink]="['/host-form']"><button class="btn btn-success addcmd">{{Add}}</button></a>
       </div>
   </div>
 
@@ -36,17 +36,17 @@
           <div class="row">
 
             <div *ngIf = "checkIfIn(host.$key) == true" class="col-xs-5"> 
-              <button class="btn btn-danger addcmd" (click)="leave(host.$key)">Leave</button>
+              <button class="btn btn-danger addcmd" (click)="leave(host.$key)">{{Leave}}</button>
             </div>
             <div *ngIf = "checkIfIn(host.$key) == false" class="col-xs-5"> 
-              <button class="btn btn-success addcmd" (click)="showConfirm(host.$key)">Join</button>
+              <button class="btn btn-success addcmd" (click)="showConfirm(host.$key)">{{Join}}</button>
             </div>
             <div  class="col-xs-6">
-              <a [routerLink]="['/host-profiles']"> <button class="btn btn-info addcmd" (click)="show(host.$key)">See Who Is In</button></a>
+              <a [routerLink]="['/host-profiles']"> <button class="btn btn-info addcmd" (click)="show(host.$key)">{{WhoIsComing}}</button></a>
             </div>
 
         <div class="list-group" *ngFor="let user of users | async">    
-          <div *ngIf = "user.status == 0 && host.author == user.name && afService.displayName == user.name">
+          <div *ngIf = "(user.status == 0|| user.status == 2) && host.author == user.name && afService.displayName == user.name">
             <div class="col-xs-1">
               <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(event.$key)"></p>
             </div>

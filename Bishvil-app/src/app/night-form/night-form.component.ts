@@ -3,6 +3,7 @@ import {AF} from 'providers/af';
 import {FirebaseListObservable,AngularFire} from "angularfire2";
 import * as firebase from 'firebase';
 import {Router} from "@angular/router";
+import { TranslateService } from 'app/translation'
 
 @Component({
   selector: 'app-night-form',
@@ -16,18 +17,71 @@ export class NightFormComponent implements OnInit {
   targetRef:any;
   storageRef:any;
 
-  constructor(public afService: AF,public af:AngularFire, private router: Router) { 
+ 
+  public Meetings: string;
+  public Location: string;
+  public When: string;
+  public KindofMeeting: string;
+  public Notes: string;
+  public Coffe: string;
+  public Learning: string;
+  public Bar: string;
+  public Party: string;
+  public Other: string;
+  public ResetForm: string;
+  public BrowsePhoto: string;
+  public AddMeetings:string;
+
+
+
+
+
+  constructor(public afService: AF,public af:AngularFire, private router: Router,private _translate: TranslateService) { 
     this.storageRef = firebase.storage().ref();
    }
 
   ngOnInit() {
     this.event = { location: "", time: "", note: "", type: "", photoURL: "",numberOfJoin:"" };
+    this.selectLang('EN');
   }
 
   addEvent(){
     this.afService.addEvent(this.event);
     this.router.navigate([""]);
+
   }
+
+  isCurrentLang(lang: string)
+  {
+      return lang === this._translate.currentLang;
+  }
+    
+    selectLang(lang: string) 
+    {
+      // set default;
+      
+      console.log(lang);
+      this._translate.use(this.afService.choosen_lan);
+      this.refreshText();
+    }
+    
+    refreshText() 
+    {
+      this.Meetings = this._translate.instant('Meetings');
+      this.Location = this._translate.instant('Location');
+      this.When = this._translate.instant('When');
+      this.KindofMeeting = this._translate.instant('Kind of Meeting');
+      this.Notes = this._translate.instant('Notes');
+      this.Coffe = this._translate.instant('Coffe');
+      this.Learning = this._translate.instant('Learning');
+      this.Bar = this._translate.instant('Bar');
+      this.Party = this._translate.instant('Party');
+      this.Other = this._translate.instant('Other');
+      this.ResetForm = this._translate.instant('Reset Form');
+      this.BrowsePhoto = this._translate.instant('Browse Photo');
+      this.AddMeetings = this._translate.instant('Add Meeting');
+    
+    }
 
  upload(event:any){
       let targetFile = event.srcElement.files[0];

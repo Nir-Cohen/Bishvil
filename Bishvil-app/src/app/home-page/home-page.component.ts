@@ -31,11 +31,11 @@ export class HomePageComponent implements OnInit {
   ngOnInit() 
   {
     this.supportedLanguages = [
-        { display: 'English', value: 'en' },
+        { display: 'English', value: 'EN' },
         { display: 'HE', value: 'HE' },
        
       ];
-      this.selectLang('en');
+      this.selectLang('EN');
    }
 
  isCurrentLang(lang: string) {

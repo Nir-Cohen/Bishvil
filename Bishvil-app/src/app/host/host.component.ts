@@ -32,6 +32,10 @@ export class HostComponent implements OnInit {
   public Phone: string;
   public Num_Bnut_Sherot: string;
   public Spooken: string;
+  public Join: string;
+  public Leave: string;
+  public Add: string;
+  public WhoIsComing: string;
 
   constructor(private dialogService:DialogService,public afService: AF,public af: AngularFire,private _translate: TranslateService) { 
   this.hosting = this.afService.hosting;
@@ -68,6 +72,10 @@ export class HostComponent implements OnInit {
       this.Phone = this._translate.instant('Phone');
       this.Num_Bnut_Sherot = this._translate.instant('Number Of Bnot Shierut');
       this.Spooken = this._translate.instant('Spoken Language');
+      this.Join = this._translate.instant('Join');
+      this.Leave = this._translate.instant('Leave');
+      this.Add = this._translate.instant('Add Hosting');
+      this.WhoIsComing = this._translate.instant('Who is Coming');
     }
 
 leave(key:string)
