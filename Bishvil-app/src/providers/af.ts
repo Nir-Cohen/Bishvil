@@ -41,10 +41,9 @@ export class AF {
     this.af.auth.subscribe(
       (auth) => {
         if (auth != null) {
-          this.user = this.af.database.object('users/' + auth.uid);
+          this.user = this.af.database.object('registeredUsers/' + auth.uid, { preserveSnapshot: true });
         }
       });
-
     this.targetRef = firebase.storage().ref();
     this.messages = this.af.database.list("messages");
     this.users = this.af.database.list("users");
@@ -203,6 +202,48 @@ emailVerfication()
 
 
   }
+
+  getUserInfo(){
+    console.log(this.user);
+    //if(this.currUserStatus){
+     this.af.database.object('registeredUsers/'+ firebase.auth().currentUser.uid).subscribe(snap=>{
+            this.currUserName = snap.val().name;
+            this.currUserID = firebase.auth().currentUser.uid;
+            this.currUserCity = snap.val().city;
+            this.currUserDOB = snap.val().dob;
+            this.currUserURL =firebase.auth().currentUser.photoURL;
+            this.currUserStatus = snap.val().status;
+      });
+      alert("Done");
+
+    // }
+    /*
+    this.afService.af.auth.subscribe(auth=>{
+    if(auth != null){
+      alert("DDD");
+    firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+                this.afService.currUserName = snapshot.val().name;
+                this.afService.currUserID = firebase.auth().currentUser.uid;
+                this.afService.currUserCity = snapshot.val().city;
+                this.afService.currUserDOB = snapshot.val().dob;
+                this.afService.currUserURL =firebase.auth().currentUser.photoURL;
+                this.afService.currUserStatus = snapshot.val().status;
+                // setTimeout(() => { }, 5000);
+                //alert(snapshot.val().status);
+                //public void =onComplete
+                
+              })
+            .catch((error) => {
+              console.log("Cant access database");
+            });
+    return true;
+  }
+  else
+    return false;
+  });*/
+  }
+
+
 
   /**
    *

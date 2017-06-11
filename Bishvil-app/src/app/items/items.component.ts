@@ -37,7 +37,8 @@ export class ItemsComponent implements OnInit {
    //remove item ONLY AUTHOR ALLOW TO DELETE
    deleteItem(key : string){
     console.log("Removing "+ key);
-    this.items.remove(key);
+    // this.items.remove(key);
+    //console.log(this.afService.curr);
    }
 
 

@@ -19,8 +19,6 @@ export class LoginPageComponent {
     this.afService.loginWithGoogle().then((data) => {
       // Send them to the homepage if they are logged in
       this.afService.addUserInfo();
-      /*if(this.afService.currUserStatus != undefined)
-        this.router.navigate(['']);*/
     })
   }
 

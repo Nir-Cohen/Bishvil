@@ -1,6 +1,11 @@
+<div *ngIf = "afService.choosen_lan == 'HE' && selectLang(afService.choosen_lan)" class="col-xs-5">
+</div>
+
+<div *ngIf = "afService.choosen_lan == 'EN' && selectLang(afService.choosen_lan)" class="col-xs-5">
+</div>
 
 <div class = "container">
-      <div *ngIf = "(waitingUsers | async)?.length==0"><h1>No user to confirm</h1></div>
+      <div *ngIf = "(waitingUsers | async)?.length==0"><h1>{{Header}}</h1></div>
       <div class = "list-group"*ngFor = "let user of waitingUsers | async">
          <a class="list-group-item clearfix">
            <h4 class="list-group-item-heading">Name: {{user.name}}</h4>
