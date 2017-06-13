@@ -14,11 +14,15 @@ export class LoginPageComponent {
 
   constructor(public afService: AF, private router: Router) {}
 
-  loginWithGoogle() {
-    
+  loginWithGoogle()
+  {
     this.afService.loginWithGoogle().then((data) => {
       // Send them to the homepage if they are logged in
       this.afService.addUserInfo();
+
+      console.log(this.afService.currUserStatus);
+      /*if(this.afService.currUserStatus != undefined)
+          this.router.navigate(['']);*/
     })
   }
 

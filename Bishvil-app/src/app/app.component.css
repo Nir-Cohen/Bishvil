@@ -1,7 +1,14 @@
 .border-left {
   border-left: solid 1px;
 }
-.hederlogo{
-background-image: 
-  url(https://github.com/Nir-Cohen/Bishvil/blob/master/logo.png?raw=true);
+
+.hederlogo
+{
+  height: 100%;
+}
+
+.navbar .navbar-default .container
+{
+  padding: 0px;
+  margin: 0px;
 }

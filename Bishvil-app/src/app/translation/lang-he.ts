@@ -50,8 +50,6 @@ export const LANG_HE_TRANS = {
     'Other': 'אחר',
     'Add Meeting' : 'הוסף פגישה',
 
-    'No user to confirm' : 'אין משתמשים שממתינים לאישור',
-
 
 };
 

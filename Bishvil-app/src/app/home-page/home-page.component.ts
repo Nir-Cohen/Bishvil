@@ -26,7 +26,6 @@ export class HomePageComponent implements OnInit {
   constructor(public afService:AF,private dialogService:DialogService, public af: AngularFire,private _translate: TranslateService) { 
     this.news = this.afService.news;
     this.users = this.af.database.list("registeredUsers");
-    
   }
   
   ngOnInit() 

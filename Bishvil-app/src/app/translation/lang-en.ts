@@ -24,6 +24,5 @@ export const LANG_EN_TRANS = {
     'Contact info': 'Contact info',
     'Type': 'Type',
     'Add item': 'Add Item',
-    'No user to confirm' : 'No user to confirm'
 };
 

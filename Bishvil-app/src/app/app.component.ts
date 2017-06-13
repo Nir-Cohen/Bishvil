@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { AF } from "../providers/af";
 import { Router } from "@angular/router";
 import * as firebase from 'firebase';
-import { FirebaseListObservable, AngularFire } from "angularfire2";
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
@@ -13,17 +11,10 @@ import {Observable} from 'rxjs/Observable';
 export class AppComponent {
   public isLoggedIn: boolean;  
   public lang:string;
-
-
-  constructor(public afService: AF, private router: Router, public af : AngularFire) {  
+  constructor(public afService: AF, private router: Router) {  
     // This asynchronously checks if our user is logged it and will automatically
     // redirect them to the Login page when the status changes.
     // This is just a small thing that Firebase does that makes it easy to use.
-      this.subscribeUser();
-
-  }
-
-  subscribeUser(){
     this.afService.af.auth.subscribe(
       (auth) => {
         if(auth == null) {
@@ -35,9 +26,8 @@ export class AppComponent {
         
 
         else {
-          //this.isLoggedIn = true;
-          //alert(firebase.auth().currentUser.uid);
           console.log("Successfully Logged in.");
+
           firebase.database().ref('registeredUsers/' + firebase.auth().currentUser.uid).once('value')
           .then((snap)=>{
               this.afService.currUserStatus = snap.val().status;
@@ -67,13 +57,39 @@ export class AppComponent {
                   this.isLoggedIn = true;
                   this.router.navigate(['']);
 
-              }
+              
+              }})
+            ;
+
+          // Set the Display Name and Email so we can attribute messages to them
+            if(auth.google) {            
+              this.afService.displayName = auth.google.displayName;
+              this.afService.email = auth.google.email;
             }
-            );
-        }      
-      }); 
-    }
-   
+            else {
+              this.afService.displayName = firebase.auth().currentUser.displayName;         
+              this.afService.email = auth.auth.email;
+            }
+            if(this.afService.currUserStatus == undefined){//user hasnt been verified yet
+              alert("Waiting for admin confirmation!");
+              this.isLoggedIn = false;
+              //this.afService.logout();
+              // auth = null;
+              // this.afService.logout();
+              //firebase.auth().signOut();
+              this.router.navigate(['login']);
+              
+              //return;
+            }
+            else{           
+              this.isLoggedIn = true;
+              this.router.navigate(['']);
+            }
+          }
+      }
+    );
+    
+  }
 
   logout() {
     this.afService.logout();

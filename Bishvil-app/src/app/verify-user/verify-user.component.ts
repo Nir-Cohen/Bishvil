@@ -53,5 +53,4 @@ export class VerifyUserComponent implements OnInit {
     this.selectLang('EN');
     
   }
-
 }
