@@ -27,7 +27,7 @@ export class AppComponent {
 
         else {
           console.log("Successfully Logged in.");
-
+          
           firebase.database().ref('registeredUsers/' + firebase.auth().currentUser.uid).once('value')
           .then((snap)=>{
               this.afService.currUserStatus = snap.val().status;
@@ -37,6 +37,7 @@ export class AppComponent {
               this.afService.currUserDOB = snap.val().dob;
               this.afService.currUserURL =firebase.auth().currentUser.photoURL;
             }).then(func=>{
+              // alert(this.afService.currUserStatus);
               if(this.afService.currUserStatus == undefined){
                 if(this.afService.currUserCity == undefined || this.afService.currUserDOB == undefined){
                   this.router.navigate(['/profile']);
@@ -76,7 +77,7 @@ export class AppComponent {
 
   select(key: string)
   {
-    console.log(key);
+    // console.log(key);
     this.afService.choosen_lan=key;
   }
 }

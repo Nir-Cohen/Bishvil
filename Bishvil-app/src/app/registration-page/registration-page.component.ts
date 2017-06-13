@@ -50,7 +50,7 @@ userType:Array<Object>  = [
           
           //firebase.auth().currentUser.sendEmailVerification();
           firebase.auth().currentUser.updateProfile({displayName : name, photoURL : "https://www.drupal.org/files/profile_default.jpg"}).then(function(){console.log("updated!!");},function(error){});
-          this.router.navigate(['login']);
+          this.router.navigate(['profile']);
       })
         .catch((error) => {
           this.error = error;

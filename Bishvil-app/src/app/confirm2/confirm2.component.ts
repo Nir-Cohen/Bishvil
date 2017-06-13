@@ -31,6 +31,7 @@ export class Confirm2Component extends DialogComponent<ConfirmModel, boolean> im
   bool = true;
   eventOwnerID;
   eventOwnerName;
+  location;
 
 
   public events: FirebaseListObservable<any>;
@@ -51,6 +52,7 @@ export class Confirm2Component extends DialogComponent<ConfirmModel, boolean> im
               this.userArr = snapshot.val().userArr;
               this.eventOwnerID = snapshot.val().authorID;
               this.eventOwnerName = snapshot.val().authorName;
+              this.location = snapshot.val().location;
               
     }).then(func=>{
         this.af.database.object('events/'+this.afService.OK_key).update({numberOfJoin : this.counter});
@@ -81,7 +83,7 @@ export class Confirm2Component extends DialogComponent<ConfirmModel, boolean> im
   sendMess(sendTo, sendToID) : void{
       var ref = firebase.database().ref("privateMessages/");
       var messageToPush = {
-        message: "Hi, I joined your event! Hope to see you",
+        message: "Hi, I joined your event at " + this.location + ", Hope to see you!",
         sentfromID: this.afService.currUserID,        
         sentfromName :this.afService.currUserName,
         senttoID : sendToID,

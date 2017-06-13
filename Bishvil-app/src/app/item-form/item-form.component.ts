@@ -57,7 +57,7 @@ isCurrentLang(lang: string)
     selectLang(lang: string) 
     {
       // set default;
-      console.log(lang);
+      // console.log(lang);
       this._translate.use(this.afService.choosen_lan);
       this.refreshText();
     }
@@ -90,6 +90,7 @@ isCurrentLang(lang: string)
   addItem(){
     if(confirm("Add Item?"))
     {
+      this.item.email = this.afService.email;
       this.afService.addItem(this.item);
     }
     

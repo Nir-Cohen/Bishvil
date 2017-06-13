@@ -31,10 +31,8 @@ export class LoginPageComponent {
 
       this.afService.loginWithEmail(email, password).then(() => {//,"0").then(() => {
         
-        if(firebase.auth().currentUser.emailVerified)
-          this.router.navigate(['']);
-        else
-          alert("Please verify your email!");        
+           this.router.navigate(['']);
+             
       })
         .catch((error: any) => {
           if (error) {

@@ -66,7 +66,7 @@ export class VerifyUserComponent implements OnInit {
   }
 
   refreshText() {
-    this.Header = this._translate.instant('No user to confirm');
+    this.Header = this._translate.instant('No User to Confirm');
   }
 
   ngOnInit() {

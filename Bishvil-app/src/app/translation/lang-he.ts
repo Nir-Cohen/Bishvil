@@ -51,5 +51,9 @@ export const LANG_HE_TRANS = {
     'Add Meeting' : 'הוסף פגישה',
 
 
+
+    'No User to Confirm' : 'אין משתמשים לאישור'
+
+
 };
 
