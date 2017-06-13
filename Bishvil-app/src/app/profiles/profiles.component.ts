@@ -17,8 +17,13 @@ export class ProfilesComponent implements OnInit {
   public users : FirebaseListObservable<any>;
   cityList = [];
   public filteredList : any;
-
+  check = false;//city
+  checkStatus = false;
   model1 : any;
+
+  statusList = [];
+  public filteredStatusList : any;
+
 
   constructor(public afService : AF, public af : AngularFire, private router: Router) {
       this.users = this.af.database.list('registeredUsers');    
@@ -26,14 +31,31 @@ export class ProfilesComponent implements OnInit {
    }
 
    getFilteredItems(city){
-     this.filteredList = this.getFilteredList(city);     
+     this.filteredList = this.getFilteredList(city);   
+   };
+
+      getFilteredStatus(status){
+     this.filteredStatusList = this.getFilteredStatusList(status);     
    };
 
    getFilteredList(city) : Observable<any[]>{
       if(city == undefined || city == "" || city == "(none)")
         return this.af.database.list('registeredUsers');
       else
-          return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.city == city));   
+      {
+        return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.city == city));
+      }   
+   };
+
+      getFilteredStatusList(status) : Observable<any[]>{
+      if(status == undefined || status == "" || status == "(none)")
+      {
+        return this.af.database.list('registeredUsers');
+      }
+      else
+      {
+          return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.status == status));   
+      }
    };
 
    deleteUser(key,name){
@@ -67,12 +89,43 @@ export class ProfilesComponent implements OnInit {
       this.cityList.push("(none)");
       firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
         data.forEach((snap) =>{
+          
           if(snap.val().city != "" && snap.val().city != undefined)
-            this.cityList.push(snap.val().city);
+          {
+            for(var i = 0 ; i < this.cityList.length ; i++)
+            {
+              if(this.cityList[i] == snap.val().city)
+                this.check = true;
+            }
+            if(this.check == false)
+            {
+              this.cityList.push(snap.val().city);
+            }
+            
           return false;
+          }
         });
       });
       this.getFilteredItems(""); 
+
+       this.statusList.push("(none)");
+      firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
+        data.forEach((snap) =>{
+
+          if(snap.val().status != "" && snap.val().status != undefined)
+          {
+
+            if(this.checkStatus == false)
+            {
+              this.statusList.push(snap.val().status);
+            }
+            
+          return false;
+          }
+
+        });
+      });
+      this.getFilteredStatus(""); 
     }
 
 }
