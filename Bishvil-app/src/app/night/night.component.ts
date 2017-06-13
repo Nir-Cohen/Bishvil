@@ -106,7 +106,7 @@ leave(key:string)
   showConfirm(key: string) {
     
     this.afService.OK_key=key;
-    console.log(this.afService.OK_key);
+    console.log(this.afService.OK_key+"  OK KEY");
     this.dialogService.addDialog(Confirm2Component, {
       title:'Confirmation',
       message:'Are you sure you want to join this Shabbat?'})
@@ -114,7 +114,7 @@ leave(key:string)
         //Get dialog result
         this.confirmResult = isConfirmed;
     });
-    console.log(this.confirmResult);
+    console.log(this.confirmResult+"dsadas");
   }
 
   checkIfIn(key: string) {

@@ -95,7 +95,7 @@ filterType;
            
             for(var i = 0 ; i < this.statusList.length ; i++)
             {
-               console.log(snap.val().status);
+               //console.log(snap.val().status);
               if(this.statusList[i] == snap.val().status)
               {
                   this.checkStatus = true;

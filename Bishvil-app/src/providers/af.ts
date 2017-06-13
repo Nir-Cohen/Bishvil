@@ -67,7 +67,8 @@ addEvent(item){
       time: item.time,
       note: item.note,
             userArr: [""] ,
-      author:this.displayName,
+      authorName:this.displayName,
+      authorID : this.currUserID,
       photoURL: item.photoURL,
       numberOfJoin: item.numberOfJoin,
     });

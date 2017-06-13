@@ -29,6 +29,8 @@ export class Confirm2Component extends DialogComponent<ConfirmModel, boolean> im
   userArr=[];
   obj;
   bool = true;
+  eventOwnerID;
+  eventOwnerName;
 
 
   public events: FirebaseListObservable<any>;
@@ -42,42 +44,55 @@ export class Confirm2Component extends DialogComponent<ConfirmModel, boolean> im
     // on click on confirm button we set dialog result as true,
     // ten we can get dialog result from caller code
     this.result = true;
-    var event = this.af.database.object('/events/'+this.afService.OK_key); // How to get value
-    event.subscribe(snapshot => {  
-      this.obj = snapshot;      
-    this.counter = snapshot.numberOfJoin; 
-    this.userArr = snapshot.userArr;
-  });
-
-
-      this.af.database.object('/events/'+this.afService.OK_key).update({numberOfJoin : this.counter});
-     var i = 0;
-     for(i=0;i<this.userArr.length;i++)
-     {
-        if(this.afService.displayName==this.userArr[i])
+    firebase.database().ref('events/'+this.afService.OK_key).once('value')
+            .then((snapshot)=>{
+              //this.obj = snapshot;      
+             this.counter = snapshot.val().numberOfJoin; 
+              this.userArr = snapshot.val().userArr;
+              this.eventOwnerID = snapshot.val().authorID;
+              this.eventOwnerName = snapshot.val().authorName;
+              
+    }).then(func=>{
+        this.af.database.object('events/'+this.afService.OK_key).update({numberOfJoin : this.counter});
+        var i = 0;
+        for(i=0;i<this.userArr.length;i++)
         {
-          this.bool = false;
+            if(this.afService.displayName==this.userArr[i])
+            {
+              this.bool = false;
+            }
         }
-     }
-     if(this.bool == true)
-     {
-        this.userArr.push(this.afService.displayName);
-       console.log(this.userArr); 
-       this.af.database.object('/events/'+this.afService.OK_key).update({userArr :this.userArr});
-       this.close();
-     }
-     else
-     {
-       alert("you are already in this events");
-       this.close();
-       return;
-
-     }
-
-
-
-
+        if(this.bool == true)
+        {
+          this.userArr.push(this.afService.displayName);
+          this.sendMess(this.eventOwnerName, this.eventOwnerID);
+          this.af.database.object('/events/'+this.afService.OK_key).update({userArr :this.userArr});
+          this.close();
+        }
+        else
+        {
+          alert("you are already in this events");
+          this.close();
+          return;
+        }
+    });
   }
+
+  sendMess(sendTo, sendToID) : void{
+      var ref = firebase.database().ref("privateMessages/");
+      var messageToPush = {
+        message: "Hi, I joined your event! Hope to see you",
+        sentfromID: this.afService.currUserID,        
+        sentfromName :this.afService.currUserName,
+        senttoID : sendToID,
+        senttoName : sendTo,
+        timestamp: Date.now(),
+        order : -1 * new Date().getTime()
+      };
+      ref.push(messageToPush);
+      console.log("Message sent to event owner!");
+   }
+
   cancel() {
     this.result = false;
     this.close();

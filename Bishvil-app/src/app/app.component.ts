@@ -38,6 +38,10 @@ export class AppComponent {
               this.afService.currUserURL =firebase.auth().currentUser.photoURL;
             }).then(func=>{
               if(this.afService.currUserStatus == undefined){
+                if(this.afService.currUserCity == undefined || this.afService.currUserDOB == undefined){
+                  this.router.navigate(['/profile']);
+                  return;
+                }
                 //auth = null;
                 this.isLoggedIn = false;
                 alert("Waiting for admin comfirmation!");
@@ -59,9 +63,7 @@ export class AppComponent {
 
               
               }});
-
-          // Set the Display Name and Email so we can attribute messages to them
-            
+           
           }
       }
     );
