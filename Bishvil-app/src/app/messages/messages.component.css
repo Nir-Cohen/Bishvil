@@ -21,7 +21,7 @@ input{
   overflow-y: scroll;
 }
 #messages {
-  background-color: #2d384a !important;
+  background-color: #EEECE0 !important;
 }
 
 .author {
@@ -83,6 +83,7 @@ p {
 .me {
   display: inherit;
   margin: 5px 45px 5px 20px;
+  background: #8ED188;
 }
 /*
 #25d366
@@ -90,7 +91,7 @@ p {
 .me::before {
   box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
   left: -9px;
-  
+  background: #8ED188;
 }
 
 
