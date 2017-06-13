@@ -20,7 +20,7 @@ export class ProfilesComponent implements OnInit {
   check = false;//city
   checkStatus = false;
   model1 : any;
-
+filterType;
   statusList = [];
   public filteredStatusList : any;
 
@@ -86,6 +86,34 @@ export class ProfilesComponent implements OnInit {
     };
     
     ngOnInit() {
+       this.statusList.push("(none)");
+      firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
+        data.forEach((snap) =>{
+
+          if(snap.val().status != "" && snap.val().status != undefined)
+          {
+           
+            for(var i = 0 ; i < this.statusList.length ; i++)
+            {
+               console.log(snap.val().status);
+              if(this.statusList[i] == snap.val().status)
+              {
+                  this.checkStatus = true;
+              }
+              
+            }
+            if(this.checkStatus == false)
+            {
+              this.statusList.push(snap.val().status);  
+            }
+            this.checkStatus = false;
+          return false;
+          }
+
+        });
+      });
+      this.getFilteredStatus(""); 
+
       this.cityList.push("(none)");
       firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
         data.forEach((snap) =>{
@@ -101,31 +129,28 @@ export class ProfilesComponent implements OnInit {
             {
               this.cityList.push(snap.val().city);
             }
-            
+             this.check= false;
           return false;
           }
         });
       });
       this.getFilteredItems(""); 
 
-       this.statusList.push("(none)");
-      firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
-        data.forEach((snap) =>{
 
-          if(snap.val().status != "" && snap.val().status != undefined)
-          {
+    }
 
-            if(this.checkStatus == false)
-            {
-              this.statusList.push(snap.val().status);
-            }
-            
-          return false;
-          }
-
-        });
-      });
-      this.getFilteredStatus(""); 
+    checkFilterType1()
+    {
+        this.filterType="1";
+    }  
+    checkFilterType2()
+    {
+        this.filterType="lang";
+    
+    } 
+    checkFilterType3()
+    {
+        this.filterType="2";
     }
 
 }
