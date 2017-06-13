@@ -1,78 +1,69 @@
- <!--
-    xs: 0-768
-    sm: 768-992
-    md: 992-1200
-    lg: 1200 up
-    panel-default
-    panel-danger
-    panel-info
-    panel-primary
-    panel-success
-    panel-warning
-  -->
-
-  <!-- main -->
 
 <div class="container">
-
-  <!-- nav bar -->
-  <div class = "well">
-    <div class="row">
-      <div class="col-xs-6 col-lg-3">
-        <a [routerLink]="['/host']"><button class="btn maincmd hsbtn"></button></a>
-      </div>
-      <div class="col-xs-6 col-lg-3">
-        <a [routerLink]="['/items']"><button class="btn maincmd itbtn"></button></a>
-      </div>
-<!-- need to remove ng for!! make duplicate menu!!!-->
-
-  <div *ngIf = "afService.currUserStatus != 2">
-      <div class="col-xs-6 col-lg-3">
-        <a [routerLink]="['/night']"><button class="btn maincmd nlbtn"></button></a>
-      </div>
-      <div class="col-xs-6 col-lg-3">
-        <a [routerLink]="['chat-rooms']"><button class="btn maincmd chbtn"></button></a>
-      </div>
-      <div class="col-xs-12">
-        <a [routerLink]="['/profiles']"><button class="btn secondcmd"></button></a>
-      </div>      
-    </div>
-
-</div>
-</div>
-  <!-- messages news -->
-  <div class="row well"> 
-    <div class="col-xs-12 col-md-12 col-md-offset-0">
-
-      <div *ngFor="let user of users | async">
-
-        <div *ngIf = "user.status == 1 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
-          <div *ngFor="let new of news | async">
-            {{new.message}} 
-            <span class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(new.$key)"></span>
-            <span class="pull-right" >{{ new.timestamp | date:"dd/MM/yy HH:mm" }} </span>
-            
-            <hr>
-          </div>
-          <div class="col-xs-12 btndiv">
-            <button class="btn" (click)=AddMessage()>Add message</button>
-          </div>
+  <div *ngIf = "afService.currUserStatus">
+    <!-- nav bar -->
+    <div class = "well">
+      <div class="row">
+        <div class="col-xs-6 col-lg-3">
+          <a [routerLink]="['/host']"><button class="btn maincmd hsbtn"></button></a>
         </div>
-
-        <div *ngIf = "user.status == 0 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
-          <div *ngFor="let new of news | async">
-            {{new.message}} 
-            <span class="pull-right" >{{ new.timestamp | date:"dd/MM/yy HH:mm" }} </span>
-            <hr>
-          </div>
+        <div class="col-xs-6 col-lg-3">
+          <a [routerLink]="['/items']"><button class="btn maincmd itbtn"></button></a>
         </div>
+  <!-- need to remove ng for!! make duplicate menu!!!-->
 
+    <div *ngIf = "afService.currUserStatus != 2">
+        <div class="col-xs-6 col-lg-3">
+          <a [routerLink]="['/night']"><button class="btn maincmd nlbtn"></button></a>
+        </div>
+        <div class="col-xs-6 col-lg-3">
+          <a [routerLink]="['chat-rooms']"><button class="btn maincmd chbtn"></button></a>
+        </div>
+        <div class="col-xs-12">
+          <a [routerLink]="['/profiles']"><button class="btn secondcmd"></button></a>
+        </div>      
       </div>
 
     </div>
   </div>
+    <!-- messages news -->
+    <div class="row well"> 
+      <div class="col-xs-12 col-md-12 col-md-offset-0">
 
+        <div *ngFor="let user of users | async">
+
+          <div *ngIf = "user.status == 1 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
+            <div *ngFor="let new of news | async">
+              {{new.message}} 
+              <span class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(new.$key)"></span>
+              <span class="pull-right" >{{ new.timestamp | date:"dd/MM/yy HH:mm" }} </span>
+              
+              <hr>
+            </div>
+            <div class="col-xs-12 btndiv">
+              <button class="btn" (click)=AddMessage()>Add message</button>
+            </div>
+          </div>
+
+          <div *ngIf = "user.status == 0 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
+            <div *ngFor="let new of news | async">
+              {{new.message}} 
+              <span class="pull-right" >{{ new.timestamp | date:"dd/MM/yy HH:mm" }} </span>
+              <hr>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
+
+<div *ngIf = "!afService.currUserStatus">
+  Waiting for admin confirmation!
+</div>
+
 
 <div class="links">
       

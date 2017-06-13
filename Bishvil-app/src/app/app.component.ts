@@ -51,11 +51,10 @@ export class AppComponent {
                 //auth = null;
                 this.isLoggedIn = false;
                 alert("Waiting for admin comfirmation!");
-                this.router.navigate(['login']);
+                //this.router.navigate(['login']);
                 return;
               }
               else{
-                alert("dsds");
                   if(auth.google) {            
                     this.afService.displayName = auth.google.displayName;
                     this.afService.email = auth.google.email;

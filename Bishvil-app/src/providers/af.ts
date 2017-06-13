@@ -161,12 +161,10 @@ emailVerfication()
         });
 
       return this.af.database.object('registeredUsers/' + firebase.auth().currentUser.uid).update({
-        name: this.displayName,
-        email: this.email,
-        //status:"1",/////////////
+        name: firebase.auth().currentUser.displayName,
+        email: firebase.auth().currentUser.email,
         photoURL : firebase.auth().currentUser.photoURL
-        /*city : "",//removes itself every time
-        dob : ""*/
+
       });
 
 
