@@ -183,10 +183,7 @@ selectedValue = null;
       })      
       return promise;
     }
-
-
-
-
+    
 
 }
 

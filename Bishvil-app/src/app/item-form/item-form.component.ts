@@ -42,7 +42,7 @@ export class ItemFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.item = { location: "", description: "", type: "" , author : "" ,photoURL :"", phone:"", email:"",};
+    this.item = { location: "", cond: "", description: "", type: "" , author : "" ,photoURL :"", phone:"", email:"",};
     firebase.database().ref('/registeredUsers/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
         this.item.author = snapshot.val().name;        
     });
@@ -88,17 +88,11 @@ isCurrentLang(lang: string)
 
   //add item to database
   addItem(){
-    console.log(this.item);
-    
-    for(var i = 0 ; i<this.item.phone.length; i++ )
+    if(confirm("Add Item?"))
     {
-      if(this.item.phone[i]<"0"||this.item.phone[i]>"9")
-      {
-          alert("Phone can contains only numbers");
-          return;
-      }
+      this.afService.addItem(this.item);
     }
-    this.afService.addItem(this.item);
+    
     this.router.navigate([""]);
   }
 
@@ -138,6 +132,7 @@ isCurrentLang(lang: string)
 //item struct
 export class item{
     type : String;
+    cond : String;
     description : String;
     location : String;
     author : String;

@@ -74,7 +74,7 @@
             <div class="form-group">
                 <label class="col-xs-2 control-label">{{Date}} </label>
                 <div class="col-xs-10">
-                  <input type="datetime-local" class="form-control" name="time" #time = "ngModel" [(ngModel)]="host.time" />
+                  <input type="datetime-local" class="form-control" name="time" #time = "ngModel" [(ngModel)]="host.time" required/>
                   <small [hidden]="time.valid" class="text-danger"> Required </small>
                 </div>
             </div>

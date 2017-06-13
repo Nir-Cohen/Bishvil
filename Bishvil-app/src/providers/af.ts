@@ -107,6 +107,7 @@ addItem(item){
       location: item.location,
       description: item.description,
       type: item.type,
+      cond: item.cond,
       author : item.author,
       photoURL : item.photoURL,
       phone: item.phone,

@@ -46,9 +46,30 @@ export class NightFormComponent implements OnInit {
   }
 
   addEvent(){
-    this.afService.addEvent(this.event);
-    this.router.navigate([""]);
 
+    //VALIDATION:
+    var now = new Date();
+    var d = new Date(this.event.time);
+    if(now > d)
+    {
+      alert("Date is pass");
+      return;
+    }
+
+    if(!d.getFullYear())
+    {
+      alert("Date is illegal");
+      return;
+    }
+
+
+    //CONFIRM:
+    if(confirm("Add Event?"))
+    {
+      this.afService.addEvent(this.event);
+    }
+    
+    this.router.navigate([""]);
   }
 
   isCurrentLang(lang: string)
@@ -126,6 +147,6 @@ export class event{
   note: string;
   type: string;
   photoURL:string;
-   numberOfJoin:string; 
+  numberOfJoin:string; 
 }
 
