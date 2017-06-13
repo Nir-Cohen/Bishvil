@@ -98,13 +98,17 @@ selectedValue = null;
 
 
   addHosting(){
+
+
+
+    
       if(confirm("Add Event?")){
         if(this.host.firstName!= "")
            this.afService.addHosting(this.host);
 
       }
+
       this.router.navigate([""]);
-  
   }
 
 
