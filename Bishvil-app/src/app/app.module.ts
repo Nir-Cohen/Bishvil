@@ -39,6 +39,7 @@ import { NightProfilesComponent } from './night-profiles/night-profiles.componen
 import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService }   from './translation';
 import { VerifyUserComponent } from './verify-user/verify-user.component';
 import { WaitForConfirmComponent } from './wait-for-confirm/wait-for-confirm.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 export const firebaseConfig = {
@@ -70,7 +71,8 @@ const routes: Routes = [
   { path: 'forget-pass', component:ForgetPassComponent},
   { path: 'night-profiles', component:NightProfilesComponent},
   { path: 'user-verify', component:VerifyUserComponent},
-  { path: 'wait-for-confirm', component:WaitForConfirmComponent}
+  { path: 'wait-for-confirm', component:WaitForConfirmComponent},
+  { path: 'contact-us', component:ContactUsComponent},
 ];
 
 @NgModule({
@@ -100,7 +102,7 @@ const routes: Routes = [
      ProfileComponent, 
      BoxMessagesComponent, 
      DialogComponent, 
-     PromptComponent, ConfirmComponent,Confirm2Component, AlertComponent, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent, HostProfilesComponent, ChatProfilesComponent, ForgetPassComponent, Confirm2Component, NightProfilesComponent, VerifyUserComponent, WaitForConfirmComponent ],
+     PromptComponent, ConfirmComponent,Confirm2Component, AlertComponent, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent, HostProfilesComponent, ChatProfilesComponent, ForgetPassComponent, Confirm2Component, NightProfilesComponent, VerifyUserComponent, WaitForConfirmComponent, ContactUsComponent ],
   bootstrap: [ AppComponent ],
   providers: [AF,ChatRoomsService,TRANSLATION_PROVIDERS, TranslateService],
   entryComponents: [PromptComponent,ConfirmComponent,Confirm2Component]

@@ -10,11 +10,11 @@ import 'rxjs/add/operator/map';
 
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css'],
+  selector: 'app-contact-us',
+  templateUrl: './contact-us.component.html',
+  styleUrls: ['./contact-us.component.css']
 })
-export class MessagesComponent implements OnInit, AfterViewChecked {
+export class ContactUsComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
@@ -92,7 +92,6 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   }
 
    sendMessage(messagetoSend, toName){
-
       if(messagetoSend == "" || messagetoSend == undefined)
         return;
       //make fields empty
@@ -146,13 +145,11 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
         message: messagetoSend,
         sentfromID: sentFromID,        
         sentfromName :sentFrom,
-        senttoID : sendToID,
-        senttoName : sendTo,
+         senttoID : "QCzun7tjLgeCklVi7y4bpSCyu0b2",
+        senttoName : "nir cohen",
         timestamp: Date.now(),
         order : -1 * new Date().getTime()
       };
-      console.log(sendToID);
-      console.log(sendToID);
       ref.push(messageToPush);
    }
 
