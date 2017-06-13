@@ -48,12 +48,12 @@
         <div class="list-group" *ngFor="let user of users | async">    
           <div *ngIf = "(user.status == 0|| user.status == 2) && host.author == user.name && afService.displayName == user.name">
             <div class="col-xs-1">
-              <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(event.$key)"></p>
+              <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(host.$key)"></p>
             </div>
           </div>  
           <div *ngIf = "user.status == 1 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())">
             <div class="col-xs-1">
-              <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(event.$key)"></p>
+              <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(host.$key)"></p>
             </div>
           </div>
         </div>

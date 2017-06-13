@@ -16,15 +16,36 @@ import {Injectable} from "@angular/core";
 export class VerifyUserComponent implements OnInit {
 
   waitingUsers;
+  public users: FirebaseListObservable<any>;
 
   public Header : string;
 
+  kindOf:number;
+  kinfOfArray:Array<Object> = [
+      {num: 0, name: "Bat Sherut"},
+      {num: 2, name: "Torem"},
+      {num: 1, name: "Admin"},
+  ];
+
+
   constructor(public afService : AF,public af: AngularFire, private _translate: TranslateService) {
-  
+  this.users = this.af.database.list("registeredUsers");
+
   }
 
+  toNumber(){
+    this.kindOf = +this.kindOf;
+    console.log(this.kindOf);
+  }
+
+  deleteItem(key : string){
+    console.log("Removing "+ key);
+    this.users.remove(key);
+   }
+
+
   confirmUser(key){
-    firebase.database().ref('registeredUsers/'+ key).update({status : '2'});
+    firebase.database().ref('registeredUsers/'+ key).update({status : this.kindOf});
   //this.afService.currUserStatus = 2;
   }
 

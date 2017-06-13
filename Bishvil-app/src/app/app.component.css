@@ -1,14 +1,33 @@
-.border-left {
-  border-left: solid 1px;
-}
 
-.hederlogo
-{
-  height: 100%;
-}
 
-.navbar .navbar-default .container
+.hederlogo 
 {
-  padding: 0px;
   margin: 0px;
+  padding: 0px;
+  height: 25px;
+  margin-top: 10px;
 }
+
+.dropdown
+{
+ padding: 0px;
+ margin: 0px;
+}
+
+.logoutnav
+{
+  margin: 0 auto;
+  margin-top: 15px;
+  border-left: 1px solid;
+  color: gray;
+}
+a { color: gray; }
+
+
+.container{
+  margin: 0 auto;
+  width: 100%;
+  background-color: #E8E1E9;
+  margin-bottom: 5px;
+}
+

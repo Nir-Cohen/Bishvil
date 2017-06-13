@@ -1,0 +1,53 @@
+<div class = "container"> 
+  <div [hidden]="submitted">
+        <div class= "row">
+          <form>
+            <div class= "form-group well">
+              <div class = "form-group">
+         
+                <br>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <label for = "message">Message</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <input class="form-control" type="text" [(ngModel)] = "message" name = "message" autocomplete="off" placeholder="Type.." #check="ngModel" (keyup.enter)="sendMessage(message , 'form')" required/>
+                  </div>
+                </div>
+
+                <small [hidden]="check.valid" class="text-danger">
+                      please fill all Fields!!
+                </small>
+                <br>
+                <div class = "btn btn-success sndbtn" name = "formSend" (click) = "sendMessage(message , 'form')">Send Message</div>
+              </div>
+          </div>
+        </form>
+
+        <br><br>
+
+        <div class = "list-group " *ngFor="let user of recievedFrom; let i = index" >
+          <a class="list-group-item clearfix list-group-item-success"  (click) = "showDiv(user.key,i)">
+            <img *ngIf = "user.photo" [src] = "user.photo" class="img-rounded img-responsive">
+            &nbsp;{{user.name}}
+            <div  class = "pull-right glyphicon glyphicon-trash" (click)="deleteChat(user.key)" title = "Delete Chat"></div>
+          </a>
+          
+
+          <div [hidden] = "!hideDiv[user.key]" >
+            <div #scrollMe class="bs-example" id="messages">
+              <div *ngFor="let message of myMessages | async">
+                <div class="bubble" [class.you]="message.sentfromID != afService.currUserID" [class.me]="message.sentfromID == afService.currUserID">
+                  <div class = "pull-right glyphicon glyphicon-trash" (click)="deleteMessage(message.$key)" title = "Delete"></div>
+                  <p>{{ message.message }}</p>
+                  <div class="author">{{ message.timestamp | date:"MM/dd/yy HH:mm" }}</div>                  
+                </div>
+              </div>
+            </div>
+            <figure *ngIf = "user.name != 'Bishvil Admin'" class="highlight row">
+              <div class="col-xs-10"><input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage(newMessage , user.name)"/></div>
+              <div class="col-xs-2"><button class="btn btn-primary" (click)="sendMessage(newMessage , user.name)">SEND</button></div>
+            </figure>
+          </div>
+  </div>
+</div>

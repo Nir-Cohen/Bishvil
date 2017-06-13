@@ -6,6 +6,13 @@
            <h4 class="list-group-item-heading">Name: {{user.name}}</h4>
            <h4 class="list-group-item-text">Email:  {{user.email}}</h4>
            <div class = "btn btn-success addcmd pull-right" (click) = "confirmUser(user.$key)"title = "Confirm">Confirm User</div>
-         </a>
+           <div class="col-xs-1">
+              <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(user.$key)"></p>
+            </div>
+          <select type="number" [(ngModel)]="kindOf" (ngModelChange)="toNumber()">
+          <option *ngFor="let k of kinfOfArray" [ngValue]="k.num">{{k.name}}</option>
+          </select>
+          {{kindOf}}
+          </a>
       </div>
 </div>
