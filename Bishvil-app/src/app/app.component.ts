@@ -58,33 +58,10 @@ export class AppComponent {
                   this.router.navigate(['']);
 
               
-              }})
-            ;
+              }});
 
           // Set the Display Name and Email so we can attribute messages to them
-            if(auth.google) {            
-              this.afService.displayName = auth.google.displayName;
-              this.afService.email = auth.google.email;
-            }
-            else {
-              this.afService.displayName = firebase.auth().currentUser.displayName;         
-              this.afService.email = auth.auth.email;
-            }
-            if(this.afService.currUserStatus == undefined){//user hasnt been verified yet
-              alert("Waiting for admin confirmation!");
-              this.isLoggedIn = false;
-              //this.afService.logout();
-              // auth = null;
-              // this.afService.logout();
-              //firebase.auth().signOut();
-              this.router.navigate(['login']);
-              
-              //return;
-            }
-            else{           
-              this.isLoggedIn = true;
-              this.router.navigate(['']);
-            }
+            
           }
       }
     );
