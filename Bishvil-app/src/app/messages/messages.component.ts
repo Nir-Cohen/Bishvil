@@ -54,29 +54,30 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
         this.nameList.unshift("Broadcast");
 
         //get user's name list that send me message
-        firebase.database().ref("privateMessages").orderByValue().on("value" ,(data)=>{
-          data.forEach((snap) =>{
-                if(snap.val().sentfromName == "Bisvhil-Admin" && snap.val().senttoID == this.afService.currUserID)
-                  this.hasAdminMessage = true;                
-                if(snap.val().sentfromID == snap.val().senttoID && snap.val().senttoID == this.afService.currUserID)
-                  this.IDArray.unshift(snap.val().senttoID);
-                else if(this.afService.currUserID == snap.val().sentfromID)
-                  this.IDArray.unshift(snap.val().senttoID);
-                else if(this.afService.currUserID == snap.val().sendtoID)
-                  this.IDArray.unshift(snap.val().sentfromID);
-                return false;
-          })
-        });
+      firebase.database().ref("privateMessages").orderByValue().on("value" ,(data)=>{
+        data.forEach((snap) =>{
+              if(snap.val().sentfromName == "Bisvhil-Admin" && snap.val().senttoID == this.afService.currUserID)
+                this.hasAdminMessage = true;                
+              if(snap.val().sentfromID == snap.val().senttoID && snap.val().senttoID == this.afService.currUserID)
+                this.IDArray.unshift(snap.val().senttoID);
+              else if(this.afService.currUserID == snap.val().sentfromID)
+                this.IDArray.unshift(snap.val().senttoID);
+              else if(this.afService.currUserID == snap.val().senttoID)
+                this.IDArray.unshift(snap.val().sentfromID);
+              return false;
+        })
+      });
 
-        this.IDArray = Array.from(new Set(this.IDArray));
-        if(this.hasAdminMessage)
-          this.IDArray.unshift("Bishvil Admin");
-        this.IDArray.forEach(_key =>{
-          if(_key == "Bishvil Admin")
-            this.recievedFrom.push({"name" : "Bishvil Admin","key" : "" ,"photo" : "https://raw.githubusercontent.com/Nir-Cohen/Bishvil/master/logo.png"})
-          else
-            this.recievedFrom.push(this.getUserDetails(_key));
-        });
+      this.IDArray = Array.from(new Set(this.IDArray));
+      console.log(this.IDArray);
+      if(this.hasAdminMessage)
+        this.IDArray.unshift("Bishvil Admin");
+      this.IDArray.forEach(_key =>{
+        if(_key == "Bishvil Admin")
+          this.recievedFrom.push({"name" : "Bishvil Admin","key" : "" ,"photo" : "https://raw.githubusercontent.com/Nir-Cohen/Bishvil/master/logo.png"})
+        else
+          this.recievedFrom.push(this.getUserDetails(_key));
+      });
   }
 
 
