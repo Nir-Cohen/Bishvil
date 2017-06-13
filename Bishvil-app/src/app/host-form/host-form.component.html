@@ -16,7 +16,7 @@
               <label class="col-xs-2 control-label">{{Location}} : </label>
               <div class="col-xs-10">
                 <input type="text" class="form-control" name="location" #location = "ngModel" required [(ngModel)]="host.location"/>
-                <small [hidden]="location.valid" class="text-danger">  Location is required!! </small>
+                <small [hidden]="location.valid" class="text-danger"> required </small>
               </div>
             </div>
 
@@ -24,7 +24,7 @@
               <label class="col-xs-2 control-label">{{FirstName}}: </label>
               <div class="col-xs-10">
                   <input type = "text" class="col-xs-10 form-control" placeholder ="e.g. Adam" name ="firstName" [(ngModel)] = "host.firstName" #firstName = "ngModel" required>
-                  <small [hidden]="firstName.valid" class="text-danger">  Name is required!! </small>
+                  <small [hidden]="firstName.valid" class="text-danger"> required </small>
               </div>
             </div>
 
@@ -39,7 +39,7 @@
                 <label class="col-xs-2 control-label">{{Phone}} #1: </label>
                   <div class="col-xs-10">
                     <input type="text" class="form-control" name="phoneOne" #phoneOne = "ngModel" required [(ngModel)]="host.phoneOne"/>
-                    <small [hidden]="phoneOne.valid" class="text-danger">  Required!! </small>
+                    <small [hidden]="phoneOne.valid" class="text-danger">  Required </small>
                 </div>
             </div>
 
@@ -54,7 +54,8 @@
             <div class="form-group">
                 <label class="col-xs-2 control-label">{{PeopleAmount}}:</label>
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" name="lastName" [(ngModel)]="host.numberHost"/>
+                    <input type="text" class="form-control" name="count" #count = "ngModel" [(ngModel)]="host.numberHost" required/>
+                    <small [hidden]="count.valid" class="text-danger"> Required </small>
                 </div>
             
                 <label for="hostlang" class="col-xs-2 control-label">{{Spooken}} </label>
@@ -73,8 +74,8 @@
             <div class="form-group">
                 <label class="col-xs-2 control-label">{{Date}} </label>
                 <div class="col-xs-10">
-                  <input type="datetime-local" class="form-control" name="time" #time = "ngModel" [(ngModel)]="host.time" required/>
-                  <small [hidden]="time.valid" class="text-danger"> Date is Required!! </small>
+                  <input type="datetime-local" class="form-control" name="time" #time = "ngModel" [(ngModel)]="host.time" />
+                  <small [hidden]="time.valid" class="text-danger"> Required </small>
                 </div>
             </div>
 

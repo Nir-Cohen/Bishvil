@@ -95,20 +95,60 @@ selectedValue = null;
     }
 
 
-
-
   addHosting(){
 
+    //VALIDATION:
+    if(this.host.phoneOne.length != 10)
+    {
+      alert("Phone must be 10 numbers");
+      return;
+    }
 
-
-    
-      if(confirm("Add Event?")){
-        if(this.host.firstName!= "")
-           this.afService.addHosting(this.host);
-
+    for(var i=0 ; i<this.host.phoneOne.length ; i++)
+    {
+      if (this.host.phoneOne[i] < '0' || this.host.phoneOne[i] > '9')
+      {
+        alert ("Phone can only contain numbers!");
+        return;
       }
+    }
 
-      this.router.navigate([""]);
+    for(var i=0 ; i<this.host.numberHost.length ; i++)
+    {
+      if (this.host.numberHost[i] < '0' || this.host.numberHost[i] > '9')
+      {
+        alert ("Host people can only contain numbers!");
+        return;
+      }
+    }
+
+    if (this.host.numberHost == "0")
+    {
+      alert ("Host people can't be zero!");
+      return;
+    }
+
+    var now = new Date();
+    var d = new Date(this.host.time);
+    if(now > d)
+    {
+      alert("Date is pass");
+      return;
+    }
+
+    if(!d.getFullYear())
+    {
+      alert("Date is illegal");
+      return;
+    }
+
+    //CONFIRM:
+    if(confirm("Add Event?"))
+    {
+      this.afService.addHosting(this.host);
+    }
+
+    this.router.navigate([""]);
   }
 
 
@@ -157,10 +197,10 @@ export class host{
   author: string;
   firstName: string;
   lastName: string;
-  phoneOne:any;
-  phoneTwo:any;
+  phoneOne:string;
+  phoneTwo:string;
   lang: string;
-  numberHost:any;
+  numberHost:string;
   photoURL:any;
 }
 
