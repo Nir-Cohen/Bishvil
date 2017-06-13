@@ -55,6 +55,16 @@
                <div class="form-group">
                  <label for="location">{{Email}}</label>
                  <input type="text" class="form-control" id="email" name = "email" [(ngModel)]= 'item.email'/>
+                 
+                 <br>
+                  <div class = "form-group">
+              <label for = "itemDelivery">Can you help with delivery?</label>
+             <select class = "form-control" id ="itemDelivery" name = "delivery" [(ngModel)]= 'item.delivery' required>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+          </div>
                </div>
           </fieldset>
           

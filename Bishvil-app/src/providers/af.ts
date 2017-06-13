@@ -111,6 +111,7 @@ addItem(item){
       photoURL : item.photoURL,
       phone: item.phone,
       email: item.email,
+      delivery: item.delivery,
   });
 
 }
