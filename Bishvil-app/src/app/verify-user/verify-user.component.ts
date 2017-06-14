@@ -46,7 +46,14 @@ export class VerifyUserComponent implements OnInit {
 
   confirmUser(key){
     firebase.database().ref('registeredUsers/'+ key).update({status : this.kindOf});
-  //this.afService.currUserStatus = 2;
+    var user = firebase.auth().currentUser;
+
+    user.sendEmailVerification().then(function() {
+    // Email sent.
+    }, function(error) {
+  // An error happened.
+});
+
   }
 
   getUserList() : Observable<any[]>{
