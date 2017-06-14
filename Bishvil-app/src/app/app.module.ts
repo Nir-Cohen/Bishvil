@@ -38,7 +38,6 @@ import { Confirm2Component } from './confirm2/confirm2.component';
 import { NightProfilesComponent } from './night-profiles/night-profiles.component';
 import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService }   from './translation';
 import { VerifyUserComponent } from './verify-user/verify-user.component';
-import { WaitForConfirmComponent } from './wait-for-confirm/wait-for-confirm.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
@@ -71,7 +70,6 @@ const routes: Routes = [
   { path: 'forget-pass', component:ForgetPassComponent},
   { path: 'night-profiles', component:NightProfilesComponent},
   { path: 'user-verify', component:VerifyUserComponent},
-  { path: 'wait-for-confirm', component:WaitForConfirmComponent},
   { path: 'contact-us', component:ContactUsComponent},
 ];
 
