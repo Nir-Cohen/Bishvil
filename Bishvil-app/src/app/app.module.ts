@@ -100,7 +100,7 @@ const routes: Routes = [
      ProfileComponent, 
      BoxMessagesComponent, 
      DialogComponent, 
-     PromptComponent, ConfirmComponent,Confirm2Component, AlertComponent, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent, HostProfilesComponent, ChatProfilesComponent, ForgetPassComponent, Confirm2Component, NightProfilesComponent, VerifyUserComponent, WaitForConfirmComponent, ContactUsComponent ],
+     PromptComponent, ConfirmComponent,Confirm2Component, AlertComponent, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent, HostProfilesComponent, ChatProfilesComponent, ForgetPassComponent, Confirm2Component, NightProfilesComponent, VerifyUserComponent, ContactUsComponent ],
   bootstrap: [ AppComponent ],
   providers: [AF,ChatRoomsService,TRANSLATION_PROVIDERS, TranslateService],
   entryComponents: [PromptComponent,ConfirmComponent,Confirm2Component]
