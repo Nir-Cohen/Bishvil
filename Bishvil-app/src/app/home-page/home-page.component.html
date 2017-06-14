@@ -45,7 +45,7 @@
             </div>
           </div>
 
-          <div *ngIf = "user.status == 0 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
+          <div *ngIf = "(user.status == 0 || user.status == 2) && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
             <div *ngFor="let new of news | async">
               {{new.message}} 
               <span class="pull-right" >{{ new.timestamp | date:"dd/MM/yy HH:mm" }} </span>
