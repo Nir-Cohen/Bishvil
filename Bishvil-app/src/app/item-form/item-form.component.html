@@ -62,7 +62,8 @@
               <div class="form-group row">
                 <div class="col-xs-2"> <label for="email">{{Email}}: </label> </div>
                 <div class="col-xs-10">
-                  <input type="text" class="form-control" id="email" name = "email" [(ngModel)]= 'item.email'/>
+                  <input type="email" class="form-control" id="email" name = "email" #email="ngModel" [(ngModel)]= 'item.email'/>
+
                 </div>
               </div>
 

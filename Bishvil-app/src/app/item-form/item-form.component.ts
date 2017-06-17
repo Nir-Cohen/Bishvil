@@ -88,13 +88,36 @@ isCurrentLang(lang: string)
 
   //add item to database
   addItem(){
+
+    if(this.item.phone.length != 10)
+    {
+      alert("Phone must be 10 numbers");
+      return;
+    }
+
+    for(var i=0 ; i<this.item.phone.length ; i++)
+    {
+      if (this.item.phone[i] < '0' || this.item.phone[i] > '9')
+      {
+        alert ("Phone can only contain numbers!");
+        return;
+      }
+    }
+ 
+    /* email regEx validation:
+    if( !( this.item.email.match(/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/) || this.item.email =="" ) ){
+      alert ("Invalid email address!");
+      return;
+    }*/
+
     if(confirm("Add Item?"))
     {
       this.item.email = this.afService.email;
       this.afService.addItem(this.item);
+      this.router.navigate([""]);
     }
     
-    this.router.navigate([""]);
+    return;
   }
 
   //setup path to upload
