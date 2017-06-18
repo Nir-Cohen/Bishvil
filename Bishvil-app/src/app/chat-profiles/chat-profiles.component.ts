@@ -22,7 +22,6 @@ export class ChatProfilesComponent implements OnInit {
   constructor(public afService : AF, public af : AngularFire, private router: Router) {
       this.users = this.af.database.list('registeredUsers'); 
        this.chatArr=this.afService.chatArrusers;
-     console.log(this.chatArr);
   }  
 
    getFilteredItems(city){
@@ -37,7 +36,6 @@ export class ChatProfilesComponent implements OnInit {
    };
 
    deleteUser(key,name){
-     console.log(name);
      if(confirm("Are You sure you want to delete " + name +"?")){
         this.af.database.list("registeredUsers").remove(key);
      }

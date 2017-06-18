@@ -77,7 +77,6 @@ export class AppComponent {
 
   select(key: string)
   {
-    // console.log(key);
     this.afService.choosen_lan=key;
   }
 }

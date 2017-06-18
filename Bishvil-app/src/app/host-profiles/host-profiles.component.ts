@@ -26,7 +26,6 @@ hostArr;
       this.users = this.af.database.list('registeredUsers'); 
       this.key=this.afService.OK_key;
        this.hostArr=this.afService.arrusers;
-     console.log(this.hostArr);
   }   
 
    getFilteredItems(city){
@@ -41,7 +40,6 @@ hostArr;
    };
 
    deleteUser(key,name){
-     console.log(name);
      if(confirm("Are You sure you want to delete " + name +"?")){
         this.af.database.list("registeredUsers").remove(key);
      }

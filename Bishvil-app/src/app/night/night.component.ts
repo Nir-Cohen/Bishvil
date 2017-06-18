@@ -59,8 +59,6 @@ isCurrentLang(lang: string)
     selectLang(lang: string) 
     {
       // set default;
-      
-      console.log(lang);
       this._translate.use(this.afService.choosen_lan);
       this.refreshText();
     }
@@ -95,9 +93,7 @@ leave(key:string)
        break;
     }
   }
-    console.log( this.userArr);
      this.userArr.splice(i,1);
-     console.log( this.userArr);
      this.af.database.object('/events/'+this.afService.OK_key).update({userArr : this.userArr});
 }
 
@@ -106,7 +102,6 @@ leave(key:string)
   showConfirm(key: string) {
     
     this.afService.OK_key=key;
-    console.log(this.afService.OK_key+"  OK KEY");
     this.dialogService.addDialog(Confirm2Component, {
       title:'Confirmation',
       message:'Are you sure you want to join this Shabbat?'})
@@ -114,7 +109,6 @@ leave(key:string)
         //Get dialog result
         this.confirmResult = isConfirmed;
     });
-    console.log(this.confirmResult+"dsadas");
   }
 
   checkIfIn(key: string) {

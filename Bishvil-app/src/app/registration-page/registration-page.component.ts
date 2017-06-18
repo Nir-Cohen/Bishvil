@@ -21,7 +21,6 @@ userType:Array<Object>  = [
   constructor(private afService: AF, private router: Router) { }
 
   register(event, name, email, password,status) {
-    console.log(status);
     if(status == "Bat Sherut")
       this.status=1;
     else
@@ -58,7 +57,6 @@ userType:Array<Object>  = [
     })
       .catch((error) => {
         this.error = error;
-        console.log(this.error);
       });
         
         

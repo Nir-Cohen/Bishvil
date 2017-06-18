@@ -57,7 +57,6 @@ isCurrentLang(lang: string)
     selectLang(lang: string) 
     {
       // set default;
-      // console.log(lang);
       this._translate.use(this.afService.choosen_lan);
       this.refreshText();
     }

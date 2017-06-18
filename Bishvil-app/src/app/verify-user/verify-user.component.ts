@@ -35,7 +35,6 @@ export class VerifyUserComponent implements OnInit {
 
   toNumber(){
     this.kindOf = +this.kindOf;
-    console.log(this.kindOf);
   }
 
   deleteItem(key : string){
@@ -67,7 +66,6 @@ export class VerifyUserComponent implements OnInit {
   
   selectLang(lang: string) {
     // set default;
-    //console.log(lang);
     this._translate.use(this.afService.choosen_lan);
     this.refreshText();
   }

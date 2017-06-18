@@ -61,7 +61,6 @@ filterType;
    };
 
    deleteUser(key,name){
-     console.log(name);
      //var user = FirebaseAuth
      if(confirm("Are You sure you want to delete " + name +"?")){
         this.af.database.list("registeredUsers").remove(key);
@@ -97,7 +96,6 @@ filterType;
            
             for(var i = 0 ; i < this.statusList.length ; i++)
             {
-               //console.log(snap.val().status);
               if(this.statusList[i] == snap.val().status)
               {
                   this.checkStatus = true;
@@ -145,11 +143,6 @@ filterType;
     {
         this.filterType="1";
     }  
-    checkFilterType2()
-    {
-        this.filterType="lang";
-    
-    } 
     checkFilterType3()
     {
         this.filterType="2";

@@ -44,7 +44,6 @@ export class HomePageComponent implements OnInit {
     
     selectLang(lang: string) {
       // set default;
-      console.log(lang);
       this._translate.use(lang);
       this.refreshText();
     }

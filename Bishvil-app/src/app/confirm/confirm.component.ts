@@ -69,7 +69,6 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
      if(this.bool == true)
      {
         this.userArr.push(this.afService.displayName);
-       console.log(this.userArr); 
        this.af.database.object('/hosting/'+this.afService.OK_key).update({userArr :this.userArr});
        this.close();
      }

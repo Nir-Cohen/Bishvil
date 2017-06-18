@@ -26,7 +26,6 @@ nightArr;
       this.users = this.af.database.list('registeredUsers'); 
       this.key=this.afService.OK_key;
        this.nightArr=this.afService.arrusers;
-     console.log(this.nightArr);
   }   
 
    getFilteredItems(city){
@@ -41,7 +40,6 @@ nightArr;
    };
 
    deleteUser(key,name){
-     console.log(name);
      if(confirm("Are You sure you want to delete " + name +"?")){
         this.af.database.list("registeredUsers").remove(key);
      }

@@ -61,8 +61,6 @@ email2;
     alert("please enter group name");
       return;
     }
-    console.log("size");
-    console.log(this.groups.length);
       for(var i = 0 ; i<this.groups.length;i++)
       {
         if(this.groups[i] != undefined)

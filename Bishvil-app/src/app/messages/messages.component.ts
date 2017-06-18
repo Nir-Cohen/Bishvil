@@ -69,7 +69,6 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       });
 
       this.IDArray = Array.from(new Set(this.IDArray));
-      console.log(this.IDArray);
       if(this.hasAdminMessage)
         this.IDArray.unshift("Bishvil Admin");
       this.IDArray.forEach(_key =>{
@@ -151,8 +150,6 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
         timestamp: Date.now(),
         order : -1 * new Date().getTime()
       };
-      console.log(sendToID);
-      console.log(sendToID);
       ref.push(messageToPush);
    }
 

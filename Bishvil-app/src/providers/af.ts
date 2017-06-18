@@ -90,7 +90,6 @@ addHosting(hosting){
       userArr: [""] ,
       photoURL: hosting.photoURL,
     });
-    console.log(hosting);
 }
 
 removeHosting(hosting)

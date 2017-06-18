@@ -37,7 +37,6 @@ export class LoginPageComponent {
         .catch((error: any) => {
           if (error) {
             this.error = error;
-            console.log(this.error);
           }
         });
   }
