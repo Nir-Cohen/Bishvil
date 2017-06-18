@@ -31,11 +31,13 @@ filterType;
    }
 
    getFilteredItems(city){
-     this.filteredList = this.getFilteredList(city);   
+     this.filteredList = this.getFilteredList(city);
+     this.checkFilterType1();   
    };
 
       getFilteredStatus(status){
-     this.filteredStatusList = this.getFilteredStatusList(status);     
+     this.filteredStatusList = this.getFilteredStatusList(status); 
+     this.checkFilterType3();    
    };
 
    getFilteredList(city) : Observable<any[]>{

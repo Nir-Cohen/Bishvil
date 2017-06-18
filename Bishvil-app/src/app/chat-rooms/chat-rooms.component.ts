@@ -21,7 +21,7 @@ export class ChatRoomsComponent implements OnInit {
   myMail;
   public myName;
   public name:string;
-  groups;
+  groups=[];
   ifClicked;
   ifClicked1;
   arruser=[];
@@ -61,7 +61,9 @@ email2;
     alert("please enter group name");
       return;
     }
-      for(var i = 0 ; i<100;i++)
+    console.log("size");
+    console.log(this.groups.length);
+      for(var i = 0 ; i<this.groups.length;i++)
       {
         if(this.groups[i] != undefined)
         { 
