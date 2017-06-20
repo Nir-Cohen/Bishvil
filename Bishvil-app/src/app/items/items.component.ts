@@ -25,7 +25,7 @@ export class ItemsComponent implements OnInit {
   public Type: string;
   public AddItem: string;
   public Location: string;
-
+  public PublisherHelp: string;
 
 
 
@@ -64,6 +64,7 @@ isCurrentLang(lang: string)
     
     refreshText() 
     {
+      this.PublisherHelp = this._translate.instant('Publisher can help with delivery');
       this.Publisher = this._translate.instant('Publisher');
       this.Email = this._translate.instant('Email');
       this.Contact_info = this._translate.instant('Contact info');

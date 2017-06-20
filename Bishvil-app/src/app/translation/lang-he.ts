@@ -38,8 +38,8 @@ export const LANG_HE_TRANS = {
     'Browse Photo': 'בחר תמונה',
     'Contact Information': 'יצירת קשר',
     'Item Location': 'מיקום',
-
-
+    'Publisher can help with delivery': 'מפרסם המוצר יכול לעזור?',
+    'Yes' : 'כן',
     'Meetings': 'קבע פגישה!',
     'Kind of Meeting': 'סוג הפגישה',
     'When': 'מתי',
