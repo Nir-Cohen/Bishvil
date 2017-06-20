@@ -13,7 +13,7 @@
                   <input id="searchclear" [ngModel] = "model1" name = "aaa" autocomplete="off"/>
                   <span  class="glyphicon glyphicon-remove-circle"(click) = "clearInput()"></span>
             </div>
-            <div *ngIf="filterType == 1">
+            
             <div *ngFor = "let user of filteredList | async">
                 <div class="well well-sm">              
                     <div class="row">
@@ -50,12 +50,12 @@
                         </div>
                     </div>
                 </div>
-                </div>
+                
  </div>
 
 
-
-<div *ngIf="filterType == 2">
+<!--
+        <div *ngIf="filterType == 2">
             <div *ngFor = "let user of filteredStatusList | async">
                 <div class="well well-sm">              
                     <div class="row">
@@ -92,18 +92,8 @@
                         </div>
                     </div>
                 </div>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
+            </div>
         </div>
+        -->
     </div>
 </div>
