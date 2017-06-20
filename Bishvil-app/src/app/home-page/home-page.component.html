@@ -12,20 +12,20 @@
         </div>
   <!-- need to remove ng for!! make duplicate menu!!!-->
 
-    <div *ngIf = "afService.currUserStatus != 2">
-        <div class="col-xs-6 col-lg-3">
-          <a [routerLink]="['/night']"><button class="btn maincmd nlbtn"></button></a>
+        <div *ngIf = "afService.currUserStatus != 2">
+          <div class="col-xs-6 col-lg-3">
+            <a [routerLink]="['/night']"><button class="btn maincmd nlbtn"></button></a>
+          </div>
+          <div class="col-xs-6 col-lg-3">
+            <a [routerLink]="['chat-rooms']"><button class="btn maincmd chbtn"></button></a>
+          </div>
+          <div class="col-xs-12">
+            <a [routerLink]="['/profiles']"><button class="btn secondcmd"></button></a>
+          </div>      
         </div>
-        <div class="col-xs-6 col-lg-3">
-          <a [routerLink]="['chat-rooms']"><button class="btn maincmd chbtn"></button></a>
-        </div>
-        <div class="col-xs-12">
-          <a [routerLink]="['/profiles']"><button class="btn secondcmd"></button></a>
-        </div>      
-      </div>
 
+      </div>
     </div>
-  </div>
     <!-- messages news -->
     <div class="row well"> 
       <div class="col-xs-12 col-md-12 col-md-offset-0">
@@ -51,6 +51,7 @@
     </div>
   </div>
 </div>
+
 
 <div class="notConfirmed" *ngIf = "!afService.currUserStatus && afService.currUserStatus != 0">
   <h1>Waiting for admin approval</h1>
