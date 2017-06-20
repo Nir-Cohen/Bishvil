@@ -21,10 +21,11 @@
 
     
     <hr>
+    <button class="login loginmodal-submit" (click)="loginWithGoogle()">
+      <img src="http://marketingland.com/wp-content/ml-loads/2014/07/google-plus-logo-1920.png" class="gimage">
+       Login With Google
+    </button>
 
-    <button class="login loginmodal-submit" (click)="loginWithGoogle()">Login With Google</button>
-    <hr>
-    <button class="login loginmodal-submit" (click)="loginWithGoogle()">Login With FaceBook</button>
     <hr>
     <a [routerLink]="['/register']" style="cursor: pointer;">Register Now</a>
   </div>

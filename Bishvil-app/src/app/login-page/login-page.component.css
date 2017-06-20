@@ -23,11 +23,16 @@
   border: 0px;
   color: #fff;
   text-shadow: 0 1px rgba(0,0,0,0.1);
-  background-color: #4d90fe;
+  background-color: #DD4B39;
   padding: 11px 0px;
   font-family: roboto;
   font-size: 21px;
-   background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed));
+  background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#DD4B39), to(#DD4B39));
+}
+
+.gimage{
+  height: 30px;
+  width: auto;
 }
 
 .loginmodal-submit:hover {
