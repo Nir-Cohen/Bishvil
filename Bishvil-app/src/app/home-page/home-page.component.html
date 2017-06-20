@@ -1,4 +1,3 @@
-
 <div class="container">
   <div *ngIf = "afService.currUserStatus==0 || afService.currUserStatus == 1 || afService.currUserStatus == 2">
     <!-- nav bar -->
@@ -32,24 +31,16 @@
 
         <div *ngFor="let user of users | async">
 
-          <div *ngIf = "user.status == 1 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
+          <div *ngIf = "(user.status == 0 || user.status == 1) && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
             <div *ngFor="let new of news | async">
               {{new.message}} 
-              <span class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(new.$key)"></span>
+              <span *ngIf = "(user.status == 1)" class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(new.$key)"></span>
               <span class="pull-right" >{{ new.timestamp | date:"dd/MM/yy HH:mm" }} </span>
               
               <hr>
             </div>
             <div class="col-xs-12 btndiv">
-              <button class="btn" (click)=AddMessage()>Add message</button>
-            </div>
-          </div>
-
-          <div *ngIf = "(user.status == 0 || user.status == 2) && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
-            <div *ngFor="let new of news | async">
-              {{new.message}} 
-              <span class="pull-right" >{{ new.timestamp | date:"dd/MM/yy HH:mm" }} </span>
-              <hr>
+              <button *ngIf = "(user.status == 1)" class="btn" (click)=AddMessage()>Add message</button>
             </div>
           </div>
 
@@ -60,8 +51,12 @@
   </div>
 </div>
 
-<div *ngIf = "!afService.currUserStatus">
-  Waiting for admin confirmation!
+<div class="notConfirmed" *ngIf = "!afService.currUserStatus && afService.currUserStatus != 0 && afService.currUserStatus != 1 && afService.currUserStatus != 2">
+  <h1>Waiting for admin approval</h1>
+  <h2>
+    Your account has been registered successfully but not approved yet by the administrator.<br>
+    Please wait for administrator approval to connect the application.
+  </h2>
 </div>
 
 

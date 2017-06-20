@@ -39,12 +39,9 @@
                             <div *ngIf = "afService.currUserStatus == 1">
                                 <button type="button" class="btn btn-primary" (click) = "deleteUser(user.$key, user.name)"><i class="glyphicon glyphicon-trash"></i> {{user.name}}</button>
                                 <select class="pull-right" (change)="statusChanged($event,user.$key)">                                    
-                                    <option *ngIf = "user.status == 1">Admin</option>
                                     <option *ngIf = "user.status == 1">Bat-Sherut</option>
-                                    <option *ngIf = "user.status == 1">Donor</option>          
-                                    <option *ngIf = "user.status == 0 || user.status == 2 || !user.status">Bat-Sherut</option>
-                                    <option *ngIf = "user.status == 0 || user.status == 2 || !user.status">Admin</option>
-                                    <option *ngIf = "user.status == 0 || user.status == 2 || !user.status">Donor</option>
+                                    <option *ngIf = "user.status == 1">Admin</option>
+                                    <option *ngIf = "user.status == 1">Donor</option>                                    
                                 </select>
                                 <label class="pull-right" for="user status">Status:</label>
 
@@ -83,12 +80,10 @@
                             <div *ngIf = "afService.currUserStatus == 1">
                                 <button type="button" class="btn btn-primary" (click) = "deleteUser(user.$key, user.name)"><i class="glyphicon glyphicon-trash"></i> {{user.name}}</button>
                                 <select class="pull-right" (change)="statusChanged($event,user.$key)">                                    
-                                    <option *ngIf = "user.status == 1">Admin</option>
                                     <option *ngIf = "user.status == 1">Bat-Sherut</option>
-                                    <option *ngIf = "user.status == 1">Donor</option>          
-                                    <option *ngIf = "user.status == 0 || user.status == 2 || !user.status">Bat-Sherut</option>
-                                    <option *ngIf = "user.status == 0 || user.status == 2 || !user.status">Admin</option>
-                                    <option *ngIf = "user.status == 0 || user.status == 2 || !user.status">Donor</option>                                </select>
+                                    <option *ngIf = "user.status == 1">Admin</option>
+                                    <option *ngIf = "user.status == 1">Donor</option>                                    
+                                </select>
                                 <label class="pull-right" for="user status">Status:</label>
 
                             </div>

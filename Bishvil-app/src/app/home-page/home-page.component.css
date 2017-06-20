@@ -48,3 +48,17 @@ img{
 .itbtn{ background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/mainbtn/itemdel.png?raw=true); }
 .nlbtn{ background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/mainbtn/nl.png?raw=true); }
 .chbtn{ background-image: url(https://github.com/Nir-Cohen/Bishvil/blob/master/mainbtn/chat.png?raw=true); }
+
+
+.notConfirmed{
+  font-family: Calibri;
+  color: darkslateblue;
+  padding: 30px;
+}
+h1{
+  text-align: center;
+  font-size: 28px;
+}
+h2{
+  font-size: 18px;
+}
