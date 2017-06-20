@@ -14,7 +14,7 @@ import 'rxjs/add/operator/map';
 })
 export class ProfilesComponent implements OnInit {
 
-  public users : FirebaseListObservable<any>;
+  public users : Observable<any>;
   cityList = [];
   public filteredList : any;
   check = false;//city
@@ -26,7 +26,9 @@ filterType;
 
 
   constructor(public afService : AF, public af : AngularFire, private router: Router) {
-      this.users = this.af.database.list('registeredUsers');    
+      this.filteredList = this.af.database.list("registeredUsers/").map(_user => _user.filter(user=> (user.status != undefined)));
+      this.filteredList.subscribe(t=>{console.log(t);});
+      // this.af.database.list('registeredUsers');    
          
    }
 
@@ -35,8 +37,8 @@ filterType;
      this.checkFilterType1();   
    };
 
-      getFilteredStatus(status){
-     this.filteredStatusList = this.getFilteredStatusList(status); 
+  getFilteredStatus(status){
+     this.filteredList = this.getFilteredStatusList(status); 
      this.checkFilterType3();    
    };
 
@@ -44,15 +46,14 @@ filterType;
       if(city == undefined || city == "" || city == "(none)")
         return this.af.database.list('registeredUsers');
       else
-      {
-        return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.city == city));
-      }   
+        return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.city == city && user.status != undefined));
+         
    };
 
-      getFilteredStatusList(status) : Observable<any[]>{
+    getFilteredStatusList(status) : Observable<any[]>{
       if(status == undefined || status == "" || status == "(none)")
       {
-        return this.af.database.list('registeredUsers');
+        return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.status != undefined));
       }
       else if(status == "Bat-Sherut")
       {
