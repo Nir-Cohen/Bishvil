@@ -17,13 +17,11 @@ import { NightComponent } from './night/night.component';
 import { NightFormComponent } from './night-form/night-form.component';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { ProfileComponent } from './profile/profile.component';
-import { BoxMessagesComponent } from './box-messages/box-messages.component';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 //import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { DialogComponent } from './dialog/dialog.component';
 import { PromptComponent } from './prompt/prompt.component';
 import { ConfirmComponent } from './confirm/confirm.component';
-import { AlertComponent } from './alert/alert.component';
 import { MessagesComponent } from './messages/messages.component';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import {ProfilesComponent} from './profiles/profiles.component';
@@ -61,7 +59,6 @@ const routes: Routes = [
   { path: 'night-form', component: NightFormComponent},
   { path: 'item-form' , component: ItemFormComponent},
   { path: 'profile' , component: ProfileComponent},
-  { path: 'box-messages', component:BoxMessagesComponent},
   { path: 'messages', component:MessagesComponent},
   { path: 'profiles', component:ProfilesComponent},
   { path: 'chat-rooms', component:ChatRoomsComponent},
@@ -98,9 +95,8 @@ const routes: Routes = [
      NightFormComponent, 
      ItemFormComponent, 
      ProfileComponent, 
-     BoxMessagesComponent, 
      DialogComponent, 
-     PromptComponent, ConfirmComponent,Confirm2Component, AlertComponent, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent, HostProfilesComponent, ChatProfilesComponent, ForgetPassComponent, Confirm2Component, NightProfilesComponent, VerifyUserComponent, ContactUsComponent ],
+     PromptComponent, ConfirmComponent,Confirm2Component, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent, HostProfilesComponent, ChatProfilesComponent, ForgetPassComponent, Confirm2Component, NightProfilesComponent, VerifyUserComponent, ContactUsComponent ],
   bootstrap: [ AppComponent ],
   providers: [AF,ChatRoomsService,TRANSLATION_PROVIDERS, TranslateService],
   entryComponents: [PromptComponent,ConfirmComponent,Confirm2Component]

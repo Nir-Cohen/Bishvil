@@ -45,7 +45,6 @@
             <div #scrollMe class="bs-example" id="messages">
               <div *ngFor="let message of myMessages | async">
                 <div class="bubble" [class.you]="message.sentfromID != afService.currUserID" [class.me]="message.sentfromID == afService.currUserID">
-                  <div class = "pull-right glyphicon glyphicon-trash" (click)="deleteMessage(message.$key)" title = "Delete"></div>
                   <p>{{ message.message }}</p>
                   <div class="author">{{ message.timestamp | date:"MM/dd/yy HH:mm" }}</div>                  
                 </div>
