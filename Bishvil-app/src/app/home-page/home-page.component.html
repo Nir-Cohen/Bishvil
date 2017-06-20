@@ -123,7 +123,6 @@
   </div>
 </div>
 
-
 <div class="notConfirmed" *ngIf = "!afService.currUserStatus && afService.currUserStatus != 0">
   <h1>Waiting for admin approval</h1>
   <h2>
@@ -133,6 +132,7 @@
 
 <div *ngIf = "afService.currUserStatus != 0 && afService.currUserStatus != 1 && afService.currUserStatus != 2 ">
   Waiting for admin confirmation!
+
 
 </div>
 
