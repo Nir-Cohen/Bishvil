@@ -54,9 +54,17 @@ filterType;
       {
         return this.af.database.list('registeredUsers');
       }
-      else
+      else if(status == "Bat-Sherut")
       {
-          return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.status == status));   
+          return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.status == 0))
+      }
+       else if(status == "Admin")
+      {
+          return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.status == 1))
+      }
+       else if(status == "Donor")
+      {
+          return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.status == 2))
       }
    };
 
@@ -94,30 +102,10 @@ filterType;
     
     ngOnInit() {
        this.statusList.push("(none)");
-      firebase.database().ref("registeredUsers/").orderByValue().on("value" ,(data)=>{
-        data.forEach((snap) =>{
+       this.statusList.push("Admin");
+       this.statusList.push("Bat-Sherut");
+       this.statusList.push("Donor");
 
-          if(snap.val().status != "" && snap.val().status != undefined)
-          {
-           
-            for(var i = 0 ; i < this.statusList.length ; i++)
-            {
-              if(this.statusList[i] == snap.val().status)
-              {
-                  this.checkStatus = true;
-              }
-              
-            }
-            if(this.checkStatus == false)
-            {
-              this.statusList.push(snap.val().status);  
-            }
-            this.checkStatus = false;
-          return false;
-          }
-
-        });
-      });
       this.getFilteredStatus(""); 
 
       this.cityList.push("(none)");

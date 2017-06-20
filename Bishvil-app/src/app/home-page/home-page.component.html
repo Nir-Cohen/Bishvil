@@ -1,4 +1,3 @@
-
 <div class="container">
   <div *ngIf = "afService.currUserStatus==0 || afService.currUserStatus == 1 || afService.currUserStatus == 2">
     <!-- nav bar -->
@@ -52,8 +51,12 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 
 <div class="notConfirmed" *ngIf = "!afService.currUserStatus && afService.currUserStatus != 0">
+=======
+<div class="notConfirmed" *ngIf = "!afService.currUserStatus && afService.currUserStatus != 0 && afService.currUserStatus != 1 && afService.currUserStatus != 2">
+>>>>>>> bd0d7ec259105829453aec0a2fef1161a0ccbd79
   <h1>Waiting for admin approval</h1>
   <h2>
     Your account has been registered successfully but not approved yet by the administrator.<br>
@@ -69,5 +72,5 @@
       <a href="http://bishvil.org/he/" target="_blank"><img src="https://github.com/Nir-Cohen/Bishvil/blob/master/icons/web.png?raw=true"></a>
       <a [routerLink]="['/contact-us']"><img src="https://github.com/Nir-Cohen/Bishvil/blob/master/icons/mail.png?raw=true"></a>
   
-</div>
+  </div>
 
