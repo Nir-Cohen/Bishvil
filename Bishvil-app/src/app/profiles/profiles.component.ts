@@ -68,17 +68,23 @@ filterType;
    };
 
   statusChanged($event, key){
-    if($event.target.value =="Admin"){
+    if($event.target.value =="Bat-Sherut")
+      if(confirm("Are you sure to make this user Bat-Sherut?"))
+        firebase.database().ref('registeredUsers/'+ key).update({status : "0"});
+      else
+        window.location.reload();
+
+    if($event.target.value =="Admin")
       if(confirm("Are you sure to make this user ADMIN?"))
         firebase.database().ref('registeredUsers/'+ key).update({status : "1"});
       else
         window.location.reload();
-    }
-    if($event.target.value =="User")
-      if(confirm("Are you sure to make this user USER?"))
-        firebase.database().ref('registeredUsers/'+ key).update({status : "0"});
+
+    if($event.target.value =="Donor")
+      if(confirm("Are you sure to make this user Donor?"))
+        firebase.database().ref('registeredUsers/'+ key).update({status : "2"});
       else
-        window.location.reload();
+        window.location.reload();        
    };
 
     clearInput(){
