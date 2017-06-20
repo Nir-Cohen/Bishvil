@@ -37,7 +37,6 @@
           <a class="list-group-item clearfix list-group-item-success"  (click) = "showDiv(user.key,i)">
             <img *ngIf = "user.photo" [src] = "user.photo" class="img-rounded img-responsive">
             &nbsp;{{user.name}}
-            <div  class = "pull-right glyphicon glyphicon-trash" (click)="deleteChat(user.key)" title = "Delete Chat"></div>
           </a>
           
 

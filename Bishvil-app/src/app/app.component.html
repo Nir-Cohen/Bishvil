@@ -16,6 +16,10 @@
         <ul class="dropdown-menu">
           <li>Signed in as<br><a [routerLink] = "['/profile']"><strong>{{afService.displayName }}</strong></a></li><hr>
           <li><a [routerLink] = "['/messages']"><a class="glyphicon glyphicon-envelope"></a> Messages</a></li>
+<<<<<<< HEAD
+=======
+          <li><a [routerLink] = "['/contact-us']"><a class = "glyphicon glyphicon-earphone"></a> Contact Us</a></li>
+>>>>>>> 93dab41599f1d40205ad41d60dc92162602c3d80
           <li *ngIf = "afService.currUserStatus == 1"><a [routerLink] = "['/user-verify']"><a class = "glyphicon glyphicon-ok" ></a> Verify Users</a></li>
         </ul>
       </div>
