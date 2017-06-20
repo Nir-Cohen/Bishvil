@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 <div class="container">
   <div *ngIf = "afService.currUserStatus==0 || afService.currUserStatus == 1 || afService.currUserStatus == 2">
@@ -69,83 +68,5 @@
       <a href="http://bishvil.org/he/" target="_blank"><img src="https://github.com/Nir-Cohen/Bishvil/blob/master/icons/web.png?raw=true"></a>
       <a [routerLink]="['/contact-us']"><img src="https://github.com/Nir-Cohen/Bishvil/blob/master/icons/mail.png?raw=true"></a>
   
-  </div>
-
-=======
-
-<div class="container">
-  <div *ngIf = "afService.currUserStatus==0 || afService.currUserStatus == 1 || afService.currUserStatus == 2">
-    <!-- nav bar -->
-    <div class = "well">
-      <div class="row">
-        <div class="col-xs-6 col-lg-3">
-          <a [routerLink]="['/host']"><button class="btn maincmd hsbtn"></button></a>
-        </div>
-        <div class="col-xs-6 col-lg-3">
-          <a [routerLink]="['/items']"><button class="btn maincmd itbtn"></button></a>
-        </div>
-  <!-- need to remove ng for!! make duplicate menu!!!-->
-
-    <div *ngIf = "afService.currUserStatus != 2">
-        <div class="col-xs-6 col-lg-3">
-          <a [routerLink]="['/night']"><button class="btn maincmd nlbtn"></button></a>
-        </div>
-        <div class="col-xs-6 col-lg-3">
-          <a [routerLink]="['chat-rooms']"><button class="btn maincmd chbtn"></button></a>
-        </div>
-        <div class="col-xs-12">
-          <a [routerLink]="['/profiles']"><button class="btn secondcmd"></button></a>
-        </div>      
-      </div>
-
-    </div>
-  </div>
-    <!-- messages news -->
-    <div class="row well"> 
-      <div class="col-xs-12 col-md-12 col-md-offset-0">
-
-        <div *ngFor="let user of users | async">
-
-          <div *ngIf = "user.status == 1 && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
-            <div *ngFor="let new of news | async">
-              {{new.message}} 
-              <span class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(new.$key)"></span>
-              <span class="pull-right" >{{ new.timestamp | date:"dd/MM/yy HH:mm" }} </span>
-              
-              <hr>
-            </div>
-            <div class="col-xs-12 btndiv">
-              <button class="btn" (click)=AddMessage()>Add message</button>
-            </div>
-          </div>
-
-          <div *ngIf = "(user.status == 0 || user.status == 2) && (afService.displayName ==user.email.toLowerCase() || afService.email ==user.email.toLowerCase())"> 
-            <div *ngFor="let new of news | async">
-              {{new.message}} 
-              <span class="pull-right" >{{ new.timestamp | date:"dd/MM/yy HH:mm" }} </span>
-              <hr>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
 </div>
 
-<div *ngIf = "afService.currUserStatus==4">
-  Waiting for admin confirmation!
-</div>
-
-
-<div class="links">
-      
-      <a href="https://www.facebook.com/AmutatBishvil/?fref=ts" target="_blank"><img src="https://github.com/Nir-Cohen/Bishvil/blob/master/icons/facebook.png?raw=true"></a>
-      <a href="https://www.instagram.com/bishvil/" target="_blank"><img src="https://github.com/Nir-Cohen/Bishvil/blob/master/icons/Instagram.png?raw=true"></a>
-      <a href="http://bishvil.org/he/" target="_blank"><img src="https://github.com/Nir-Cohen/Bishvil/blob/master/icons/web.png?raw=true"></a>
-      <a [routerLink]="['/contact-us']"><img src="https://github.com/Nir-Cohen/Bishvil/blob/master/icons/mail.png?raw=true"></a>
-  
-  </div>
-
->>>>>>> 17bddc90648737814f95359978f3ad68568eb360
