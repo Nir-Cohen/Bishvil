@@ -45,7 +45,6 @@ export class AppComponent {
                 }
                 //auth = null;
                 this.isLoggedIn = false;
-                alert("Waiting for admin comfirmation!");
                 //this.router.navigate(['login']);
                 return;
               }
