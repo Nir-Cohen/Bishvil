@@ -45,7 +45,8 @@
               <div *ngFor="let message of myMessages | async">
                 <div class="bubble" [class.you]="message.sentfromID != afService.currUserID" [class.me]="message.sentfromID == afService.currUserID">
                   <p>{{ message.message }}</p>
-                  <div class="author">{{ message.timestamp | date:"MM/dd/yy HH:mm" }}</div>                  
+                  <div class="author">{{ message.timestamp | date:"MM/dd/yy HH:mm" }}</div>  
+                  <div *ngIf ="message.senttoName == 'Contact Us Message'">{{message.sentfromName}}</div>          
                 </div>
               </div>
             </div>
