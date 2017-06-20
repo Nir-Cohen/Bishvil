@@ -7,9 +7,12 @@
 <div class = "container">
       <div *ngIf = "(waitingUsers | async)?.length==0"><h1>{{Header}}</h1></div>
       <div class = "list-group"*ngFor = "let user of waitingUsers | async">
+        <!--
          <a class="list-group-item clearfix">
            <h4 class="list-group-item-heading">Name: {{user.name}}</h4>
            <h4 class="list-group-item-text">Email:  {{user.email}}</h4>
+           <h4 class="list-group-item-text">DOB:  {{user.DOB}}</h4>
+           <h4 class="list-group-item-text">City:  {{user.city}}</h4>
            <div class = "btn btn-success addcmd pull-right" (click) = "confirmUser(user.$key)"title = "Confirm">Confirm User</div>
            <div class="col-xs-1">
               <p class = "pull-right glyphicon glyphicon-trash" (click)="deleteItem(user.$key)"></p>
@@ -19,5 +22,34 @@
           </select>
           {{kindOf}}
           </a>
+          -->
+                          <div class="well well-sm">              
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                        <div *ngIf = "user.photoURL">
+                            <img [src]="user.photoURL" class="img-rounded img-responsive" />
+                        </div>
+                        <div *ngIf = "!user.photoURL">
+                            <img src="https://www.drupal.org/files/profile_default.jpg" class="img-rounded img-responsive" />
+                        </div>
+                        </div>
+                        <div class="col-sm-6 col-md-8">
+                            <h4>{{user.name}}</h4>
+                            <small><cite>{{user.city}} <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                            <p>
+                                <i class="glyphicon glyphicon-envelope"></i>{{user.email}}
+                                <br />
+                                <i class="glyphicon glyphicon-gift"></i>{{user.dob | date}}
+                                <br />
+                            </p>
+                            
+                            <select type="number" [(ngModel)]="kindOf" (ngModelChange)="toNumber()">
+                            <option *ngFor="let k of kinfOfArray" [ngValue]="k.num">{{k.name}}</option>
+                            </select>
+                            {{kindOf}}
+                        </div>
+                        <div class = "btn btn-success addcmd pull-right" (click) = "confirmUser(user.$key)"title = "Confirm">Confirm User</div>
+                    </div>
+                </div>
       </div>
 </div>

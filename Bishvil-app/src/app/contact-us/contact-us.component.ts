@@ -47,17 +47,15 @@ export class ContactUsComponent implements OnInit, AfterViewChecked {
   }
 
  
-   sendMess(messagetoSend) : void{
+   sendMess() : void{
      var sentFrom,sentFromID;
      
       var adminList = this.getAdminList();
 
-
-      var ref = firebase.database().ref("privateMessages/");
+      var ref = firebase.database().ref("privateMessages");
       adminList.forEach(key=>{
-        console.log(key);
         var messageToPush = {
-          message: messagetoSend,
+          message: this.message,
           sentfromID: this.afService.currUserID,        
           sentfromName :this.afService.currUserName,
           senttoID : key,
@@ -66,7 +64,7 @@ export class ContactUsComponent implements OnInit, AfterViewChecked {
           order : -1 * new Date().getTime()
         };
         ref.push(messageToPush);
-      })
+      });
       
 
    }

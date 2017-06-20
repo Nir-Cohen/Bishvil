@@ -44,7 +44,7 @@ filterType;
 
    getFilteredList(city) : Observable<any[]>{
       if(city == undefined || city == "" || city == "(none)")
-        return this.af.database.list('registeredUsers');
+        return this.af.database.list('registeredUsers').map(_user=> _user.filter(user=> user.status != undefined));
       else
         return this.af.database.list('registeredUsers').map(_user => _user.filter(user=> user.city == city && user.status != undefined));
          

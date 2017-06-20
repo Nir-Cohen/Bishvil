@@ -33,6 +33,7 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   userPhoto : any;
   newMessage : any;
   hasAdminMessage : boolean;
+  hasContactUs;
 
   constructor(public afService : AF,public af: AngularFire) {
       this.hideDiv = {};
@@ -56,24 +57,37 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
         //get user's name list that send me message
       firebase.database().ref("privateMessages").orderByValue().on("value" ,(data)=>{
         data.forEach((snap) =>{
+              if(snap.val().sentFromID == this.afService.currUserID && snap.val().senttoName =="Contact Us Message")
+                return;
               if(snap.val().sentfromName == "Bisvhil-Admin" && snap.val().senttoID == this.afService.currUserID)
-                this.hasAdminMessage = true;                
-              if(snap.val().sentfromID == snap.val().senttoID && snap.val().senttoID == this.afService.currUserID)
+                this.hasAdminMessage = true;
+              if(snap.val().sentfromID == snap.val().senttoID && snap.val().senttoID == this.afService.currUserID && snap.val().senttoName !="Contact Us Message")
                 this.IDArray.unshift(snap.val().senttoID);
-              else if(this.afService.currUserID == snap.val().sentfromID)
+              else if(this.afService.currUserID == snap.val().sentfromID && snap.val().senttoName !="Contact Us Message")
                 this.IDArray.unshift(snap.val().senttoID);
-              else if(this.afService.currUserID == snap.val().senttoID)
+              else if(this.afService.currUserID == snap.val().senttoID && snap.val().senttoName !="Contact Us Message")
                 this.IDArray.unshift(snap.val().sentfromID);
+              else if(this.afService.currUserStatus == 1 && snap.val().senttoName == "Contact Us Message"){
+                this.hasContactUs = true;
+                
+              }
               return false;
         })
       });
 
+      
+
       this.IDArray = Array.from(new Set(this.IDArray));
       if(this.hasAdminMessage)
         this.IDArray.unshift("Bishvil Admin");
+      if(this.hasContactUs)
+        this.IDArray.unshift("Contact Admin Message");
+
       this.IDArray.forEach(_key =>{
-        if(_key == "Bishvil Admin")
-          this.recievedFrom.push({"name" : "Bishvil Admin","key" : "" ,"photo" : "https://raw.githubusercontent.com/Nir-Cohen/Bishvil/master/logo.png"})
+        if(_key == "Contact Admin Message")
+          this.recievedFrom.push({"name" : "Contact us message","key" : "contact" ,"photo" : "https://github.com/Nir-Cohen/Bishvil/blob/master/logo.png?raw=true"})
+        else if(_key == "Bishvil Admin")
+          this.recievedFrom.push({"name" : "Bishvil Admin","key" : "" ,"photo" : "https://github.com/Nir-Cohen/Bishvil/blob/master/logo.png?raw=true"})
         else
           this.recievedFrom.push(this.getUserDetails(_key));
       });
@@ -173,6 +187,9 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   
   //delete all the chat from user
   deleteChat(user_key): void{
+    if(user_key == "Contact Us Message"){
+           
+    }
     firebase.database().ref("privateMessages").once("value").then(_messages=>{
       _messages.forEach(_message=>{
           if((_message.val().senttoID == user_key && _message.val().sentfromID == this.afService.currUserID) || (this.afService.currUserID == _message.val().senttoID && _message.val().sentfromID == user_key))
@@ -205,6 +222,9 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   };
   
   getFilteredList(fromUser) : Observable<any[]>{
+      if(fromUser == "contact")
+        return this.af.database.list("privateMessages/").map(_message => _message.filter(message=> (message.senttoName == "Contact Us Message" && message.senttoID == this.afService.currUserID)));
+      else
         return this.af.database.list("privateMessages/").map(_message => _message.filter(message=> ((message.sentfromID == fromUser && message.senttoID == this.afService.currUserID) || (message.sentfromID ==this.afService.currUserID && message.senttoID == fromUser))));
    };
 
@@ -219,6 +239,7 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
      })
      this.hideDiv[key] = true;
      this.getMessages(key);
+
    }
 
    //return object user user id,name,photo
