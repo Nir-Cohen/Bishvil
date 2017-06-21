@@ -14,7 +14,7 @@
                   <span  class="glyphicon glyphicon-remove-circle"(click) = "clearInput()"></span>
             </div>
             
-            <div *ngFor = "let user of filteredList | async">
+            <div *ngFor = "let user of filteredList |async ; let i = index">
                 <div class="well well-sm">              
                     <div class="row">
                         <div class="col-sm-6 col-md-4">
@@ -34,8 +34,17 @@
                                 <i class="glyphicon glyphicon-gift"></i>{{user.dob | date}}
                                 <br />
                             </p>
-                            <button type="button" class="btn btn-primary">
+
+                            <button type="button" class="btn btn-primary" (click) = "showDiv(user.$key,i)">
                                 Message {{user.name}}</button>
+
+                            <div [hidden] = "!hideDivs[user.$key]" >
+                                
+                                <input class="form-control" type="text" [(ngModel)] = "message" name = "message" autocomplete="off" placeholder="Type.." #check="ngModel" (keyup.enter)="sendMessage(message , 'form')" required/>
+                                <div class = "btn btn-success" (click) = "sendMess(user.name,user.$key)">Send</div>
+                            </div>
+                            <br>
+
                             <div *ngIf = "afService.currUserStatus == 1">
                                 <button type="button" class="btn btn-primary" (click) = "deleteUser(user.$key, user.name)"><i class="glyphicon glyphicon-trash"></i> {{user.name}}</button>
                                 <select class="pull-right" (change)="statusChanged($event,user.$key)">          

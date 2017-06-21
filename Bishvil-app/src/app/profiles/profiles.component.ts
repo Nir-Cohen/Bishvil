@@ -16,21 +16,25 @@ export class ProfilesComponent implements OnInit {
 
   public users : Observable<any>;
   cityList = [];
-  public filteredList : any;
+  public filteredList : Observable<any>;
   check = false;//city
   checkStatus = false;
   model1 : any;
 filterType;
   statusList = [];
   public filteredStatusList : any;
-
+  edited;
+  hideDivs;
+  message;
 
   constructor(public afService : AF, public af : AngularFire, private router: Router) {
       this.filteredList = this.af.database.list("registeredUsers/").map(_user => _user.filter(user=> (user.status != undefined)));
-      this.filteredList.subscribe(t=>{console.log(t);});
-      // this.af.database.list('registeredUsers');    
-         
-   }
+        this.filteredList.subscribe(t=>{console.log(t);}
+      );
+      this.hideDivs = {};
+      this.message ="";
+  
+  }
 
    getFilteredItems(city){
      this.filteredList = this.getFilteredList(city);
@@ -69,8 +73,43 @@ filterType;
       }
    };
 
+
+
+  sendMess(sendTo,sendToID){
+    if(this.message =="")
+      return;
+    var ref = firebase.database().ref("privateMessages/");
+    var messageToPush = {
+      message: this.message,
+      sentfromID: this.afService.currUserID,        
+      sentfromName :this.afService.currUserName,
+      senttoID : sendToID,
+      senttoName : sendTo,
+      timestamp: Date.now(),
+      order : -1 * new Date().getTime()
+    };
+    ref.push(messageToPush);
+    this.message = "";
+    console.log("Message sent to "+ sendTo);
+   }
+
+  
+
+
+   showDiv(key) : void{
+    this.message = "";
+     if(this.hideDivs[key]){
+        this.hideDivs[key] = false;
+        return;
+     }
+     Object.keys(this.hideDivs).forEach(h => {
+       this.hideDivs[h] = false;
+     })
+     this.hideDivs[key] = true;
+   }
+
+
    deleteUser(key,name){
-     //var user = FirebaseAuth
      if(confirm("Are You sure you want to delete " + name +"?")){
         this.af.database.list("registeredUsers").remove(key);
      }
