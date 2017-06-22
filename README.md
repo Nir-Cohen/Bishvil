@@ -27,7 +27,6 @@ This project is developed as part of the requirements for a [software engineerin
 - [Iteration 1 - MVP](https://github.com/Nir-Cohen/Bishvil/wiki/Iteration-1)
 - [Iteration 2 - ](https://github.com/Nir-Cohen/Bishvil/wiki/Iteration-2)
 - [Iteration 3 -](https://github.com/Nir-Cohen/Bishvil/wiki/Iteration-3)
-- [Iteration 4 -](https://github.com/Nir-Cohen/Bishvil/wiki/Iteration-4)
 
 
 ### Our live beta application:
