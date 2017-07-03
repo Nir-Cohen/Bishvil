@@ -62,3 +62,11 @@ h1{
 h2{
   font-size: 18px;
 }
+
+.lgincmd{
+  cursor: pointer;
+  padding: 5px 15px;
+  background: #254F89;
+  border-radius: 3px;
+  color: white;
+}

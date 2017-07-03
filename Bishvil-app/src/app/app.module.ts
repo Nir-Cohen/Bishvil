@@ -40,11 +40,11 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyCjyJqa4ix5ZFAfQIPfNCLZfcV6dOpLX18",
-    authDomain: "test-f29de.firebaseapp.com",
-    databaseURL: "https://test-f29de.firebaseio.com",
-    storageBucket: "test-f29de.appspot.com",
-    messagingSenderId: "808339653368"
+    apiKey: "AIzaSyBPWtEx5P2h8TbKF8XOvKkVzPIpR64KMY8",
+    authDomain: "https://bishvil-c14e2.firebaseapp.com",
+    databaseURL: "https://bishvil-c14e2.firebaseio.com",
+    storageBucket: "gs://bishvil-c14e2.appspot.com",
+    messagingSenderId: "91161265360"
 };
 
 const routes: Routes = [
@@ -96,7 +96,20 @@ const routes: Routes = [
      ItemFormComponent, 
      ProfileComponent, 
      DialogComponent, 
-     PromptComponent, ConfirmComponent,Confirm2Component, MessagesComponent,ProfilesComponent, ChatRoomsComponent, ChatRoomsSonComponent, HostProfilesComponent, ChatProfilesComponent, ForgetPassComponent, Confirm2Component, NightProfilesComponent, VerifyUserComponent, ContactUsComponent ],
+     PromptComponent,
+     ConfirmComponent,
+     Confirm2Component,
+     MessagesComponent,
+     ProfilesComponent,
+     ChatRoomsComponent,
+     ChatRoomsSonComponent,
+     HostProfilesComponent,
+     ChatProfilesComponent,
+     ForgetPassComponent,
+     Confirm2Component,
+     NightProfilesComponent,
+     VerifyUserComponent,
+     ContactUsComponent ],
   bootstrap: [ AppComponent ],
   providers: [AF,ChatRoomsService,TRANSLATION_PROVIDERS, TranslateService],
   entryComponents: [PromptComponent,ConfirmComponent,Confirm2Component]
