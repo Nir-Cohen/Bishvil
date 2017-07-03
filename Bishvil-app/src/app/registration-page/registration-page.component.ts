@@ -20,7 +20,14 @@ userType:Array<Object>  = [
      nameList=[]
   constructor(private afService: AF, private router: Router) { }
 
-  register(event, name, email, password,status) {
+  register(event, name, email, password, conpassword, status) {
+
+    if(password != conpassword)
+    {
+      alert("Password doesn't match");
+      return;
+    }
+
     if(status == "Bat Sherut")
       this.status=1;
     else
