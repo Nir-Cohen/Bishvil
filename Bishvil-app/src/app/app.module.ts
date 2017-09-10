@@ -40,12 +40,14 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyBPWtEx5P2h8TbKF8XOvKkVzPIpR64KMY8",
-    authDomain: "https://bishvil-c14e2.firebaseapp.com",
-    databaseURL: "https://bishvil-c14e2.firebaseio.com",
-    storageBucket: "gs://bishvil-c14e2.appspot.com",
-    messagingSenderId: "91161265360"
+   apiKey: "AIzaSyCfbHnYSl4UvOou9xvErhrcPiip1K4hMmc",
+    authDomain: "bishvil-6396b.firebaseapp.com",
+    databaseURL: "https://bishvil-6396b.firebaseio.com",
+    projectId: "bishvil-6396b",
+    storageBucket: "bishvil-6396b.appspot.com",
+    messagingSenderId: "1577445542"
 };
+
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
